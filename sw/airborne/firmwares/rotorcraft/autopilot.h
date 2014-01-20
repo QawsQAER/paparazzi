@@ -53,6 +53,7 @@
 #define AP_MODE_CARE_FREE_DIRECT  14
 #define AP_MODE_FORWARD           15
 
+#define AP_MODE_CUHK_FYP 16 //added by Edward for Final year project development
 extern uint8_t autopilot_mode;
 extern uint8_t autopilot_mode_auto2;
 extern bool_t autopilot_motors_on;
