@@ -1,3 +1,6 @@
+<!-- this file is an editted version by Edward HUANG & wyyi-->
+<!-- I modified the field name in STAB_ATTITUDE_INT and add one more parameter 'stablization_cmd[THRUST]' to be sent -->
+<!-- Should be used with the message.h file i have editted//wrong about it, no need to chang the message.h but remake paparazzi-->
 <?xml version="1.0"?>
 <!DOCTYPE protocol SYSTEM "messages.dtd">
 <protocol>
@@ -601,7 +604,6 @@
       <field name="ping_time" type="float" format="%.2f" unit="ms"/>
     </message>
 
-
  <!-- 72 is free -->
  <!-- 73 is free -->
  <!-- 74 is free -->
@@ -1118,42 +1120,43 @@
   </message>
 
  <message name="STAB_ATTITUDE_INT" id="140">
-    <field name="est_p"         type="int32" alt_unit="deg/s" alt_unit_coef="0.0139882"/>
-    <field name="est_q"         type="int32" alt_unit="deg/s" alt_unit_coef="0.0139882"/>
-    <field name="est_r"         type="int32" alt_unit="deg/s" alt_unit_coef="0.0139882"/>
-    <field name="est_phi"       type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
-    <field name="est_theta"     type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
-    <field name="est_psi"       type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
-    <field name="sp_phi"        type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
-    <field name="sp_theta"      type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
-    <field name="sp_psi"        type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
-    <field name="sum_err_phi"   type="int32"/>
-    <field name="sum_err_theta" type="int32"/>
-    <field name="sum_err_psi"   type="int32"/>
-    <field name="delta_a_fb"    type="int32" alt_unit_coef="0.0000153"/>
-    <field name="delta_e_fb"    type="int32" alt_unit_coef="0.0000153"/>
-    <field name="delta_r_fb"    type="int32" alt_unit_coef="0.0000153"/>
-    <field name="delta_a_ff"    type="int32" alt_unit_coef="0.0000153"/>
-    <field name="delta_e_ff"    type="int32" alt_unit_coef="0.0000153"/>
-    <field name="delta_r_ff"    type="int32" alt_unit_coef="0.0000153"/>
-    <field name="delta_a"       type="int32"/>
-    <field name="delta_e"       type="int32"/>
-    <field name="delta_r"       type="int32"/>
+    <field name="est_p"         type="int32" alt_unit="deg/s" alt_unit_coef="0.0139882"/><!-- stateGetBodyRates_i()->p -->
+    <field name="est_q"         type="int32" alt_unit="deg/s" alt_unit_coef="0.0139882"/><!-- stateGetBodyRates_i()->q -->
+    <field name="est_r"         type="int32" alt_unit="deg/s" alt_unit_coef="0.0139882"/><!-- stateGetBodyRates_i()->r -->
+    <field name="est_phi"       type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/> <!-- stateGetNedToBodyEulers_i()->phi -->
+    <field name="est_theta"     type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/> <!-- stateGetNedToBodyEulers_i()->theta -->
+    <field name="est_psi"       type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/> <!-- stateGetNedToBodyEulers_i()->psi -->
+    <field name="sp_phi"        type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/> <!-- stab_att_sp_euler.phi -->
+    <field name="sp_theta"      type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/> <!-- stab_att_sp_euler.theta -->
+    <field name="sp_psi"        type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/> <!-- stab_att_sp_euler.psi -->
+    <field name="sum_err_phi"   type="int32"/> <!--stabilization_att_sum_err.phi -->
+    <field name="sum_err_theta" type="int32"/> <!--stabilization_att_sum_err.theta -->
+    <field name="sum_err_psi"   type="int32"/> <!-- stablization_att_sum_err.psi -->
+    <field name="stab_cmd_fb_roll"    type="int32" alt_unit_coef="0.0000153"/>  <!-- stabilization_att_fb_cmd[COMMAND_ROLL] -->
+    <field name="stab_cmd_fb_pitch"    type="int32" alt_unit_coef="0.0000153"/> <!-- stabilization_att_fb_cmd[COMMAND_PITCH] -->
+    <field name="stab_cmd_fb_yaw"    type="int32" alt_unit_coef="0.0000153"/>   <!-- stabilization_att_fb_cmd[COMMAND_YAW] -->
+    <field name="stab_cmd_ff_roll"    type="int32" alt_unit_coef="0.0000153"/>  <!-- stabilization_att_ff_cmd[COMMAND_ROLL] -->
+    <field name="stab_cmd_ff_pitch"    type="int32" alt_unit_coef="0.0000153"/> <!-- stabilization_att_fb_cmd[COMMAND_PITCH] -->
+    <field name="stab_cmd_ff_yaw"    type="int32" alt_unit_coef="0.0000153"/>   <!-- stabilization_att_fb_cmd[COMMAND_YAW] -->
+    <field name="stab_cmd_roll"       type="int32"/> <!-- stabilization_cmd[COMMAND_ROLL] -->
+    <field name="stab_cmd_pitch"       type="int32"/><!-- stabilization_cmd[COMMAND_PITCH] -->
+    <field name="stab_cmd_yaw"       type="int32"/>  <!-- stabilization_cmd[COMMAND_YAW] -->
+    <field name="stab_cmd_thrust"    type="int32"/>
  </message>
 
  <message name="STAB_ATTITUDE_REF_INT" id="141">
-    <field name="sp_phi"    type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
-    <field name="sp_theta"  type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
-    <field name="sp_psi"    type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/>
-    <field name="ref_phi"   type="int32" alt_unit="deg" alt_unit_coef="0.0000546"/>
-    <field name="ref_theta" type="int32" alt_unit="deg" alt_unit_coef="0.0000546"/>
-    <field name="ref_psi"   type="int32" alt_unit="deg" alt_unit_coef="0.0000546"/>
-    <field name="ref_p"     type="int32" alt_unit="deg/s" alt_unit_coef="0.0008743"/>
-    <field name="ref_q"     type="int32" alt_unit="deg/s" alt_unit_coef="0.0008743"/>
-    <field name="ref_r"     type="int32" alt_unit="deg/s" alt_unit_coef="0.0008743"/>
-    <field name="ref_pd"    type="int32" alt_unit="deg/s2" alt_unit_coef="0.0139882"/>
-    <field name="ref_qd"    type="int32" alt_unit="deg/s2" alt_unit_coef="0.0139882"/>
-    <field name="ref_rd"    type="int32" alt_unit="deg/s2" alt_unit_coef="0.0139882"/>
+    <field name="sp_phi"    type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/> <!-- stab_att_sp_euler.phi -->
+    <field name="sp_theta"  type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/> <!-- stab_att_sp_euler.theta -->
+    <field name="sp_psi"    type="int32" alt_unit="deg" alt_unit_coef="0.0139882"/> <!-- stab_att_sp_euler.psi -->
+    <field name="ref_phi"   type="int32" alt_unit="deg" alt_unit_coef="0.0000546"/> <!-- stab_att_ref_euler.phi -->
+    <field name="ref_theta" type="int32" alt_unit="deg" alt_unit_coef="0.0000546"/> <!-- stab_att_ref_euler.theta -->
+    <field name="ref_psi"   type="int32" alt_unit="deg" alt_unit_coef="0.0000546"/> <!-- stab_att_ref_euler.psi -->
+    <field name="ref_p"     type="int32" alt_unit="deg/s" alt_unit_coef="0.0008743"/> <!-- stab_att_ref_rate.p -->
+    <field name="ref_q"     type="int32" alt_unit="deg/s" alt_unit_coef="0.0008743"/> <!-- stab_att_ref_rate.q -->
+    <field name="ref_r"     type="int32" alt_unit="deg/s" alt_unit_coef="0.0008743"/> <!-- stab_att_ref_rate.r -->
+    <field name="ref_pd"    type="int32" alt_unit="deg/s2" alt_unit_coef="0.0139882"/> <!-- stab_att_ref_accel.p -->
+    <field name="ref_qd"    type="int32" alt_unit="deg/s2" alt_unit_coef="0.0139882"/> <!-- stab_att_ref_accel.q -->
+    <field name="ref_rd"    type="int32" alt_unit="deg/s2" alt_unit_coef="0.0139882"/> <!-- stab_att_ref_accel.r -->
  </message>
 
  <message name="STAB_ATTITUDE_REF_FLOAT" id="142">
@@ -1853,6 +1856,34 @@
 
  <!--222 is free -->
  <!--223 is free -->
+<!--
+###
+###
+###  This is the message for quad_swarm reporting the quadcopters positions
+###
+###
+-->
+
+  <message name="quad_swarm_report" id="222">
+    <field name="AC_ID" type="uint8"/>
+    <field name="ecef_x" type="int32" unit="cm" alt_unit="m"/>
+    <field name="ecef_y" type="int32" unit="cm" alt_unit="m"/>
+    <field name="ecef_z" type="int32" unit="cm" alt_unit="m"/>
+    <field name="state" type="uint8"/> <!--self_state in paparazzi/sw/modules/quad_swarm/quad_swarm.h-->
+  </message>
+
+  <message name="quad_swarm_ack" id="223">
+    <field name="AC_ID" type="uint8"/>
+    <field name="ack" type="uint8"/>
+  </message>
+<!--
+###
+###
+###  End of the message we've defined
+###
+###
+-->
+
  <!--224 is free -->
  <!--225 is free -->
  <!--226 is free -->
@@ -2105,11 +2136,13 @@
     <field name="V_Down" type="double"/>
   </message>
 
+
 </class>
 
 
 
 <class name="datalink">
+
  <message name="ACINFO" id="1" link="broadcasted">
   <field name="course" type="int16" unit="decideg"></field>
   <field name="utm_east"  type="int32" unit="cm"></field>
@@ -2195,6 +2228,39 @@
    <field name="length" type="uint8"/>
    <field name="rtcm" type="uint8[]"/>
  </message>
+
+<!--*********************************************************************************************************-->
+  <message name = "HOVER_POINT_CHANGE_ECEF" id = "14" link = "forwarded">
+    <field name="ac_id" type="uint8"/><!--must have ac_id-->
+    <field name="external_gps_fix" type="uint8"/>
+    <field name="ecef_pos_x" type="int32" unit="cm"/>
+    <field name="ecef_pos_y" type="int32" unit="cm"/>
+    <field name="ecef_pos_z" type="int32" unit="cm"/>
+    <!--field name="ecef_vel_x" type="int32" unit="cm/s"/-->
+    <!--field name="ecef_vel_y" type="int32" unit="cm/s"/-->
+    <!--field name="ecef_vel_z" type="int32" unit="cm/s"/-->
+  </message>
+<!--*********************************************************************************************************-->
+
+<!--
+###
+###
+###
+-->
+  
+  <!--(0, 0, 0) would be considered as an ack-->
+  <!--
+  <message name="quad_swarm_msg" id="15" link = "forwarded">
+    <field name="tar_ecef_pos_x" type="int32" unit="cm"/>
+    <field name="tar_ecef_pos_y" type="int32" unit="cm"/>
+    <field name="tar_ecef_pos_z" type="int32" unit="cm"/>
+  </message>
+  -->
+<!--
+###
+###
+###
+-->
 
  <message name="GET_SETTING" id="16" link="forwarded">
   <field name="index" type="uint8"/>
@@ -2578,7 +2644,5 @@
       <field name="cam_pitch" type="int16" unit="deg"/>
     </message>
   </class>
-
-
 
 </protocol>

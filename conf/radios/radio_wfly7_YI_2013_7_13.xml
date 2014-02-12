@@ -6,6 +6,6 @@
 	<channel ctl="D" function="YAW"     min="2000" neutral="1500" max="1000" average="0"/>
 	<channel ctl="E" function="MODE"     min="2000" neutral="1500" max="1000" average="1"/>
 	<channel ctl="F" function="KILL_SWITCH"     min="2000" neutral="1500" max="1000" average="1"/>
-	<channel ctl="G" function="MANUAL_SWITCH"    min="1000" neutral="1500" max="2000" average="1"/> 
+	<channel ctl="NoneG" function="NOTUSEDG"    min="1000" neutral="1500" max="2000" average="1"/> 
 	<channel ctl="NoneH" function="NOTUSEDH"    min="1000" neutral="1500" max="2000" average="1"/> 
 </radio>

@@ -85,6 +85,62 @@ void dl_parse_msg(void) {
     }
     break;
 
+/* this case for DL_HOVER_POINT_CHANGE_ECEF is added by Yi and Edward */
+/*********************************************************************/
+  case DL_HOVER_POINT_CHANGE_ECEF:
+    {  
+      uint8_t ac_id = DL_HOVER_POINT_CHANGE_ECEF_ac_id(dl_buffer);
+      if(ac_id != AC_ID) break;
+      uint8_t external_gps_fixed = DL_HOVER_POINT_CHANGE_ECEF_external_gps_fix(dl_buffer);
+
+      /** getting the ecef coordinate from external gps **/
+      struct EcefCoor_i external_gps_ecef_pos;
+      external_gps_ecef_pos.x = DL_HOVER_POINT_CHANGE_ECEF_ecef_pos_x(dl_buffer);//DL_HOVER_POINT_CHANGE_ECEF_ecef_pos_x() is defined in dl_protocol.h
+      external_gps_ecef_pos.y = DL_HOVER_POINT_CHANGE_ECEF_ecef_pos_y(dl_buffer);
+      external_gps_ecef_pos.z = DL_HOVER_POINT_CHANGE_ECEF_ecef_pos_z(dl_buffer);
+
+      DOWNLINK_SEND_HOVER_POINT_CHANGE_ECEF(DefaultChannel, DefaultDevice, &ac_id, &external_gps_fixed, &(external_gps_ecef_pos.x), &(external_gps_ecef_pos.y), &(external_gps_ecef_pos.z));
+
+      if(external_gps_fixed == 0x03)//case for 3D_Fix.
+      {
+        if(!ins_ltp_initialised || guidance_h_mode != GUIDANCE_H_MODE_HOVER) break;//ins_ltp_initialised defined in ins_int.h 
+                                                                                   //no HMOE reference
+                                                                                   //not in the HOVER_Z_HOLD mode
+		                                                                   //not in flight(looks like no needed)	  
+	struct NedCoor_i external_gps_ned_pos;
+	memset((void *) &external_gps_ned_pos,0,sizeof(struct NedCoor_i));//just in case, clear the memory.
+		  
+	/** convert the ecef coordinate into ned(ltp) coordinate **/
+	ned_of_ecef_point_i(&external_gps_ned_pos,&ins_ltp_def,&external_gps_ecef_pos);
+		  
+		  
+	/** change the current setpoint with external_gps_ned_pos coordinate **/
+	struct Int32Vect2 external_gps_h_pos;
+	//cm to m and store in external_gps_h_pos
+	//check function ins_update_gps() for reference.
+        INT32_VECT2_SCALE_2(external_gps_h_pos,external_gps_ned_pos,INT32_POS_OF_CM_NUM, INT32_POS_OF_CM_DEN);
+	//subsitute the guidance_h_pos_sp
+	VECT2_COPY(guidance_h_pos_sp,external_gps_h_pos);
+	/*
+	 * the above code is used for congruity, but waste space and time.
+	 * simple using
+	 * 
+	 * guidance_h_pos_sp.x = external_gps_ned_pos.x;
+	 * guidance_h_pos_sp.y = external_gps_ned_pox.y;
+	 * 
+	 * can achieve the same effect.
+	*/
+      }
+      
+      else break;//hover pos_sp no change
+    } 
+/**------------------------------------------------------------------*/
+
+
+//TODO add parsing message quad_swarm_msg here
+#ifdef _QUAD_SWARM_H
+
+#endif
 #if defined USE_NAVIGATION
   case DL_BLOCK :
     {

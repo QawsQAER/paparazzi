@@ -19,6 +19,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
+//this file is in ./paparazzi/sw/airbone/firmware/rotocraft//
+
 #ifndef TELEMETRY_H
 #define TELEMETRY_H
 
@@ -50,6 +52,7 @@
 #include "subsystems/ahrs.h"
 // I2C Error counters
 #include "mcu_periph/i2c.h"
+
 
 #define PERIODIC_SEND_ALIVE(_trans, _dev) DOWNLINK_SEND_ALIVE(_trans, _dev, 16, MD5SUM)
 
@@ -198,7 +201,6 @@
   }
 
 
-
 #include "firmwares/rotorcraft/stabilization.h"
 #define PERIODIC_SEND_RATE_LOOP(_trans, _dev) {                          \
     DOWNLINK_SEND_RATE_LOOP(_trans, _dev,                                \
@@ -250,7 +252,8 @@
       &stabilization_att_ff_cmd[COMMAND_YAW],             \
       &stabilization_cmd[COMMAND_ROLL],                   \
       &stabilization_cmd[COMMAND_PITCH],                  \
-      &stabilization_cmd[COMMAND_YAW]);                   \
+      &stabilization_cmd[COMMAND_YAW],                     \
+      &stabilization_cmd[COMMAND_THRUST]);                   \
 }
 
 #define PERIODIC_SEND_STAB_ATTITUDE_REF(_trans, _dev) {             \

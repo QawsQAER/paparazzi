@@ -31,7 +31,13 @@
 #ifdef XBEE868
 #include "subsystems/datalink/xbee868.h"
 #else /* Not 868 */
+/******************* Modified by YI and Edward *************************/
+#ifdef XBEE_PRO_S2B
+#include "subsystems/datalink/xbee_pro_s2b.h"
+/******************** End of modification ******************************/
+#else /* Not xbee868 and xbee_pro_s2b */
 #include "subsystems/datalink/xbee24.h"
+#endif
 #endif
 #include "subsystems/datalink/transport.h"
 
@@ -40,8 +46,15 @@
 #define TX_OPTIONS 0x00
 #define NO_FRAME_ID 0
 
+/****************** Modified by YI and Edward ***********************/
 /** Ground station address */
-#define GROUND_STATION_ADDR 0x100
+//#define GROUND_STATION_ADDR 0x100 //original code
+
+// hard-coded the ground station 64-bit address
+#ifndef GROUND_STATION_ADDR
+#define GROUND_STATION_ADDR 0x0000000000000000 //this is another address refer to the coordinator
+#endif
+/********************* End of modification *************************/
 
 extern uint8_t xbee_cs;
 extern uint8_t xbee_rssi;
@@ -51,8 +64,11 @@ extern uint8_t xbee_rssi;
 #define XBEE_MY_ADDR AC_ID
 void xbee_init( void );
 
+/****************** Modified by YI and Edward ***********************/
 /* 5 = Start + len_msb + len_lsb + API_id + checksum */
-#define XBeeAPISizeOf(_dev, _x) (_x+5)
+//#define XBeeAPISizeOf(_dev, _x) (_x+5)
+#define XBeeAPISizeOf(_dev, _x) (_x+1) //adding the check sum part = 1 byte
+/********************* End of modification *************************/
 
 #define XBeeTransportCheckFreeSpace(_dev, x) TransportLink(_dev, CheckFreeSpace(x))
 #define XBeeTransportPut1Byte(_dev, x) TransportLink(_dev, Transmit(x))
@@ -122,7 +138,8 @@ void xbee_init( void );
 #define XBeeTransportPutDoubleArray(_dev, _n, _x) XBeeTransportPutArray(_dev, XBeeTransportPutDoubleByAddr, _n, _x)
 
 
-
+/****************** Modified by YI and Edward ***********************/
+/*
 #define XBeeTransportHeader(_dev, _len) { \
   XBeeTransportPut1Byte(_dev, XBEE_START); \
   uint8_t payload_len = XBeeAPISizeOf(_dev, _len); \
@@ -130,6 +147,15 @@ void xbee_init( void );
   xbee_cs = 0; \
   XBeeTransportPutTXHeader(_dev); \
 }
+*/
+#define XBeeTransportHeader(_dev, _len) { \
+  XBeeTransportPut1Byte(_dev, XBEE_START); \
+  uint8_t payload_len = XBeeTransportSizeOf(_dev, _len); \
+  XBeeTransportPut2Bytes(_dev, payload_len); \
+  xbee_cs = 0; \
+  XBeeTransportPutTXHeader(_dev); \
+}
+/********************* End of modification *************************/
 
 #define XBeeTransportTrailer(_dev) { \
   xbee_cs = 0xff - xbee_cs; \
