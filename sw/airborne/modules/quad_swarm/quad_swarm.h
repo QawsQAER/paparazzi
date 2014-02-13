@@ -44,7 +44,17 @@ extern uint8_t quad_swarm_state;
 extern void quad_swarm_init( void );
 extern void quad_swarm_periodic( void );
 extern void quad_swarm_event( void );
-extern void quad_swarm_datalink( void );
+#define quad_swarm_datalink(){\
+	uint8_t ac_id = DL_quad_swarm_msg_ac_id(dl_buffer);\
+	uint8_t dummy = DL_quad_swarm_msg_dummy(dl_buffer);\
+	if(ac_id == AC_ID)\
+	{\
+	quad_swarm_target.x = DL_quad_swarm_msg_tar_ecef_pos_x(dl_buffer);\
+	quad_swarm_target.y = DL_quad_swarm_msg_tar_ecef_pos_y(dl_buffer);\
+	quad_swarm_target.z = DL_quad_swarm_msg_tar_ecef_pos_z(dl_buffer);\
+	}\
+}
+
 extern void quad_swarm_start( void );
 extern void quad_swarm_stop( void );
 #endif

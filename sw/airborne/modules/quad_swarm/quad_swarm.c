@@ -89,12 +89,12 @@ void quad_swarm_periodic( void )
 }
 
 void quad_swarm_event( void ) {}
-void quad_swarm_datalink( void )
+
+/*void quad_swarm_datalink( void )
 {
 	//handle the incoming message
 	//find out whether it's the ack or real target command
 	//and alter the state accordingly
-}
-
+}*/
 void quad_swarm_start( void ){}
 void quad_swarm_stop( void ){}
