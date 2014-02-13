@@ -25,6 +25,10 @@
 
 #include "state.h"
 
+#ifndef DL_quad_swarm_msg
+#define DL_quad_swarm_msg 
+#endif
+
 #define SWARM_INIT 0
 #define SWARM_NEGOTIATE_REF 1
 #define SWARM_WAIT_CMD 2
@@ -33,12 +37,13 @@
 #define SWARM_EXEC_CMD 5
 #define SWARM_REPORT_STATE 6
 
-struct EcefCoor_i target;
-extern uint8_t self_state;
+extern struct EcefCoor_i quad_swarm_target;
+extern uint8_t quad_swarm_state;
 extern void quad_swarm_init( void );
 extern void quad_swarm_periodic( void );
 extern void quad_swarm_event( void );
 extern void quad_swarm_datalink( void );
-
+extern void quad_swarm_start( void );
+extern void quad_swarm_stop( void );
 #endif
 

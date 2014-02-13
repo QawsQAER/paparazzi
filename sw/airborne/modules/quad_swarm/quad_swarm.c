@@ -22,24 +22,26 @@
 
 #include "modules/quad_swarm/quad_swarm.h"
 
-uint8_t self_state;
+uint8_t quad_swarm_state;
+struct EcefCoor_i quad_swarm_target;
 void quad_swarm_init( void ) 
 {
-	self_state = SWARM_INIT;
-	memset(&target,0,sizeof(struct EcefCoor_i));	
+	quad_swarm_state = SWARM_INIT;
+	memset(&quad_swarm_target,0,sizeof(struct EcefCoor_i));	
 }
+
 void quad_swarm_periodic( void )
 {
-	switch(self_state)
+	switch(quad_swarm_state)
 	{
-		case(SWARM_INIT)
+		case(SWARM_INIT):
 		{
 			//wait for GCS to start the module
 			//if received quad_swarm_msg with (0,0,0)
 			//proceed to the next state
 			break;
 		}
-		case(SWARM_NEOGOTIATE_REF)
+		case(SWARM_NEGOTIATE_REF):
 		{
 			//module started
 			//sending its gps position to the GCS
@@ -47,7 +49,7 @@ void quad_swarm_periodic( void )
 			//has choose a gps position as the reference
 			break;
 		}
-		case(SWARM_WAIT_CMD)
+		case(SWARM_WAIT_CMD):
 		{
 			//wait for command
 			//if receive quad_swarm_msg 
@@ -55,14 +57,14 @@ void quad_swarm_periodic( void )
 			//and proceed to next state
 			break;
 		}
-		case(SWARM_SEND_ACK)
+		case(SWARM_SEND_ACK):
 		{
 			//wait for ack
 			//if receive ack
 			//proceed to next state
 			break;
 		}
-		case(SWARM_EXEC_CMD)
+		case(SWARM_EXEC_CMD):
 		{
 			//change the target position of the navigation system
 			//check the the execution status
@@ -70,7 +72,7 @@ void quad_swarm_periodic( void )
 			//proceed to the next state
 			break;
 		}
-		case(SWARM_REPORT_STATE)
+		case(SWARM_REPORT_STATE):
 		{
 			//report that this quad has finished the task
 			//wait for ack
@@ -80,6 +82,7 @@ void quad_swarm_periodic( void )
 		}
 	}	
 }
+
 void quad_swarm_event( void ) {}
 void quad_swarm_datalink( void )
 {
@@ -88,4 +91,5 @@ void quad_swarm_datalink( void )
 	//and alter the state accordingly
 }
 
-
+void quad_swarm_start( void ){}
+void quad_swarm_stop( void ){}
