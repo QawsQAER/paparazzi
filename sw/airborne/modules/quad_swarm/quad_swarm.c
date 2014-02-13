@@ -80,6 +80,11 @@ void quad_swarm_periodic( void )
 			//go back to SWARM_WAIT_CMD
 			break;
 		}
+		default:
+		{
+			//Encounter Error, please handle
+			break;
+		}
 	}	
 }
 

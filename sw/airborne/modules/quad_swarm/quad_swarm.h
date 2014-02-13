@@ -26,7 +26,9 @@
 #include "state.h"
 
 #ifndef DL_quad_swarm_msg
+
 #define DL_quad_swarm_msg 
+
 #endif
 
 #define SWARM_INIT 0
