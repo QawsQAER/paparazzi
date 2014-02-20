@@ -25,14 +25,25 @@
 /********************/
 /**for transmission**/
 /********************/
+
+/**********************************************************************/
+/***DefaultChannel and DefaultDevice are 'ifndef then define here' ****/
+/*** message.h is included here                                    ****/
+/**********************************************************************/
 #include "subsystems/datalink/downlink.h"
-//#include "dl_protocol.h"
-//#include "messages.h"
+
+/**********************************************************************/
+/****     UART2CheckFreeSpace is defined here                      ****/
+/**********************************************************************/
+#include "mcu_periph/uart.h"
+
+
 uint8_t quad_swarm_state;
 
 //like the ac_id
 uint8_t quad_swarm_id;
 struct EcefCoor_i quad_swarm_target;
+
 void quad_swarm_init( void ) 
 {
 	quad_swarm_state = SWARM_INIT;
@@ -42,12 +53,19 @@ void quad_swarm_init( void )
 
 void quad_swarm_periodic( void )
 {
-	uint32_t dummy_x = 0;
-	uint32_t dummy_y = 0;
-	uint32_t dummy_z = 0;
-	//DOWNLINK_SEND_quad_swarm_ack(DefaultChannel, DefaultDevice,&quad_swarm_id,&quad_swarm_state);
-	//DOWNLINK_SEND_quad_swarm_report(DefaultChannel, DefaultDevice,&quad_swarm_id,&dummy_x,&dummy_y,&dummy_z,&quad_swarm_state);
+	//periodically send position info to the GCS
 	
+	//state.ecef_pos_i is in cm
+
+	DOWNLINK_SEND_quad_swarm_report(\
+	DefaultChannel,\
+	DefaultDevice,\
+	&quad_swarm_id,\
+	&state.ecef_pos_i.x,\
+	&state.ecef_pos_i.y,\
+	&state.ecef_pos_i.z,\
+	&quad_swarm_state);	
+
 	switch(quad_swarm_state)
 	{
 		case(SWARM_INIT):

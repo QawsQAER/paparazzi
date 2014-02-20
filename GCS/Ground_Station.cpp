@@ -34,6 +34,29 @@ void Ground_Station::init_nav_quadcopters(uint8_t &AC_ID)
 {
 	//set home point here
 	this->Send_Msg_Block(AC_ID, BLOCK_ID_HOME_POINT);
+	//wait for quad to report their state (pos)
+	while(1) //untill all quad has report
+	{
+		//if all quad report then break
+		if(0)
+		{
+			break;
+		}
+		//else read into buffer and parse message
+		Com->XBEE_read_into_recv_buff();
+		Com->XBEE_parse_XBEE_msg();
+		//while there're multiple XBEE message
+		while(!Com->msg.empty())
+		{
+			
+			XBEE_msg *ptr = Com->msg.front();
+			Com->msg.pop();
+			pprz_msg data = ptr->get_pprz_msg();
+			//shoe the heximal message in the buffer
+			data.show_hex();
+			delete ptr;
+		}
+	}		
 }
 
 void Ground_Station::Send_Msg_Block(uint8_t &AC_ID, uint8_t BLOCK_ID)
