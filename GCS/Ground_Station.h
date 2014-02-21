@@ -16,12 +16,24 @@
 #include "Serial.h"
 #include "geo.h"
 
+enum GroundControlStation_state {GCS_INIT,\
+		GCS_NEGOTIATE_REF,\
+		GCS_WAIT_TO_START_ENGINE,\
+		GCS_START_ENGINE,\
+		GCS_WAIT_TO_TAKEOFF,\
+		GCS_TAKEOFF,\
+		GCS_WAIT_TO_SEND_CMD,\
+		GCS_SEND_CMD,\
+		GCS_WAIT_ACK,\
+		GCS_SEND_EXEC_ACK,\
+		GCS_WAIT_REPORT};
+
 class Ground_Station
 {
 	private:
 		Swarm *Swarm_state;
 		XBEE *Com;
-		uint8_t GCS_state;
+		GroundControlStation_state GCS_state;
 		EcefCoor_i ref_ecef;
 		NedCoor_i ref_ned;
 		void Send_Msg_Block(uint8_t &AC_ID, uint8_t BLOCK_ID);

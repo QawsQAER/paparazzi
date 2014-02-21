@@ -14,7 +14,7 @@ Swarm::Swarm()
 	uint8_t count = 0;
 	while(count < QUAD_NB + 1)
 	{
-		state[count] = IDLE;
+		state[count] = SWARM_INIT;
 		memset((void *) &pos[count],0,sizeof(struct EcefCoor_i));
 	}		
 }

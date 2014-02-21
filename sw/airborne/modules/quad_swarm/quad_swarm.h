@@ -22,10 +22,7 @@
 
 #ifndef QUAD_SWARM_H
 #define QUAD_SWARM_H
-
-//for all the state interface
 #include "state.h"
-
 #ifndef DL_quad_swarm_msg
 
 #define DL_quad_swarm_msg 
@@ -36,7 +33,7 @@
 #define SWARM_NEGOTIATE_REF 1
 #define SWARM_WAIT_CMD 2
 #define SWARM_SEND_ACK 3
-#define SWARM_WAIT_ACK 4
+#define SWARM_WAIT_EXEC_ACK 4
 #define SWARM_EXEC_CMD 5
 #define SWARM_REPORT_STATE 6
 

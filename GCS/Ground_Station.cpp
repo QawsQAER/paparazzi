@@ -21,7 +21,7 @@ Ground_Station::Ground_Station(char *port_name)
 		set_blocking(fd,0);
 		this->Com = new XBEE(fd,0x00000000,0x0000ffff,0);
 	}
-	this->GCS_state = 0;	
+	this->GCS_state = GCS_INIT;	
 }
 
 Ground_Station::~Ground_Station()

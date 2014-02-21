@@ -12,7 +12,9 @@
 
 #define QUAD_NB 1
 
-enum QuadState {IDLE, INIT, READY, EXEC, WAIT};
+enum QuadState {SWARM_INIT, SWARM_NEGOTIATE_REF, SWARM_WAIT_CMD, \
+		SWARM_SEND_ACK, SWARM_WAIT_EXEC_ACK, SWARM_EXEC_CMD,\
+		SWARM_REPORT_STATE};
 class Swarm
 {
 	private:

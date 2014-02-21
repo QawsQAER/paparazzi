@@ -2274,6 +2274,10 @@
     <field name="resolve" type="uint8" values="NONE|LEVEL|CLIMB|DESCEND"/>
   </message>
 
+ <message name="quad_swarm_ack_forwarded" id="18" link="forwarded">
+    <field name="ac_id" type="uint8"/>
+    <field name="ack" type="uint8"/>
+ </message>
  <message name="WINDTURBINE_STATUS" id="50" link="broadcasted">
    <field name="ac_id" type="uint8"/>
    <field name="tb_id" type="uint8"/>
