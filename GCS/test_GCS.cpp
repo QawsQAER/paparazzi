@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	uint8_t ac_id = 1;
 	while(1)
 	{
-		sleep(5);
+		sleep(0.5);
 		GCS->init_nav_quadcopters(ac_id);
 	}	
 	return 0;

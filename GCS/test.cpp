@@ -45,8 +45,8 @@ int main(int argc, char ** argv)
 
 	while(1)
 	{
-		//read every 5s
-		sleep(5);
+		//read every 0.5s
+		sleep(0.5);
 		xbee_coor.XBEE_read_into_recv_buff();
 		//after read, data in recv_buff should be parse by XBEE::XBEE_parse_XBEE_msg()
 		xbee_coor.XBEE_parse_XBEE_msg();
