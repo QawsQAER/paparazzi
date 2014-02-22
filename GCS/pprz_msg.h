@@ -11,9 +11,28 @@
 #include "main.h"
 
 
-#define FORWARD_MSG_ID_BLOCK 5
-#define FORWARD_MSG_ID_TAR_DEST 14
+/*****************************************************/
+/*                received message id                */
+/*****************************************************/
+#define RECV_MSG_ID_DL_VALUE 31
+#define RECV_MSG_ID_ROTORCRAFT_STATUS 231
+#define RECV_MSG_ID_ALIVE 2
+#define RECV_MSG_ID_ROTORCRAFT_NAV_STATUS 159
+#define RECV_MSG_ID_quad_swarm_report 222
+#define RECV_MSG_ID_quad_swarm_ack 223
 
+
+/*****************************************************/
+/*                forward message id                 */
+/*****************************************************/
+#define FORWARD_MSG_ID_BLOCK 5
+#define FORWARD_MSG_ID_quad_swarm_msg 15
+#define FORWARD_MSG_ID_quad_swarm_akc_forwarded 18
+
+
+/*****************************************************/
+/*                     block id                      */
+/*****************************************************/
 #define BLOCK_ID_HOME_POINT 1
 #define BLOCK_ID_HOLDING_POINT 2
 #define BLOCK_ID_START_ENGINE 3
@@ -33,21 +52,39 @@ class pprz_msg
 		uint16_t _pos;
 		//_length will be holding the length of the current message
 		uint16_t _length;
-		uint8_t _errorcode;	
+		uint8_t _errorcode;
+		//_msg_id should be corresponding the records to messages.xml
+		uint8_t _msg_id;
 	public:
 		pprz_msg();
 		~pprz_msg();
 		const uint8_t *pprz_get_data_ptr(){return _data_ptr;}
 		const uint16_t pprz_get_length(){return _length;}
+		
 		void pprz_put_byte(uint8_t *ptr);
 		void pprz_put_byte(uint8_t value);
 		void pprz_put_2bytes(uint8_t *ptr);
 		void pprz_put_4bytes(uint8_t *ptr);
+		
 		uint8_t pprz_read_byte();
 		uint16_t pprz_read_2bytes();
 		uint32_t pprz_read_4bytes();
+		float pprz_read_float();
 		void show_hex();
-		void pprz_set_block(uint8_t &ac_id,uint8_t &block_id);		
+		/************************************************/
+		/*   member functions to set pprz message       */
+		/************************************************/
+		void pprz_set_block(uint8_t &ac_id,uint8_t &block_id);
+		
+		
+		/************************************************/
+		/*   member functions to read pprz message      */
+		/************************************************/
+		uint8_t pprz_get_msg_id();
+		
+		void pprz_get_DL_VALUE(uint8_t &ac_id,uint8_t &index, float &value);
+		
+		
 };
 
 #endif

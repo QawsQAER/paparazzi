@@ -88,6 +88,19 @@ uint32_t pprz_msg::pprz_read_4bytes()
 	return (((uint32_t)this->pprz_read_2bytes()) << 16) + this->pprz_read_2bytes();
 }
 
+float pprz_msg::pprz_read_float()
+{
+	if(_pos + sizeof(float) >= this->_length )
+	{
+		return 0;
+	}
+	else
+	{
+		float result = *(float *)(this->_data_ptr + this->_pos)
+		_pos += sizeof(float);
+		return result;
+	}
+}
 void pprz_msg::show_hex()
 {
 	uint16_t count = 0;
@@ -110,8 +123,23 @@ void pprz_msg::pprz_set_block(uint8_t &ac_id,uint8_t &block_id)
 	this->pprz_put_byte(&ac_id);	
 }
 
+uint8_t pprz_msg::pprz_get_msg_id()
+{
+	if(_length > 2)
+	{
+		return *(_data_ptr + 1);
+	}
+	else
+		return 0;
+}
 
-
+void pprz_msg::pprz_get_DL_VALUE(uint8_t &ac_id, uint8_t &index, float &value)
+{
+	*ac_id = this->pprz_read_byte();
+	this->pprz_read_byte();
+	*index = this->pprz_read_byte();
+	*value = this->pprz_read
+}
 
 
 
