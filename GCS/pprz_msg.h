@@ -71,6 +71,7 @@ class pprz_msg
 		uint32_t pprz_read_4bytes();
 		float pprz_read_float();
 		void show_hex();
+		void pprz_reset_msg();
 		/************************************************/
 		/*   member functions to set pprz message       */
 		/************************************************/
