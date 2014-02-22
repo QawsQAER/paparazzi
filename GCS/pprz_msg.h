@@ -85,7 +85,7 @@ class pprz_msg
 		
 		void pprz_get_DL_VALUE(uint8_t &ac_id,uint8_t &index, float &value);
 		
-		
+		void pprz_get_ROTORCRAFT_STATUS(uint8_t &ac_id,)	
 };
 
 #endif
