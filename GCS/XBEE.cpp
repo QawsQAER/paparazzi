@@ -221,7 +221,7 @@ void XBEE::XBEE_parse_XBEE_msg()
 				printf("case4\n");
 				#endif
 				uint8_t *ptr = msg_p->get_frameptr();
-				//????????POSSIBLE BUGS HERE
+				//TODO: POSSIBLE BUGS HERE
 				while(frame_count < msg_p->get_frame_length() && current < recv_pos)
 				{
 					#if _USE_XBEE_ESC
@@ -253,7 +253,7 @@ void XBEE::XBEE_parse_XBEE_msg()
 					{
 						//TODO: handle the case that the framedata is not completely read
 						//into the recv_buff
-						fprintf(stderr,"XBEE_ERROR: the framedata is not fully read\n");
+						//fprintf(stderr,"XBEE_ERROR: the framedata is not fully read\n");
 						while(current >= this->recv_pos)
 							this->XBEE_read_into_recv_buff();
 						//continue;					

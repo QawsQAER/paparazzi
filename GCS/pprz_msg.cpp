@@ -148,9 +148,39 @@ void pprz_msg::pprz_get_DL_VALUE(uint8_t &ac_id, uint8_t &index, float &value)
 }
 
 
+//
+//  Get the ROTORCRAFT_STATUS
+//
+void pprz_msg::pprz_get_ROTORCRAFT_STATUS(struct ROTORCRAFT_STATUS &rotorcraft_status)
+{
+	rotorcraft_status.ac_id = this->pprz_read_byte();
+	//skip the msg_id
+	this->pprz_read_byte();
+	rotorcraft_status.link_imu_nb_err = this->pprz_read_4bytes();
+	rotorcraft_status.blmc_nb_err = this->pprz_read_byte();
+	rotorcraft_status.rc_status = this->pprz_read_byte();
+	rotorcraft_status.frame_rate = this->pprz_read_byte();
+	rotorcraft_status.gps_status = this->pprz_read_byte();
+	rotorcraft_status.ap_mode = this->pprz_read_byte();
+	rotorcraft_status.ap_inflight = this->pprz_read_byte();
+	rotorcraft_status.ap_motors_on = this->pprz_read_byte();
+	rotorcraft_status.ap_h_mode = this->pprz_read_byte();
+	rotorcraft_status.ap_v_mode = this->pprz_read_byte();
+	rotorcraft_status.vsupply = this->pprz_read_byte();
+}
 
 
-
+void pprz_msg::pprz_get_ROTORCRAFT_NAV_STATUS(struct ROTORCRAFT_NAV_STATUS &rotorcraft_nav_status)
+{
+	rotorcraft_nav_status.ac_id = this->pprz_read_byte();
+	//skip the msg_id
+	this->pprz_read_byte();
+	rotorcraft_nav_status.block_time = this->pprz_read_2bytes();
+	rotorcraft_nav_status.stage_time = this->pprz_read_2bytes();
+	rotorcraft_nav_status.cur_block = this->pprz_read_byte();
+	rotorcraft_nav_status.cur_stage = this->pprz_read_byte();
+	rotorcraft_nav_status.horizontal_mode = this->pprz_read_byte();
+}
 
 
 

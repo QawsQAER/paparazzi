@@ -9,6 +9,7 @@
 #ifndef _PPRZ_MSG_H
 #define _PPRZ_MSG_H
 #include "main.h"
+#include "pprz_struct.h"
 
 
 /*****************************************************/
@@ -43,6 +44,9 @@
 #define PPRZ_SENDER_ID_OFFSET 0
 #define PPRZ_MSG_ID_OFFSET 1
 #define PPRZ_DATA_OFFSET 2
+
+
+
 class pprz_msg
 {
 	private:
@@ -85,7 +89,10 @@ class pprz_msg
 		
 		void pprz_get_DL_VALUE(uint8_t &ac_id,uint8_t &index, float &value);
 		
-		void pprz_get_ROTORCRAFT_STATUS(uint8_t &ac_id,)	
+		void pprz_get_ROTORCRAFT_STATUS(struct ROTORCRAFT_STATUS &rotorcraft_status);
+		void pprz_get_ALIVE();
+		
+		void pprz_get_ROTORCRAFT_NAV_STATUS(struct ROTORCRAFT_NAV_STATUS &rotorcraft_nav_status);
 };
 
 #endif

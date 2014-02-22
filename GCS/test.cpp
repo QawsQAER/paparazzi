@@ -59,7 +59,42 @@ int main(int argc, char ** argv)
 			XBEE_msg * ptr = xbee_coor.msg.front();
 			xbee_coor.msg.pop();
 			pprz_msg data = ptr->get_pprz_msg();	
-			data.show_hex();
+			switch(data.pprz_get_msg_id())
+			{
+				case(RECV_MSG_ID_DL_VALUE):
+					{
+						uint8_t cur_ac_id = 0,index = 0;
+						float value = 0;
+						data.pprz_get_DL_VALUE(cur_ac_id,index,value);
+						printf("MSG: DL_VALUE\n");
+						printf("ac_id %d, index %d, value %f\n",cur_ac_id,index,value);
+					}
+					break;
+				case(RECV_MSG_ID_ROTORCRAFT_STATUS):
+					{
+						struct ROTORCRAFT_STATUS quad_status;
+						data.pprz_get_ROTORCRAFT_STATUS(quad_status);
+						printf("MSG: ROTORCRAFT_STATUS\n");
+					}
+					break;
+				case(RECV_MSG_ID_ALIVE):
+					{
+						printf("MSG: ALIVE\n");
+					}
+					break;
+				case(RECV_MSG_ID_ROTORCRAFT_NAV_STATUS):
+					{
+						struct ROTORCRAFT_NAV_STATUS quad_nav_status;
+						data.pprz_get_ROTORCRAFT_NAV_STATUS(quad_nav_status);
+						printf("MSG: ROTORCRAFT_NAV_STATU\n");
+					}
+					break;
+				default:
+					{
+						printf("MSG_ID does not match any\n");
+					}
+					break;
+			}
 			delete ptr;
 		}
 	}
