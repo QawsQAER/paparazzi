@@ -14,7 +14,7 @@ int main()
 	uint8_t ac_id = 1;
 	uint8_t block_id = 2;
 	//data.pprz_set_block(ac_id,block_id);
-	float test = 0.1;
+	float test = 1.1;
 	data.pprz_put_4bytes((uint8_t *) &test);
 	data.show_hex();
 	//XBEE_msg xbee_msg;
@@ -28,8 +28,7 @@ int main()
 	data.show_hex();
 	float tmp = data.pprz_read_float();
 	printf("tmp is %f\n",tmp);
-
-
+	printf("tmp is %x\h",tmp);
 
 
 	return 0;

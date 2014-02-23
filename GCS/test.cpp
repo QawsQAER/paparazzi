@@ -75,6 +75,13 @@ int main(int argc, char ** argv)
 						struct ROTORCRAFT_STATUS quad_status;
 						data.pprz_get_ROTORCRAFT_STATUS(quad_status);
 						printf("MSG: ROTORCRAFT_STATUS\n");
+						printf("ac_id %d\n,rc_status %d\n,gps_status %d\n,ap_mode %d\n,ap_inflight %d\n,ap_motors_on %d\n",
+								quad_status.ac_id,\
+								quad_status.rc_status,\
+								quad_status.gps_status,\
+								quad_status.ap_mode,\
+								quad_status.ap_inflight,\
+								quad_status.ap_motors_on);
 					}
 					break;
 				case(RECV_MSG_ID_ALIVE):
@@ -86,12 +93,19 @@ int main(int argc, char ** argv)
 					{
 						struct ROTORCRAFT_NAV_STATUS quad_nav_status;
 						data.pprz_get_ROTORCRAFT_NAV_STATUS(quad_nav_status);
-						printf("MSG: ROTORCRAFT_NAV_STATU\n");
+						printf("MSG: ROTORCRAFT_NAV_STATUS\n");
+						printf("ac_id %d\n,block_time %d\n,stage_time %d\n,cur_block %d\n,cur_stage %d\n",\
+								quad_nav_status.ac_id,\
+								quad_nav_status.block_time,\
+								quad_nav_status.stage_time,\
+								quad_nav_status.cur_block,\
+								quad_nav_status.cur_stage);
 					}
 					break;
 				default:
 					{
-						printf("MSG_ID does not match any\n");
+						printf("MSG_ID %d does not match any\n",data.pprz_get_msg_id());
+						data.show_hex();
 					}
 					break;
 			}

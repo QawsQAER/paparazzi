@@ -97,9 +97,10 @@ float pprz_msg::pprz_read_float()
 	}
 	else
 	{
-		float result = *(float *)(this->_data_ptr + this->_pos);
+		union { uint32_t u; float f;} _f;
+		_f.u =  (uint32_t)(*((uint8_t*)_data_ptr)<<24|*((uint8_t*)_data_ptr+1)<<16|((uint32_t)*((uint8_t*)_data_ptr+2))<<8|((uint32_t)*((uint8_t*)_data_ptr+3))<<0);
 		_pos += sizeof(float);
-		return result;
+		return _f.f;	
 	}
 }
 void pprz_msg::show_hex()
