@@ -11,6 +11,7 @@
 #include "main.h"
 #include "pprz_struct.h"
 
+#define _IS_BIG_ENDIAN 0//this is not a big endian machine
 
 /*****************************************************/
 /*                received message id                */

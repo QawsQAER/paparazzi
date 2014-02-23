@@ -4,7 +4,6 @@ CFLAGS = -Wall -g
 #OPTION = -D_USE_XBEE_ESC=1
 #############################################
 
-
 ##########DEBUG OPTION#######################
 #DEBUG_MACRO = -D_DEBUG_CHECKSUM=1 
 #DEBUG_MACRO += -D_DEBUG_XBEE_parse_XBEE_msg=1 

@@ -52,16 +52,38 @@ void pprz_msg::pprz_put_byte(uint8_t value)
 }
 void pprz_msg::pprz_put_2bytes(uint8_t *ptr)
 {
-	//for little endian, the ptr would be pointing at the LSB of the uint16_t
-	//ptr + 1 to make the MSB comes first
+	#if _IS_BIG_ENDIAN
+	// if big endian (say, apple MAC)
+	// to make LSB comes first
+	printf("big endian %d\n",BIG_ENDIAN);
 	this->pprz_put_byte(ptr + 1);
+	this->pprz_put_byte(ptr);	
+	#else
+	//LINUX
+	//LSB comes first (pprz use this)
+	//THIS IS LITTLE ENDIAN
 	this->pprz_put_byte(ptr);
+	this->pprz_put_byte(ptr + 1);
+	#endif
 }
 
 void pprz_msg::pprz_put_4bytes(uint8_t *ptr)
 {
-	this->pprz_put_2bytes(ptr + 2);
-	this->pprz_put_2bytes(ptr);
+	#if _IS_BIG_ENDIAN
+	// if big endian (say, apple MAC)
+	// to make LSB comes first
+	printf("big endian %d\n",BIG_ENDIAN);
+	this->pprz_put_byte(ptr + 3);
+	this->pprz_put_byte(ptr + 2);
+	this->pprz_put_byte(ptr + 1);
+	this->pprz_put_byte(ptr);		
+	#else
+	//LINUX
+	this->pprz_put_byte(ptr);
+	this->pprz_put_byte(ptr + 1);
+	this->pprz_put_byte(ptr + 2);
+	this->pprz_put_byte(ptr + 3);
+	#endif
 }
 
 uint8_t pprz_msg::pprz_read_byte()
@@ -80,12 +102,19 @@ uint8_t pprz_msg::pprz_read_byte()
 
 uint16_t pprz_msg::pprz_read_2bytes()
 {
-	return (((uint16_t)this->pprz_read_byte()) << 8) + this->pprz_read_byte();
+	//lsb comes first
+	uint8_t LSB = this->pprz_read_byte();
+	uint8_t MSB = this->pprz_read_byte();	
+	return ((uint16_t)MSB << 8) | LSB;
 }
 
 uint32_t pprz_msg::pprz_read_4bytes()
 {
-	return (((uint32_t)this->pprz_read_2bytes()) << 16) + this->pprz_read_2bytes();
+	uint8_t B1 = this->pprz_read_byte();
+	uint8_t B2 = this->pprz_read_byte();
+	uint8_t B3 = this->pprz_read_byte();
+	uint8_t B4 = this->pprz_read_byte();
+	return B4 << 24 | B3 << 16 | B2 << 8 | B1;
 }
 
 float pprz_msg::pprz_read_float()
@@ -97,14 +126,12 @@ float pprz_msg::pprz_read_float()
 	}
 	else
 	{
-	/*
-		printf("1st byte %02x\n",*(_data_ptr));
-		printf("2nd byte %02x\n",*(_data_ptr+1));
-		printf("3rd byte %02x\n",*(_data_ptr+2));
-		printf("4th byte %02x\n",*(_data_ptr+3));
-	*/
+		printf("1st byte %02x\n",*(_data_ptr+_pos));
+		printf("2nd byte %02x\n",*(_data_ptr+_pos+1));
+		printf("3rd byte %02x\n",*(_data_ptr+_pos+2));
+		printf("4th byte %02x\n",*(_data_ptr+_pos+3));
 		union { uint32_t u; float f;} _f;
-		_f.u =  (uint32_t)(*((uint8_t*)_data_ptr + _pos)<<24|*((uint8_t*)_data_ptr+_pos+1)<<16|((uint32_t)*((uint8_t*)_data_ptr+_pos+2))<<8|((uint32_t)*((uint8_t*)_data_ptr+_pos+3))<<0);
+		_f.u =  (uint32_t)(*((uint8_t*)_data_ptr + _pos) |*((uint8_t*)_data_ptr+_pos+1)<< 8 |((uint32_t)*((uint8_t*)_data_ptr+_pos+2))<<16|((uint32_t)*((uint8_t*)_data_ptr+_pos+3))<<24);
 		_pos += sizeof(float);
 		return _f.f;	
 	}
