@@ -97,8 +97,14 @@ float pprz_msg::pprz_read_float()
 	}
 	else
 	{
+	/*
+		printf("1st byte %02x\n",*(_data_ptr));
+		printf("2nd byte %02x\n",*(_data_ptr+1));
+		printf("3rd byte %02x\n",*(_data_ptr+2));
+		printf("4th byte %02x\n",*(_data_ptr+3));
+	*/
 		union { uint32_t u; float f;} _f;
-		_f.u =  (uint32_t)(*((uint8_t*)_data_ptr)<<24|*((uint8_t*)_data_ptr+1)<<16|((uint32_t)*((uint8_t*)_data_ptr+2))<<8|((uint32_t)*((uint8_t*)_data_ptr+3))<<0);
+		_f.u =  (uint32_t)(*((uint8_t*)_data_ptr + _pos)<<24|*((uint8_t*)_data_ptr+_pos+1)<<16|((uint32_t)*((uint8_t*)_data_ptr+_pos+2))<<8|((uint32_t)*((uint8_t*)_data_ptr+_pos+3))<<0);
 		_pos += sizeof(float);
 		return _f.f;	
 	}
@@ -117,6 +123,10 @@ void pprz_msg::pprz_reset_msg()
 {
 	_pos = 0;
 }
+
+/*********************************************/
+/*    member functions to set pprz message   */
+/*********************************************/
 void pprz_msg::pprz_set_block(uint8_t &ac_id,uint8_t &block_id)
 {
 	//TODO Find out what should be the sender id here
@@ -127,6 +137,15 @@ void pprz_msg::pprz_set_block(uint8_t &ac_id,uint8_t &block_id)
 	//message content
 	this->pprz_put_byte(&block_id);
 	this->pprz_put_byte(&ac_id);	
+}
+
+void pprz_msg::pprz_set_DL_SETTING(uint8_t &ac_id,uint8_t &index, float &value)
+{
+	this->pprz_put_byte(&ac_id);
+	this->pprz_put_byte((uint8_t)FORWARD_MSG_ID_DL_SETTING);
+	this->pprz_put_byte(&index);
+	this->pprz_put_byte(&ac_id);
+	this->pprz_put_4bytes((uint8_t *)&value);
 }
 
 uint8_t pprz_msg::pprz_get_msg_id()
@@ -148,6 +167,11 @@ void pprz_msg::pprz_get_DL_VALUE(uint8_t &ac_id, uint8_t &index, float &value)
 	return ;
 }
 
+
+
+/*************************************************/
+/*  member functions to read pprz messages       */
+/************************************************/
 
 //
 //  Get the ROTORCRAFT_STATUS
@@ -183,7 +207,13 @@ void pprz_msg::pprz_get_ROTORCRAFT_NAV_STATUS(struct ROTORCRAFT_NAV_STATUS &roto
 	rotorcraft_nav_status.horizontal_mode = this->pprz_read_byte();
 }
 
-
+void pprz_msg::pprz_get_quad_swarm_ack(uint8_t &ac_id, uint8_t &quad_swarm_id, uint8_t &quad_swarm_ack)
+{
+	ac_id = this->pprz_read_byte();
+	this->pprz_read_byte();
+	quad_swarm_id = this->pprz_read_byte();
+	quad_swarm_ack = this->pprz_read_byte();
+}
 
 
 

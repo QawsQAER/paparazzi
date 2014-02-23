@@ -11,11 +11,12 @@ int main()
 	uint32_t pos_z = 88;
 	pprz_msg data;
 	
-	uint8_t ac_id = 1;
+	uint8_t ac_id = 162;
 	uint8_t block_id = 2;
 	//data.pprz_set_block(ac_id,block_id);
+	uint8_t index = 100;
 	float test = 1.1;
-	data.pprz_put_4bytes((uint8_t *) &test);
+	data.pprz_set_DL_SETTING(ac_id,index,test);
 	data.show_hex();
 	//XBEE_msg xbee_msg;
 	//xbee_msg.set_tran_packet(0x00000000,0x0000ffff,0xff,0xfe,data.pprz_get_data_ptr(),data.pprz_get_length());
@@ -26,9 +27,14 @@ int main()
 	//pprz_msg recv_data = xbee_msg.get_pprz_msg();
 	data.pprz_reset_msg();
 	data.show_hex();
+	ac_id = data.pprz_read_byte();
+	msg_id = data.pprz_read_byte();	
+	index = data.pprz_read_byte();
 	float tmp = data.pprz_read_float();
+	printf("ac_id is %d\n",ac_id);
+	printf("msg_id is %d\n",msg_id);
+	printf("index is %d\n",index);
 	printf("tmp is %f\n",tmp);
-	printf("tmp is %x\h",tmp);
 
 
 	return 0;

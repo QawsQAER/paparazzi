@@ -56,10 +56,12 @@
 void dl_parse_msg(void) {
 
   datalink_time = 0;
-
+  uint8_t tmp = 0;
+  DOWNLINK_SEND_quad_swarm_ack(DefaultChannel, DefaultDevice,&tmp,&tmp);
   uint8_t msg_id = IdOfMsg(dl_buffer);
   switch (msg_id) {
-
+  //uint8_t tmp = 0;
+  //DOWNLINK_SEND_quad_swarm_ack(DefaultChannel, DefaultDevice,&tmp,&tmp);
   case  DL_PING:
     {
       DOWNLINK_SEND_PONG(DefaultChannel, DefaultDevice);

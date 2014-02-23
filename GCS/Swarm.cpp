@@ -16,6 +16,7 @@ Swarm::Swarm()
 	{
 		state[count] = SWARM_INIT;
 		memset((void *) &pos[count],0,sizeof(struct EcefCoor_i));
+		count++;
 	}		
 }
 

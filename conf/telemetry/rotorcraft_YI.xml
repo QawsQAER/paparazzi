@@ -146,6 +146,8 @@
       <message name="IMU_MAG_CURRENT_CALIBRATION"   period="0.05"/>
     </mode>
 
+    <mode name="no_periodic_message">
+    </mode>
   </process>
 
 </telemetry>

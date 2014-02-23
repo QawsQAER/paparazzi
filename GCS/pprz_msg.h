@@ -29,7 +29,7 @@
 #define FORWARD_MSG_ID_BLOCK 5
 #define FORWARD_MSG_ID_quad_swarm_msg 15
 #define FORWARD_MSG_ID_quad_swarm_akc_forwarded 18
-
+#define FORWARD_MSG_ID_DL_SETTING 4
 
 /*****************************************************/
 /*                     block id                      */
@@ -80,8 +80,9 @@ class pprz_msg
 		/*   member functions to set pprz message       */
 		/************************************************/
 		void pprz_set_block(uint8_t &ac_id,uint8_t &block_id);
-		
-		
+		void pprz_set_DL_SETTING(uint8_t &ac_id, uint8_t &index, float &value);	
+		void pprz_set_msg(uint8_t &ac_id,struct quad_swarm_msg &msg);		
+	
 		/************************************************/
 		/*   member functions to read pprz message      */
 		/************************************************/
@@ -93,6 +94,7 @@ class pprz_msg
 		void pprz_get_ALIVE();
 		
 		void pprz_get_ROTORCRAFT_NAV_STATUS(struct ROTORCRAFT_NAV_STATUS &rotorcraft_nav_status);
+                void pprz_get_quad_swarm_ack(uint8_t &ac_id, uint8_t &quad_swarm_id, uint8_t &quad_swarm_ack);
 };
 
 #endif

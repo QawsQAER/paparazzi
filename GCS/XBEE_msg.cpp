@@ -215,7 +215,7 @@ void XBEE_msg::set_tran_packet(const uint32_t &ADDR_HI,const uint32_t &ADDR_LO,c
 	_length_LO = (length << 8 )>> 8;
 	this->set_frame_length();
 	this->set_CheckSum();
-	printf("get_CheskSum() %x\n",this->get_CheckSum());
+	//printf("get_CheckSum() %x\n",this->get_CheckSum());
 	
 }
 

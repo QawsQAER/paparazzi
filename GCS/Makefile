@@ -14,7 +14,7 @@ CFLAGS = -Wall -g
 #############################################
 
 
-TARGETS= main test test_sender test_pprz_msg test_GCS
+TARGETS= main test test_sender test_pprz_msg test_GCS test_recv
 
 OBJECT= XBEE.o Ground_Station.o XBEE_msg.o pprz_msg.o Serial.o Swarm.o
 
@@ -32,8 +32,8 @@ test: test.o $(OBJECT)
 	$(CC) -o test test.o $(OBJECT) $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
 	rm -f *.o
 #-----------------------------------------------------------------------------#
-test_sender: test_sender.o Serial.o XBEE.o XBEE_msg.o
-	$(CC) -o test_sender test_sender.o Serial.o XBEE.o XBEE_msg.o $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
+test_sender: test_sender.o Serial.o XBEE.o XBEE_msg.o pprz_msg.o
+	$(CC) -o test_sender test_sender.o Serial.o XBEE.o XBEE_msg.o pprz_msg.o $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
 	rm -f *.o
 #-----------------------------------------------------------------------------#
 test_pprz_msg: test_pprz_msg.o pprz_msg.o XBEE_msg.o
@@ -43,6 +43,9 @@ test_pprz_msg: test_pprz_msg.o pprz_msg.o XBEE_msg.o
 #-----------------------------------------------------------------------------#
 test_GCS: test_GCS.o $(OBJECT)
 	$(CC) -o test_GCS test_GCS.o $(OBJECT) $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
+	rm -f *.o
+test_recv: test_recv.o $(OBJECT)
+	$(CC) -o test_recv test_recv.o $(OBJECT) $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
 	rm -f *.o
 ##############################################################################
 ##############################################################################

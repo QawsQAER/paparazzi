@@ -43,13 +43,17 @@ uint8_t quad_swarm_state;
 
 //like the ac_id
 uint8_t quad_swarm_id;
-struct EcefCoor_i quad_swarm_target;
 
+struct EcefCoor_i quad_swarm_target;
+uint8_t quad_swarm_ack;
+uint8_t quad_swarm_initilized = 0;
 void quad_swarm_init( void ) 
 {
 	quad_swarm_state = SWARM_INIT;
 	memset(&quad_swarm_target,0,sizeof(struct EcefCoor_i));	
 	quad_swarm_id = AC_ID;
+	quad_swarm_ack = 0;
+	quad_swarm_initilized = 1;
 }
 
 #define send_quad_swarm_report()  DOWNLINK_SEND_quad_swarm_report(\
@@ -61,13 +65,31 @@ void quad_swarm_init( void )
         &state.ecef_pos_i.z,\
         &quad_swarm_state)
 
+#define send_quad_swarm_ack() DOWNLINK_SEND_quad_swarm_ack(\
+	DefaultChannel,\
+	DefaultDevice,\
+	&quad_swarm_id,\
+	&quad_swarm_ack\
+	)
 void quad_swarm_periodic( void )
 {
-	//periodically send position info to the GCS
-	
-	//state.ecef_pos_i is in cm
+	if(!quad_swarm_initilized)
+	{
+		quad_swarm_init();
+	}
 	if(autopilot_mode != AP_MODE_NAV)
-	{return ;}
+	{
+		//quad_swarm_ack = 0 means this quadcopter is not ready in NAV mode
+		quad_swarm_ack = 0;
+		send_quad_swarm_ack();
+		return ;
+	}
+	else
+	{
+		quad_swarm_ack = 1;
+		send_quad_swarm_ack();
+	}
+		
 	switch(quad_swarm_state)
 	{
 		case(SWARM_INIT):

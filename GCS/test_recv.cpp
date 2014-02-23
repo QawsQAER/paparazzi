@@ -52,7 +52,6 @@ int main(int argc, char ** argv)
 		
 		//show the message
 		//xbee_coor.XBEE_show_msg();
-
 		while(!xbee_coor.msg.empty())
 		{
 			XBEE_msg * ptr = xbee_coor.msg.front();
@@ -83,6 +82,7 @@ int main(int argc, char ** argv)
 						struct ROTORCRAFT_STATUS quad_status;
 						data.pprz_get_ROTORCRAFT_STATUS(quad_status);
 						printf("MSG: ROTORCRAFT_STATUS\n");
+						/*
 						printf("ac_id %d,\nrc_status %d,\ngps_status %d,\nap_mode %d,\nap_inflight %d,\nap_motors_on %d\n\n",
 								quad_status.ac_id,\
 								quad_status.rc_status,\
@@ -90,6 +90,7 @@ int main(int argc, char ** argv)
 								quad_status.ap_mode,\
 								quad_status.ap_inflight,\
 								quad_status.ap_motors_on);
+						*/
 					}
 					break;
 				case(RECV_MSG_ID_ALIVE):
@@ -102,25 +103,29 @@ int main(int argc, char ** argv)
 						struct ROTORCRAFT_NAV_STATUS quad_nav_status;
 						data.pprz_get_ROTORCRAFT_NAV_STATUS(quad_nav_status);
 						printf("MSG: ROTORCRAFT_NAV_STATUS\n");
+						/*
 						printf("ac_id %d\n,block_time %d\n,stage_time %d\n,cur_block %d\n,cur_stage %d\n\n",\
 								quad_nav_status.ac_id,\
 								quad_nav_status.block_time,\
 								quad_nav_status.stage_time,\
 								quad_nav_status.cur_block,\
 								quad_nav_status.cur_stage);
+						*/
 					}
 					break;
 				case(RECV_MSG_ID_quad_swarm_ack):
 					{
 						printf("MSG: quad_swarm_ack\n");
 						uint8_t ac_id, quad_swarm_id, quad_swarm_ack;
-						data.pprz_get_quad_swarm_ack(ac_id,quad_swarm_id,quad_swarm_ack);	
+						data.pprz_get_quad_swarm_ack(ac_id,quad_swarm_id,quad_swarm_ack);
+						if(ac_id == 0)	
 						printf("ac_id %d,\nquad_swarm_id %d,\nquad_swarm_ack %d\n\n",ac_id,quad_swarm_id,quad_swarm_ack);
 					}
 					break;
 				default:
 					{
 						printf("MSG_ID %d does not match any\n\n",data.pprz_get_msg_id());
+						//data.show_hex();
 					}
 					break;
 			}

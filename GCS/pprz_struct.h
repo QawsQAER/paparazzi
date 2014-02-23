@@ -28,4 +28,12 @@ struct ROTORCRAFT_NAV_STATUS
 	uint8_t horizontal_mode;
 };
 
+struct quad_swarm_msg
+{
+	uint8_t ac_id;
+	uint32_t x;
+	uint32_t y;
+	uint32_t z;
+	uint8_t state;
+};
 #endif
