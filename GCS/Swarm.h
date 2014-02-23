@@ -18,7 +18,7 @@ enum QuadState {SWARM_INIT, SWARM_NEGOTIATE_REF, SWARM_WAIT_CMD, \
 class Swarm
 {
 	private:
-		QuadState state[QUAD_NB + 1];	
+		QuadState state[QUAD_NB + 1];
 		uint32_t XBEE_ADDR_HI[QUAD_NB + 1];
 		uint32_t XBEE_ADDR_LO[QUAD_NB + 1];	
 		struct EcefCoor_i pos[QUAD_NB + 1];
@@ -27,6 +27,8 @@ class Swarm
 		~Swarm();
 		uint32_t get_address_HI(uint8_t &AC_ID);
 		uint32_t get_address_LO(uint8_t &AC_ID);
+		void set_swarm_state(uint8_t &AC_ID, QuadState &s);
+		bool all_in_state(QuadState &s);
 };
 #endif
 
