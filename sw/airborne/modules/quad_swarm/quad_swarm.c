@@ -36,13 +36,16 @@
 
 //for autopilot_mode
 #include "autopilot.h"
+
+//for AC_ID
+#include "generated/airframe.h"
 //for flight plan, nav_block, nav_stage etc
 #include "subsystems/navigation/common_flight_plan.h"
 uint8_t quad_swarm_state;
 
 
 //like the ac_id
-uint8_t quad_swarm_id;
+uint8_t quad_swarm_id = AC_ID;
 
 struct EcefCoor_i quad_swarm_target;
 uint8_t quad_swarm_ack;
@@ -83,7 +86,12 @@ void quad_swarm_periodic( void )
 	{
 		//quad_swarm_ack = 0 means this quadcopter is not ready in NAV mode
 		quad_swarm_ack = 0;
-		send_quad_swarm_ack();
+		DOWNLINK_SEND_quad_swarm_ack(\
+			DefaultChannel,\
+			DefaultDevice,\
+			&quad_swarm_id,\
+			&quad_swarm_ack\
+			);
 		return ;
 	}
 

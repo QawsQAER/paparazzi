@@ -8,7 +8,7 @@
     <file name="quad_swarm.h"/>
   </header>
   <init fun="quad_swarm_init()"/>
-  <periodic fun="quad_swarm_periodic()" freq="0.5" start="quad_swarm_start()" stop="quad_swarm_stop()"/>
+  <periodic fun="quad_swarm_periodic()" freq="0.1" start="quad_swarm_start()" stop="quad_swarm_stop()"/>
   <event fun="quad_swarm_event()"/>
   <datalink message="quad_swarm_msg" fun="quad_swarm_datalink()"/>
   <makefile>

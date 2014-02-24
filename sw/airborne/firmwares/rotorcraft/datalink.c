@@ -50,18 +50,19 @@
 
 #include "math/pprz_geodetic_int.h"
 #include "subsystems/ins.h"
-
+#include "generated/periodic_telemetry.h"
 #define IdOfMsg(x) (x[1])
 
 void dl_parse_msg(void) {
 
   datalink_time = 0;
+
   uint8_t tmp = 0;
+/*
   DOWNLINK_SEND_quad_swarm_ack(DefaultChannel, DefaultDevice,&tmp,&tmp);
+*/
   uint8_t msg_id = IdOfMsg(dl_buffer);
   switch (msg_id) {
-  //uint8_t tmp = 0;
-  //DOWNLINK_SEND_quad_swarm_ack(DefaultChannel, DefaultDevice,&tmp,&tmp);
   case  DL_PING:
     {
       DOWNLINK_SEND_PONG(DefaultChannel, DefaultDevice);
@@ -74,6 +75,13 @@ void dl_parse_msg(void) {
       uint8_t i = DL_SETTING_index(dl_buffer);
       float var = DL_SETTING_value(dl_buffer);
       DlSetting(i, var);
+      
+      if(i == 0)
+      {
+	telemetry_mode_Main = 1;
+	tmp = var + 100;
+      	DOWNLINK_SEND_quad_swarm_ack(DefaultChannel, DefaultDevice,&tmp,&tmp);
+      }
       DOWNLINK_SEND_DL_VALUE(DefaultChannel, DefaultDevice, &i, &var);
     }
     break;
