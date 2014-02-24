@@ -31,6 +31,15 @@ struct ROTORCRAFT_NAV_STATUS
 struct quad_swarm_msg
 {
 	uint8_t ac_id;
+	uint8_t dummy;
+	int32_t x;
+	int32_t y;
+	int32_t z;
+};
+
+struct quad_swarm_report
+{
+	uint8_t ac_id;
 	uint32_t x;
 	uint32_t y;
 	uint32_t z;

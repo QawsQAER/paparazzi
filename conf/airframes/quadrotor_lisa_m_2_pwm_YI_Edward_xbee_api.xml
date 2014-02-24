@@ -28,7 +28,7 @@
 	<!--<define name="XBEE24" value="TRUE"/>--><!--xbee with 16-bit desitination address protocol, this is default-->
 	<!--<define name="XBEE868" value="TRUE"/>-->
 	<define name="GROUND_STATION_ADDR" value="0X0013A20040992206"/> <!--the address of ground station xbee, default is 0x0000000000000000000000-->
-	</subsystem>
+    </subsystem>
 
     <subsystem name="imu" type="aspirin_v2.1"/>
 

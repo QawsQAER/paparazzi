@@ -82,36 +82,34 @@ int main(int argc, char ** argv)
 						struct ROTORCRAFT_STATUS quad_status;
 						data.pprz_get_ROTORCRAFT_STATUS(quad_status);
 						printf("MSG: ROTORCRAFT_STATUS\n");
+						printf("ap_mode %d\n",quad_status.ap_mode);
 						printf("link_imu_nb_err %d\n",quad_status.link_imu_nb_err);
-						uint8_t sender_id = 1;
-						pprz_msg dl_setting;
-						uint8_t index = DL_SETTING_TELEMETRY;
-						float value = 1;
-						//dl_setting.pprz_set_DL_SETTING(sender_id,index,value);
-											
-						dl_setting.pprz_put_byte(sender_id);
-						dl_setting.pprz_put_byte((uint8_t)FORWARD_MSG_ID_DL_SETTING);
-						
-						dl_setting.pprz_put_byte(index);
-						dl_setting.pprz_put_byte(sender_id);
-						dl_setting.pprz_put_byte(*(((uint8_t *)&value) + 0));
-						dl_setting.pprz_put_byte(*(((uint8_t *)&value) + 1));
-						dl_setting.pprz_put_byte(*(((uint8_t *)&value) + 2));
-						dl_setting.pprz_put_byte(*(((uint8_t *)&value) + 3));
-							
-						dl_setting.show_hex();
-						XBEE_msg set_dl;
-						uint32_t addr_hi = 0x0013a200;
-						uint32_t addr_lo = 0x409c278a;
-						uint16_t net_addr_hi = 0xff;
-						uint16_t net_addr_lo = 0xfe;
-						set_dl.set_tran_packet(addr_hi,\
-									addr_lo,\
-									net_addr_hi,\
-									net_addr_lo,\
-									dl_setting.pprz_get_data_ptr(),\
-									dl_setting.pprz_get_length());
-//						xbee_coor.XBEE_send_msg(set_dl);
+						uint8_t sender_id = *(data.pprz_get_data_ptr());
+						if(quad_status.ap_mode == 12)
+						{
+							pprz_msg pprz_set_ap;
+							struct quad_swarm_msg content;
+							{
+							content.ac_id = sender_id; 
+							content.dummy = 0;
+							content.x = 0;
+							content.y = 0;
+							content.z = 0;
+							}
+							pprz_set_ap.pprz_set_msg(sender_id,content);
+							XBEE_msg set_ap;	
+							uint32_t addr_hi = 0x0013a200;
+							uint32_t addr_lo = 0x409c278a;
+							uint16_t net_addr_hi = 0xff;
+							uint16_t net_addr_lo = 0xfe;
+							set_ap.set_tran_packet(addr_hi,\
+										addr_lo,\
+										net_addr_hi,\
+										net_addr_lo,\
+										pprz_set_ap.pprz_get_data_ptr(),\
+										pprz_set_ap.pprz_get_length());
+						//	xbee_coor.XBEE_send_msg(set_ap);
+						}
 					}
 					break;
 				case(RECV_MSG_ID_ALIVE):

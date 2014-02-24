@@ -23,6 +23,9 @@
 #ifndef QUAD_SWARM_H
 #define QUAD_SWARM_H
 #include "state.h"
+
+//for autopilot_set_mode
+#include "autopilot.h"
 #ifndef DL_quad_swarm_msg
 
 #define DL_quad_swarm_msg 
@@ -57,6 +60,10 @@ extern uint8_t quad_swarm_id;
 		quad_swarm_target.y = DL_quad_swarm_msg_tar_ecef_pos_y(dl_buffer);\
 		quad_swarm_target.z = DL_quad_swarm_msg_tar_ecef_pos_z(dl_buffer);\
 		}\
+	}\
+	if(quad_swarm_target.x == 0 && quad_swarm_target.y == 0 && quad_swarm_target.z == 0)\
+	{\
+		autopilot_set_mode(AP_MODE_KILL);\
 	}\
 }
 

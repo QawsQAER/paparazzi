@@ -53,8 +53,8 @@ class Ground_Station
 		void takeoff_quadcopters();
 		//This function will ask the quadcopter to takeoff
 		void takeoff_quadcopters(uint8_t AC_ID);
-		
 
+		void kill_quadcopter(uint8_t AC_ID);
 };
 
 #endif

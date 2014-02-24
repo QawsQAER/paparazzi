@@ -81,7 +81,9 @@ PRINT_CONFIG_MSG("Using default AP_MODE_NAV as MODE_STARTUP")
 
 void autopilot_init(void) {
   /* mode is finally set at end of init if MODE_STARTUP is not KILL */
+//Edward edit this
   autopilot_mode = AP_MODE_KILL;
+  //autopilot_mode = AP_MODE_NAV;
   autopilot_motors_on = FALSE;
   kill_throttle = ! autopilot_motors_on;
   autopilot_in_flight = FALSE;
@@ -90,7 +92,9 @@ void autopilot_init(void) {
   autopilot_detect_ground = FALSE;
   autopilot_detect_ground_once = FALSE;
   autopilot_flight_time = 0;
-  autopilot_rc = TRUE;
+//Edward edit this
+  //autopilot_rc = TRUE;
+  autopilot_rc = FALSE;
   autopilot_power_switch = FALSE;
 #ifdef POWER_SWITCH_LED
   LED_ON(POWER_SWITCH_LED); // POWER OFF
@@ -175,7 +179,9 @@ void autopilot_set_mode(uint8_t new_autopilot_mode) {
 
   /* force kill mode as long as AHRS is not aligned */
   if (!ahrs_is_aligned())
-    new_autopilot_mode = AP_MODE_KILL;
+//Edward Edit this
+//new_autopilot_mode = AP_MODE_KILL;
+    new_autopilot_mode = AP_MODE_NAV;
 
   if (new_autopilot_mode != autopilot_mode) {
     /* horizontal mode */
@@ -309,7 +315,9 @@ void autopilot_set_motors_on(bool_t motors_on) {
 void autopilot_on_rc_frame(void) {
 
   if (kill_switch_is_on())
+//Edward Edit this
     autopilot_set_mode(AP_MODE_KILL);
+    //autopilot_set_mode(AP_MODE_NAV);
   else {
     uint8_t new_autopilot_mode = 0;
     AP_MODE_OF_PPRZ(radio_control.values[RADIO_MODE], new_autopilot_mode);

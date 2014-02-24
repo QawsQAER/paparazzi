@@ -175,6 +175,16 @@ void pprz_msg::pprz_set_DL_SETTING(uint8_t &ac_id,uint8_t &index, float &value)
 	this->pprz_put_4bytes((uint8_t *)&value);
 }
 
+void pprz_msg::pprz_set_msg(uint8_t &ac_id, struct quad_swarm_msg &msg)
+{
+	this->pprz_put_byte(&ac_id);
+	this->pprz_put_byte((uint8_t) FORWARD_MSG_ID_quad_swarm_msg);
+	uint8_t dummy = 0;
+	this->pprz_put_byte(&dummy);
+	this->pprz_put_4bytes((uint8_t *)&msg.x);
+	this->pprz_put_4bytes((uint8_t *)&msg.y);
+	this->pprz_put_4bytes((uint8_t *)&msg.z);	
+}
 uint8_t pprz_msg::pprz_get_msg_id()
 {
 	if(_length > 2)
