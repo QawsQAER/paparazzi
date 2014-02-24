@@ -42,16 +42,19 @@ class Ground_Station
 		//This function will initilize the serial port for communication and the xbee module etc.
 		Ground_Station(char * port_name);
 		~Ground_Station();
-		//This function will initilize the navigation of all quadcopters
-		void init_nav_quadcopters();
-		//This function will initilize the navigation of the quadcopter with AC_ID
-		void init_nav_quadcopters(uint8_t &AC_ID);
+		
+		
+		//after this function is called, 
+		//all quadcopters should be in SWARM_NEGOTIATE_REF
+		//the navigation subsystem of quadcopter would be in block 2
+		void init_quadcopters();
 		
 		//This function will ask quadcopters to takeoff
 		void takeoff_quadcopters();
 		//This function will ask the quadcopter to takeoff
 		void takeoff_quadcopters(uint8_t AC_ID);
-		void init_quadcopters();
+		
+
 };
 
 #endif

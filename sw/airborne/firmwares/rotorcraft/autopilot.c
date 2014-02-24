@@ -75,8 +75,8 @@ static inline int ahrs_is_aligned(void) {
 #endif
 
 #ifndef MODE_STARTUP
-#define MODE_STARTUP AP_MODE_KILL
-PRINT_CONFIG_MSG("Using default AP_MODE_KILL as MODE_STARTUP")
+#define MODE_STARTUP AP_MODE_NAV
+PRINT_CONFIG_MSG("Using default AP_MODE_NAV as MODE_STARTUP")
 #endif
 
 void autopilot_init(void) {
