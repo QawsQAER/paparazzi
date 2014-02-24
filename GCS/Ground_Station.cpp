@@ -102,10 +102,9 @@ void Ground_Station::init_quadcopters()
 									printf("quad %d: not yet in geo_init block\n",quad_swarm_id);
 								}else if(quad_swarm_ack == 2)
 								{
-									this->Swarm_state->set_swarm_state(quad_swarm_id,s);
+									this->Swarm_state->set_quad_state(quad_swarm_id,s);
 									printf("quad %d: ready\n",quad_swarm_id);
-								}else if(quad_swarm_ack == 255)
-									printf("!!@#!@!@@@@@@@@@@@@@@@@@@@@@@@@\n");
+								}
 							}
 							break;
 						case(RECV_MSG_ID_quad_swarm_report):	
@@ -115,10 +114,10 @@ void Ground_Station::init_quadcopters()
 								printf("MSG: quad_swarm_report\n");
 								printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
 								printf("quad %d: x %d y %d z%d\n\n",report.ac_id,report.x,report.y,report.z);
-								if(report.state == 1)
+								if(report.state == SWARM_NEGOTIATE_REF)
 								{
 									printf("setting state of %d\n",report.ac_id);
-									this->Swarm_state->set_swarm_state(report.ac_id,s);
+									this->Swarm_state->set_quad_state(report.ac_id,s);
 								}
 							}
 							break;
@@ -143,6 +142,7 @@ void Ground_Station::negotiate_ref()
 	printf("\nnegotiating reference point\n");
 	while(1)
 	{
+		QuadState s = SWARM_WAIT_CMD;
 		Com->XBEE_read_into_recv_buff();
 		Com->XBEE_parse_XBEE_msg();
 		//while there're multiple XBEE message
@@ -161,21 +161,46 @@ void Ground_Station::negotiate_ref()
 				printf("MSG: quad_swarm_report\n");
 				printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
 				printf("quad %d: x %d y %d z %d\n\n",report.ac_id,report.x,report.y,report.z);
+				printf("quad %d: pacc %d\n",report.ac_id,report.pacc);
+				if(report.pacc > 5)
+				continue;
+				struct EcefCoor_i coor;
+				coor.x = report.x;
+				coor.y = report.y;
+				coor.z = report.z;
+				this->Swarm_state->set_quad_ecef(report.ac_id,coor);
+				this->Swarm_state->set_quad_state(report.ac_id,s);
+				uint8_t ack = 2;
+				this->send_ack(report.ac_id,ack);
 			}	
 		}
-	}	
+		if(this->Swarm_state->all_in_state(s))
+		{
+			printf("all are waiting for command to start engine");
+			printf("start engine?\n");
+			char cmd[16];
+			scanf("%s",cmd);
+			if(strcmp(cmd,"y"))
+			{
+				this->takeoff_quadcopters();
+				break;
+			}else
+			printf("Your command is %s\n",cmd);
+		}
+	}
+
 }
 
 
-void Ground_Station::Send_Msg_Block(uint8_t &AC_ID, uint8_t BLOCK_ID)
+void Ground_Station::Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID)
 {	
 	pprz_msg data;
 	data.pprz_set_block(AC_ID,BLOCK_ID);
-	data.show_hex();
+	//data.show_hex();
 	XBEE_msg msg;
 	Swarm *temp = this->Swarm_state;
 	msg.set_tran_packet(temp->get_address_HI(AC_ID),temp->get_address_LO(AC_ID),0xFF,0xFE,data.pprz_get_data_ptr(),data.pprz_get_length());
-	msg.show_hex();
+	//msg.show_hex();
 	this->Com->XBEE_send_msg(msg);	
 }
 void Ground_Station::send_ack(uint8_t AC_ID, uint8_t ack)
@@ -194,6 +219,40 @@ void Ground_Station::send_ack(uint8_t AC_ID, uint8_t ack)
                               pprz_ack.pprz_get_data_ptr(),\
                               pprz_ack.pprz_get_length());
 	Com->XBEE_send_msg(msg_ack);	
+}
+
+void Ground_Station::nav_start_engine()
+{
+	uint8_t count = 1;
+	for(count = 1;count < QUAD_NB + 1;count++)
+		this->nav_start_engine(count);
+}
+
+void Ground_Station::nav_start_engine(uint8_t AC_ID)
+{
+	uint8_t block_id = BLOCK_ID_START_ENGINE;
+	this->Send_Msg_Block(AC_ID,block_id);
+}
+
+void Ground_Station::nav_takeoff()
+{
+	uint8_t count = 1;
+	for(count = 1;count < QUAD_NB + 1;count++)
+		this->nav_takeoff(count);
+}
+void Ground_Station::nav_takeoff(uint8_t AC_ID)
+{
+	uint8_t block_id = BLOCK_ID_TAKE_OFF;
+	this->Send_Msg_Block(AC_ID,block_id);
+}
+void Ground_Station::takeoff_quadcopters()
+{
+
+}
+
+void Ground_Station::takeoff_quadcopter(uint8_t AC_ID)
+{
+
 }
 void Ground_Station::ap_kill_quadcopter(uint8_t AC_ID)
 {

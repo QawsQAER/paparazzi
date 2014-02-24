@@ -74,6 +74,10 @@ extern uint8_t quad_swarm_id;
 	{\
 		autopilot_set_mode(AP_MODE_NAV);\
 	}\
+	else if(ack == 2)\
+	{\
+		quad_swarm_state = 2;\
+	}
 }
 extern void quad_swarm_start( void );
 extern void quad_swarm_stop( void );

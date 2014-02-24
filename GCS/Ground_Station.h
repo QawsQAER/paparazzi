@@ -36,7 +36,7 @@ class Ground_Station
 		GroundControlStation_state GCS_state;
 		EcefCoor_i ref_ecef;
 		NedCoor_i ref_ned;
-		void Send_Msg_Block(uint8_t &AC_ID, uint8_t BLOCK_ID);
+		void Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID);
 	public:
 		//Ground_Station();
 		//This function will initilize the serial port for communication and the xbee module etc.
@@ -51,9 +51,15 @@ class Ground_Station
 	
 		void negotiate_ref();		
 		//This function will ask quadcopters to takeoff
+		void nav_start_engine(uint8_t AC_ID);
+		void nav_start_engine();
+		
+		void nav_takeoff(uint8_t AC_ID);
+		void nav_takeoff();
+		
 		void takeoff_quadcopters();
 		//This function will ask the quadcopter to takeoff
-		void takeoff_quadcopters(uint8_t AC_ID);
+		void takeoff_quadcopter(uint8_t AC_ID);
 		
 		void send_ack(uint8_t AC_ID, uint8_t ack);	
 		void ap_kill_quadcopter(uint8_t AC_ID);

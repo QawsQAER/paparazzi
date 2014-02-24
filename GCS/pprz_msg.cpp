@@ -193,6 +193,7 @@ void pprz_msg::pprz_set_ack(uint8_t &ac_id, uint8_t &ack)
 	this->pprz_put_byte(&ac_id);
 	this->pprz_put_byte(&ack);
 }
+
 /*********************************************/
 /*  member functions to read pprz message    */
 /*********************************************/
@@ -266,6 +267,7 @@ void pprz_msg::pprz_get_quad_swarm_report(struct quad_swarm_report &report)
 	report.z = this->pprz_read_4bytes();
 	report.state = this->pprz_read_byte();
 	report.ap_mode = this->pprz_read_byte();		
+	report.pacc = this->pprz_read_4bytes();
 }
 
 

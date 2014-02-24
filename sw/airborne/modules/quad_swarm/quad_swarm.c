@@ -37,6 +37,10 @@
 //for autopilot_mode
 #include "autopilot.h"
 
+//for pacc of gps
+#if USE_GPS
+#include "subsystems/gps.h"
+#endif
 //for AC_ID
 #include "generated/airframe.h"
 //for flight plan, nav_block, nav_stage etc
@@ -70,7 +74,8 @@ void quad_swarm_init( void )
         &state.ecef_pos_i.y,\
         &state.ecef_pos_i.z,\
         &quad_swarm_state,\
-	&autopilot_mode)\
+		&autopilot_mode,\
+		&gps.pacc)\
 }
 #define send_quad_swarm_ack() DOWNLINK_SEND_quad_swarm_ack(\
 	DefaultChannel,\
@@ -126,8 +131,8 @@ void quad_swarm_periodic( void )
 			//sending its gps position to the GCS
 			//wait for GCS to ack this quad that GCS 
 			//has choose a gps position as the reference
+			send_quad_swarm_ack();
 			send_quad_swarm_report();
-			quad_swarm_state = SWARM_NEGOTIATE_REF;
 			break;
 		}
 		case(SWARM_WAIT_CMD):
@@ -137,6 +142,7 @@ void quad_swarm_periodic( void )
 			//if receive quad_swarm_msg 
 			//record the target position
 			//and proceed to next state
+			send_quad_swarm_report();
 			break;
 		}
 		case(SWARM_SEND_ACK):

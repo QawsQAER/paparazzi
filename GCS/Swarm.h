@@ -22,12 +22,16 @@ class Swarm
 		uint32_t XBEE_ADDR_HI[QUAD_NB + 1];
 		uint32_t XBEE_ADDR_LO[QUAD_NB + 1];	
 		struct EcefCoor_i pos[QUAD_NB + 1];
+		struct EcefCoor_i pos_mean_error;
 	public:
 		Swarm();
 		~Swarm();
 		uint32_t get_address_HI(uint8_t &AC_ID);
 		uint32_t get_address_LO(uint8_t &AC_ID);
-		void set_swarm_state(uint8_t &AC_ID, QuadState &s);
+		void set_quad_state(uint8_t &AC_ID, QuadState &s);
+		void set_quad_ecef(uint8_t &AC_ID,struct EcefCoor_i &pos);
+		
+		void set_pos_mean_error();
 		bool all_in_state(QuadState &s);
 };
 #endif
