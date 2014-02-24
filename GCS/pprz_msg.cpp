@@ -185,6 +185,17 @@ void pprz_msg::pprz_set_msg(uint8_t &ac_id, struct quad_swarm_msg &msg)
 	this->pprz_put_4bytes((uint8_t *)&msg.y);
 	this->pprz_put_4bytes((uint8_t *)&msg.z);	
 }
+
+void pprz_msg::pprz_set_ack(uint8_t &ac_id, uint8_t &ack)
+{
+	this->pprz_put_byte(&ac_id);
+	this->pprz_put_byte((uint8_t) FORWARD_MSG_ID_quad_swarm_ack_forwarded);
+	this->pprz_put_byte(&ac_id);
+	this->pprz_put_byte(&ack);
+}
+/*********************************************/
+/*  member functions to read pprz message    */
+/*********************************************/
 uint8_t pprz_msg::pprz_get_msg_id()
 {
 	if(_length > 2)
@@ -203,13 +214,6 @@ void pprz_msg::pprz_get_DL_VALUE(uint8_t &ac_id, uint8_t &index, float &value)
 	value = this->pprz_read_float();
 	return ;
 }
-
-
-
-/*************************************************/
-/*  member functions to read pprz messages       */
-/************************************************/
-
 //
 //  Get the ROTORCRAFT_STATUS
 //
@@ -252,8 +256,17 @@ void pprz_msg::pprz_get_quad_swarm_ack(uint8_t &ac_id, uint8_t &quad_swarm_id, u
 	quad_swarm_ack = this->pprz_read_byte();
 }
 
-
-
+void pprz_msg::pprz_get_quad_swarm_report(struct quad_swarm_report &report)
+{
+	report.ac_id = this->pprz_read_byte();
+	this->pprz_read_byte();
+	report.ac_id = this->pprz_read_byte();
+	report.x = this->pprz_read_4bytes();
+	report.y = this->pprz_read_4bytes();
+	report.z = this->pprz_read_4bytes();
+	report.state = this->pprz_read_byte();
+	report.ap_mode = this->pprz_read_byte();		
+}
 
 
 

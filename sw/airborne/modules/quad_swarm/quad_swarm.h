@@ -61,12 +61,20 @@ extern uint8_t quad_swarm_id;
 		quad_swarm_target.z = DL_quad_swarm_msg_tar_ecef_pos_z(dl_buffer);\
 		}\
 	}\
-	if(quad_swarm_target.x == 0 && quad_swarm_target.y == 0 && quad_swarm_target.z == 0)\
+}
+
+#define quad_swarm_ack_datalink(){\
+	uint8_t ac_id = DL_quad_swarm_ack_forwarded_ac_id(dl_buffer);\
+	uint8_t ack = DL_quad_swarm_ack_forwarded_ack(dl_buffer);\
+	if(ack == 0xff)\
 	{\
 		autopilot_set_mode(AP_MODE_KILL);\
 	}\
+	else if(ack == 0xfe)\
+	{\
+		autopilot_set_mode(AP_MODE_NAV);\
+	}\
 }
-
 extern void quad_swarm_start( void );
 extern void quad_swarm_stop( void );
 #endif

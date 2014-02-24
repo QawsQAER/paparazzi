@@ -59,15 +59,19 @@ void quad_swarm_init( void )
 	quad_swarm_initilized = 1;
 }
 
-#define send_quad_swarm_report()  DOWNLINK_SEND_quad_swarm_report(\
+#define send_quad_swarm_report()  {\
+	if (!bit_is_set(state.pos_status, POS_ECEF_I))\
+	stateCalcPositionEcef_i();\
+	DOWNLINK_SEND_quad_swarm_report(\
         DefaultChannel,\
         DefaultDevice,\
         &quad_swarm_id,\
         &state.ecef_pos_i.x,\
         &state.ecef_pos_i.y,\
         &state.ecef_pos_i.z,\
-        &quad_swarm_state)
-
+        &quad_swarm_state,\
+	&autopilot_mode)\
+}
 #define send_quad_swarm_ack() DOWNLINK_SEND_quad_swarm_ack(\
 	DefaultChannel,\
 	DefaultDevice,\
@@ -77,6 +81,7 @@ void quad_swarm_init( void )
 	
 void quad_swarm_periodic( void )
 {
+	
 	if(!quad_swarm_initilized)
 	{
 		quad_swarm_init();
@@ -86,12 +91,8 @@ void quad_swarm_periodic( void )
 	{
 		//quad_swarm_ack = 0 means this quadcopter is not ready in NAV mode
 		quad_swarm_ack = 0;
-		DOWNLINK_SEND_quad_swarm_ack(\
-			DefaultChannel,\
-			DefaultDevice,\
-			&quad_swarm_id,\
-			&quad_swarm_ack\
-			);
+		send_quad_swarm_report();
+		send_quad_swarm_ack();
 		return ;
 	}
 
@@ -106,12 +107,14 @@ void quad_swarm_periodic( void )
 			if(nav_block != 2)
 			{
 					quad_swarm_ack = 1;
+					send_quad_swarm_report();
 					send_quad_swarm_ack();
 			}
 			if(nav_block == 2 && autopilot_mode == AP_MODE_NAV)
 			{
 				quad_swarm_state = SWARM_NEGOTIATE_REF;
 				quad_swarm_ack = 2;
+				send_quad_swarm_report();
 				send_quad_swarm_ack();
 			}		
 			break;

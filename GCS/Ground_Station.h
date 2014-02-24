@@ -48,13 +48,16 @@ class Ground_Station
 		//all quadcopters should be in SWARM_NEGOTIATE_REF
 		//the navigation subsystem of quadcopter would be in block 2
 		void init_quadcopters();
-		
+	
+		void negotiate_ref();		
 		//This function will ask quadcopters to takeoff
 		void takeoff_quadcopters();
 		//This function will ask the quadcopter to takeoff
 		void takeoff_quadcopters(uint8_t AC_ID);
-
-		void kill_quadcopter(uint8_t AC_ID);
+		
+		void send_ack(uint8_t AC_ID, uint8_t ack);	
+		void ap_kill_quadcopter(uint8_t AC_ID);
+		void ap_nav_quadcopter(uint8_t AC_ID);
 };
 
 #endif

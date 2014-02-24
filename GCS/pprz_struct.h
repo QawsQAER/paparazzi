@@ -44,5 +44,6 @@ struct quad_swarm_report
 	uint32_t y;
 	uint32_t z;
 	uint8_t state;
+	uint8_t ap_mode;
 };
 #endif

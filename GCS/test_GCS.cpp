@@ -11,5 +11,6 @@ int main(int argc, char **argv)
 		GCS = new Ground_Station(default_portname);
 //	uint8_t ac_id = 162;
 	GCS->init_quadcopters();
+	GCS->negotiate_ref();
 	return 0;
 }

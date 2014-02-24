@@ -1870,6 +1870,7 @@
     <field name="ecef_y" type="int32" unit="cm" alt_unit="m"/>
     <field name="ecef_z" type="int32" unit="cm" alt_unit="m"/>
     <field name="state" type="uint8"/> <!--self_state in paparazzi/sw/modules/quad_swarm/quad_swarm.h-->
+    <field name="ap_mode" type="uint8"/>
   </message>
 
   <message name="quad_swarm_ack" id="223">
