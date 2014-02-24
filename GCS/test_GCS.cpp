@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 		GCS = new Ground_Station(argv[1]);	
 	else	
 		GCS = new Ground_Station(default_portname);
-	uint8_t ac_id = 162;
+//	uint8_t ac_id = 162;
 	GCS->init_quadcopters();
 	return 0;
 }

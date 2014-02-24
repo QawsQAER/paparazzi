@@ -38,6 +38,7 @@ void Ground_Station::init_quadcopters()
 	QuadState s = SWARM_NEGOTIATE_REF;
 	while(all_init == 0) 
 	{
+		printf("\n\n\nreading...\n");
 		Com->XBEE_read_into_recv_buff();
 		Com->XBEE_parse_XBEE_msg();
 		//while there're multiple XBEE message
@@ -46,16 +47,20 @@ void Ground_Station::init_quadcopters()
 			XBEE_msg *ptr = Com->msg.front();
 			Com->msg.pop();
 			pprz_msg data = ptr->get_pprz_msg();
-			uint8_t sender_id = data.pprz_read_byte();
+			uint8_t sender_id = *data.pprz_get_data_ptr();
 			//if recevived any message not quad_swarm_ack, quad_swarm_msg or DL_VALUE
 			//set the sender quadcopter telemetry mode to no message
-			if(data.pprz_get_msg_id() != RECV_MSG_ID_quad_swarm_ack && data.pprz_get_msg_id() != RECV_MSG_ID_DL_VALUE)
+			uint8_t msg_id = data.pprz_get_msg_id();
+			if(msg_id != RECV_MSG_ID_quad_swarm_ack && msg_id != RECV_MSG_ID_DL_VALUE && msg_id != 0)
 			{
-					
+					data.show_hex();
+					printf("MSG_ID is %d\n",data.pprz_get_msg_id());
+					printf("setting telemetry mode of quad %d\n",sender_id);
 					pprz_msg dl_setting;
-					uint8_t index = 1;
-					float value = 14;
+					uint8_t index = DL_SETTING_TELEMETRY;
+					float value = 1;
 					dl_setting.pprz_set_DL_SETTING(sender_id,index,value);
+					dl_setting.show_hex();
 					XBEE_msg set_dl;
 					uint32_t addr_hi = this->Swarm_state->get_address_HI(sender_id);
 					uint32_t addr_lo = this->Swarm_state->get_address_LO(sender_id);
@@ -82,7 +87,7 @@ void Ground_Station::init_quadcopters()
 								printf("sender_id %d, index %d, value %f\n",cur_ac_id,index,value);
 								if(int(value) == 14)
 								{
-									printf("quad %d has received the setting command\n",sender_id);
+									printf("quad %d has received the setting command\n",cur_ac_id);
 								}
 							}
 							break;
@@ -92,6 +97,7 @@ void Ground_Station::init_quadcopters()
 								data.pprz_get_quad_swarm_ack(ac_id,quad_swarm_id,quad_swarm_ack);
 								if(quad_swarm_ack == 0)
 								{
+									data.show_hex();
 									printf("quad %d: not yet in AP_MODE_NAV\n",quad_swarm_id);
 								}
 								else if(quad_swarm_ack == 1)

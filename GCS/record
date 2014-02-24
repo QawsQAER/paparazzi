@@ -1,254 +1,2332 @@
-Warning: Using default port /dev/ttyUSB0
-name of device /dev/ttyUSB0
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 0
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 0
-,stage_time 0
-,cur_block 0
-,cur_stage 2
-MSG: ALIVE
-MSG: DL_VALUE
-ac_id 162, index 0, value 0.000000
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 256
-,stage_time 0
-,cur_block 1
-,cur_stage 1
-MSG: DL_VALUE
-ac_id 162, index 1, value 12.000000
+Creating Ground Control Station
+setting baud rate attribute
+setting done
+Ground Control Station Created
+
+Initiliziing quadcopters
+
+
+
+reading...
+
+
+
+reading...
 MSG_ID 0 does not match any
 
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: DL_VALUE
-ac_id 162, index 2, value 1.000000
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 768
-,stage_time 0
-,cur_block 1
-,cur_stage 1
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 01 00 
+quad 1: not yet in AP_MODE_NAV
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 ba 03 03 00 00 00 00 00 00 00 00 00 8e 3f dc ff 1b 00 00 00 2f 00 00 00 a4 ed ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
 MSG_ID 0 does not match any
 
-MSG: ALIVE
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 1024
-,stage_time 0
-,cur_block 1
-,cur_stage 1
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 a4 38 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 31 03 00 03 00 00 00 03 00 00 00 03 00 00 
+MSG_ID is 49
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
 MSG: DL_VALUE
-ac_id 162, index 4, value 93.000000
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 d3 03 03 00 00 00 00 00 00 00 00 00 6e d7 de ff e3 ff ff ff de ff ff ff 2f ef ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
 MSG: DL_VALUE
-ac_id 162, index 5, value 15.000000
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 1536
-,stage_time 0
-,cur_block 1
-,cur_stage 1
-MSG: ALIVE
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 ff fb fc ff 00 00 00 00 00 00 00 00 27 23 1f 00 39 00 00 00 87 ff ff ff ed df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
 MSG_ID 0 does not match any
 
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 2048
-,stage_time 0
-,cur_block 1
-,cur_stage 1
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: ALIVE
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
 MSG_ID 0 does not match any
 
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 2304
-,stage_time 0
-,cur_block 1
-,cur_stage 1
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
 MSG: DL_VALUE
-ac_id 162, index 8, value 0.000000
-MSG: ALIVE
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 9e 39 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 38 04 03 00 00 00 00 00 00 00 00 00 bb f9 e3 ff 13 00 00 00 32 00 00 00 54 f0 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 0e 00 
+MSG_ID is 231
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 f7 fb fc ff 00 00 00 00 00 00 00 00 ce 9c 1d 00 39 00 00 00 87 ff ff ff eb df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
 MSG_ID 0 does not match any
 
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 256
-,stage_time 256
-,cur_block 2
-,cur_stage 1
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
 MSG: DL_VALUE
-ac_id 162, index 10, value 1.000000
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: ALIVE
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 512
-,stage_time 512
-,cur_block 2
-,cur_stage 1
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 47 04 03 00 00 00 00 00 00 00 00 00 ae 87 e5 ff fb ff ff ff fe ff ff ff 4c f1 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
 MSG: DL_VALUE
-ac_id 162, index 11, value 25.000000
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: DL_VALUE
-ac_id 162, index 12, value 75.000000
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 1024
-,stage_time 1024
-,cur_block 2
-,cur_stage 1
-MSG: ALIVE
-MSG: DL_VALUE
-ac_id 162, index 13, value 28.000000
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 1536
-,stage_time 1536
-,cur_block 2
-,cur_stage 1
-MSG: DL_VALUE
-ac_id 162, index 14, value 5.000000
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 71 04 03 00 00 00 00 00 00 00 00 00 10 bf e7 ff 07 00 00 00 ea ff ff ff 20 f2 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 69 fb fc ff 00 00 00 00 00 00 00 00 b8 b6 16 00 39 00 00 00 87 ff ff ff ee df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+01 df 01 00 
+quad 1: not yet in AP_MODE_NAV
+
+
+
+reading...
+01 9f 0b 00 00 00 00 02 00 
+MSG_ID is 159
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
 MSG_ID 0 does not match any
 
-MSG: ALIVE
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
 MSG: DL_VALUE
-ac_id 162, index 15, value 0.000000
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 1792
-,stage_time 1792
-,cur_block 2
-,cur_stage 1
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 8c 3c 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 87 04 03 00 00 00 00 00 00 00 00 00 65 db e8 ff dc ff ff ff ba ff ff ff 7f f2 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 59 fb fc ff 00 00 00 00 00 00 00 00 e7 dc 15 00 39 00 00 00 87 ff ff ff f1 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
 MSG_ID 0 does not match any
 
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
 MSG: DL_VALUE
-ac_id 162, index 16, value 0.000000
-MSG: ALIVE
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 2304
-,stage_time 2304
-,cur_block 2
-,cur_stage 1
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
 MSG: DL_VALUE
-ac_id 162, index 17, value 1.000000
-MSG: ROTORCRAFT_STATUS
-ac_id 162
-,rc_status 0
-,gps_status 3
-,ap_mode 1
-,ap_inflight 0
-,ap_motors_on 0
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 86 3d 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 9e 04 03 00 00 00 00 00 00 00 00 00 36 02 ea ff 3c 00 00 00 d1 ff ff ff 71 f3 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
 MSG_ID 0 does not match any
 
-MSG: ROTORCRAFT_NAV_STATUS
-ac_id 162
-,block_time 2560
-,stage_time 2560
-,cur_block 2
-,cur_stage 1
-MSG: ALIVE
-MSG: ROTORCRAFT_STATUS
-ac
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 52 fb fc ff 00 00 00 00 00 00 00 00 96 62 15 00 39 00 00 00 87 ff ff ff f3 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 80 3e 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 10 00 
+MSG_ID is 231
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 74 04 03 00 00 00 00 00 00 00 00 00 43 c2 e8 ff 56 00 00 00 e4 ff ff ff ba f3 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 67 fb fc ff 00 00 00 00 00 00 00 00 1a c2 15 00 39 00 00 00 87 ff ff ff f1 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 7a 3f 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 a2 04 03 00 00 00 00 00 00 00 00 00 46 f2 ea ff 25 00 00 00 41 00 00 00 6e f4 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 81 fb fc ff 00 00 00 00 00 00 00 00 b8 3a 16 00 39 00 00 00 87 ff ff ff ee df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 74 40 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 01 00 
+quad 1: not yet in AP_MODE_NAV
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 74 40 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 b0 04 03 00 00 00 00 00 00 00 00 00 33 9d ec ff ed ff ff ff f4 ff ff ff 3c f5 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 38 fb fc ff 00 00 00 00 00 00 00 00 6d 60 12 00 39 00 00 00 87 ff ff ff ef df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 02 10 46 b8 38 00 e9 08 e7 bf a4 5e fc f0 23 64 ed 3e 
+MSG_ID is 2
+setting telemetry mode of quad 1
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 68 42 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9f 0a 00 00 00 00 02 00 
+MSG_ID is 159
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 b1 04 03 00 00 00 00 00 00 00 00 00 a3 03 ed ff fa ff ff ff 1a 00 00 00 99 f5 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 2d fb fc ff 00 00 00 00 00 00 00 00 8e b2 11 00 3a 00 00 00 87 ff ff ff ed df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 31 05 00 01 00 00 00 00 00 00 00 03 00 00 
+MSG_ID is 49
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 68 42 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 11 00 
+MSG_ID is 231
+setting telemetry mode of quad 1
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 df 04 03 00 00 00 00 00 00 00 00 00 b5 da ee ff 18 00 00 00 f2 ff ff ff 18 f6 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 5c 44 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 f2 fa fc ff 00 00 00 00 00 00 00 00 22 96 0f 00 39 00 00 00 87 ff ff ff f3 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 5c 44 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 01 00 
+quad 1: not yet in AP_MODE_NAV
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 2d 05 03 00 00 00 00 00 00 00 00 00 ce 68 f1 ff 30 00 00 00 12 00 00 00 09 f7 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 ec fa fc ff 00 00 00 00 00 00 00 00 d9 86 0f 00 39 00 00 00 87 ff ff ff f4 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 50 46 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 2c 05 03 00 00 00 00 00 00 00 00 00 42 51 f1 ff 05 00 00 00 02 00 00 00 d9 f6 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 c7 fa fc ff 00 00 00 00 00 00 00 00 d7 3e 0e 00 3a 00 00 00 87 ff ff ff ef df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 12 00 
+MSG_ID is 231
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 31 00 00 2a 00 00 00 2a 00 00 00 03 00 00 
+MSG_ID is 49
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 03 05 03 00 00 00 00 00 00 00 00 00 1b f4 ef ff 12 00 00 00 e1 ff ff ff 52 f7 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 02 fb fc ff 00 00 00 00 00 00 00 00 23 28 10 00 3a 00 00 00 87 ff ff ff ee df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+01 9f 0e 00 00 00 00 02 00 
+MSG_ID is 159
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 44 48 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 0b 05 03 00 00 00 00 00 00 00 00 00 7b a5 f0 ff d1 ff ff ff 05 00 00 00 bd f7 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 0f fb fc ff 00 00 00 00 00 00 00 00 9c 2f 10 00 3a 00 00 00 86 ff ff ff ec df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 3e 49 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 fe fa fc ff 00 00 00 00 00 00 00 00 63 23 0f 00 3a 00 00 00 86 ff ff ff ef df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 38 4a 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 0c 05 03 00 00 00 00 00 00 00 00 00 e2 96 f1 ff b0 ff ff ff bf ff ff ff 8b f8 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 32 4b 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+
+
+
+reading...
+MSG_ID 0 does not match any
+
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 2d 05 03 00 00 00 00 00 00 00 00 00 86 08 f3 ff b0 ff ff ff 33 00 00 00 68 f8 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 13 00 
+MSG_ID is 231
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 2c 4c 00 00 0f 27 00 00 
+MSG_ID is 155
+setting telemetry mode of quad 1
+01 31 01 00 00 00 00 00 00 00 00 00 03 00 00 
+MSG_ID is 49
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 df 00 00 
+quad 0: not yet in AP_MODE_NAV
+
+
+
+reading...
+
+
+
+reading...
+MSG: DL_VALUE
+sender_id 1, index 1, value 1.000000
+
+
+
+reading...
+01 c6 00 00 00 00 00 00 00 00 19 05 03 00 00 00 00 00 00 00 00 00 1f 68 f2 ff db ff ff ff df ff ff ff 87 f8 ff ff 
+MSG_ID is 198
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 93 00 00 00 00 00 00 00 00 d2 fa fc ff 00 00 00 00 00 00 00 00 6a c9 0c 00 3a 00 00 00 87 ff ff ff f4 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+MSG_ID is 147
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 d0 00 00 00 00 00 00 02 
+MSG_ID is 208
+setting telemetry mode of quad 1
+
+
+
+reading...
+01 9a 94 2

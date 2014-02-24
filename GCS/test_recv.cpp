@@ -74,7 +74,7 @@ int main(int argc, char ** argv)
 						float value = 0;
 						data.pprz_get_DL_VALUE(cur_ac_id,index,value);
 						printf("MSG: DL_VALUE\n");
-						printf("ac_id %d, index %d, value %f\n",cur_ac_id,index,value);
+						printf("ac_id %d, index %d, value %f\n\n",cur_ac_id,index,value);
 					}
 					break;
 				case(RECV_MSG_ID_ROTORCRAFT_STATUS):
@@ -82,15 +82,35 @@ int main(int argc, char ** argv)
 						struct ROTORCRAFT_STATUS quad_status;
 						data.pprz_get_ROTORCRAFT_STATUS(quad_status);
 						printf("MSG: ROTORCRAFT_STATUS\n");
-						/*
-						printf("ac_id %d,\nrc_status %d,\ngps_status %d,\nap_mode %d,\nap_inflight %d,\nap_motors_on %d\n\n",
-								quad_status.ac_id,\
-								quad_status.rc_status,\
-								quad_status.gps_status,\
-								quad_status.ap_mode,\
-								quad_status.ap_inflight,\
-								quad_status.ap_motors_on);
-						*/
+						uint8_t sender_id = 1;
+						pprz_msg dl_setting;
+						uint8_t index = DL_SETTING_TELEMETRY;
+						float value = 1;
+						//dl_setting.pprz_set_DL_SETTING(sender_id,index,value);
+											
+						dl_setting.pprz_put_byte(sender_id);
+						dl_setting.pprz_put_byte((uint8_t)FORWARD_MSG_ID_DL_SETTING);
+						
+						dl_setting.pprz_put_byte(index);
+						dl_setting.pprz_put_byte(sender_id);
+						dl_setting.pprz_put_byte(*(((uint8_t *)&value) + 0));
+						dl_setting.pprz_put_byte(*(((uint8_t *)&value) + 1));
+						dl_setting.pprz_put_byte(*(((uint8_t *)&value) + 2));
+						dl_setting.pprz_put_byte(*(((uint8_t *)&value) + 3));
+							
+						dl_setting.show_hex();
+						XBEE_msg set_dl;
+						uint32_t addr_hi = 0x0013a200;
+						uint32_t addr_lo = 0x409c278a;
+						uint16_t net_addr_hi = 0xff;
+						uint16_t net_addr_lo = 0xfe;
+						set_dl.set_tran_packet(addr_hi,\
+									addr_lo,\
+									net_addr_hi,\
+									net_addr_lo,\
+									dl_setting.pprz_get_data_ptr(),\
+									dl_setting.pprz_get_length());
+						xbee_coor.XBEE_send_msg(set_dl);
 					}
 					break;
 				case(RECV_MSG_ID_ALIVE):
@@ -118,8 +138,8 @@ int main(int argc, char ** argv)
 						printf("MSG: quad_swarm_ack\n");
 						uint8_t ac_id, quad_swarm_id, quad_swarm_ack;
 						data.pprz_get_quad_swarm_ack(ac_id,quad_swarm_id,quad_swarm_ack);
-						if(ac_id == 0)	
-						printf("ac_id %d,\nquad_swarm_id %d,\nquad_swarm_ack %d\n\n",ac_id,quad_swarm_id,quad_swarm_ack);
+						//if(ac_id == 0)	
+						printf("ac_id %d, quad_swarm_id %d, quad_swarm_ack %d\n\n",ac_id,quad_swarm_id,quad_swarm_ack);
 					}
 					break;
 				default:
