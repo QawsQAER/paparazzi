@@ -156,7 +156,7 @@ int main(int argc, char ** argv)
 				default:
 					{
 						printf("MSG_ID %d does not match any\n\n",data.pprz_get_msg_id());
-						//data.show_hex();
+						data.show_hex();
 					}
 					break;
 			}

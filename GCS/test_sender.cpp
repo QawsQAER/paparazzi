@@ -37,7 +37,7 @@ int main(int argc, char ** argv)
 	//char dummy[32];
 	const char data[] = "hello A!"; 
 	uint32_t addr_hi = 0x0013a200;
-	uint32_t addr_lo = 0x409c278a;
+	uint32_t addr_lo = 0x409c27b4;
 	uint8_t net_addr_hi = 0xFF;
 	uint8_t net_addr_lo = 0xFE;
 

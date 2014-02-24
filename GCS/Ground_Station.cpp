@@ -38,7 +38,6 @@ void Ground_Station::init_quadcopters()
 	QuadState s = SWARM_NEGOTIATE_REF;
 	while(all_init == 0) 
 	{
-		printf("\n\n\nreading...\n");
 		Com->XBEE_read_into_recv_buff();
 		Com->XBEE_parse_XBEE_msg();
 		//while there're multiple XBEE message
@@ -53,25 +52,23 @@ void Ground_Station::init_quadcopters()
 			uint8_t msg_id = data.pprz_get_msg_id();
 			if(msg_id != RECV_MSG_ID_quad_swarm_ack && msg_id != RECV_MSG_ID_DL_VALUE && msg_id != 0 && msg_id != RECV_MSG_ID_quad_swarm_report)
 			{
-					data.show_hex();
 					printf("MSG_ID is %d\n",data.pprz_get_msg_id());
 					printf("setting telemetry mode of quad %d\n",sender_id);
 					pprz_msg dl_setting;
 					uint8_t index = DL_SETTING_TELEMETRY;
 					float value = 1;
 					dl_setting.pprz_set_DL_SETTING(sender_id,index,value);
-					dl_setting.show_hex();
 					XBEE_msg set_dl;
 					uint32_t addr_hi = this->Swarm_state->get_address_HI(sender_id);
 					uint32_t addr_lo = this->Swarm_state->get_address_LO(sender_id);
 					uint16_t net_addr_hi = 0xff;
 					uint16_t net_addr_lo = 0xfe;
 					set_dl.set_tran_packet(addr_hi,\
-											addr_lo,\
-											net_addr_hi,\
-											net_addr_lo,\
-											dl_setting.pprz_get_data_ptr(),\
-											dl_setting.pprz_get_length());
+								addr_lo,\
+								net_addr_hi,\
+								net_addr_lo,\
+								dl_setting.pprz_get_data_ptr(),\
+								dl_setting.pprz_get_length());
 					Com->XBEE_send_msg(set_dl);
 			}
 			else
@@ -101,13 +98,14 @@ void Ground_Station::init_quadcopters()
 									printf("quad %d: not yet in AP_MODE_NAV\n",quad_swarm_id);
 								}
 								else if(quad_swarm_ack == 1)
-								{
+							{
 									printf("quad %d: not yet in geo_init block\n",quad_swarm_id);
 								}else if(quad_swarm_ack == 2)
 								{
 									this->Swarm_state->set_swarm_state(quad_swarm_id,s);
 									printf("quad %d: ready\n",quad_swarm_id);
-								}
+								}else if(quad_swarm_ack == 255)
+									printf("!!@#!@!@@@@@@@@@@@@@@@@@@@@@@@@\n");
 							}
 							break;
 						case(RECV_MSG_ID_quad_swarm_report):	
@@ -119,13 +117,14 @@ void Ground_Station::init_quadcopters()
 								printf("quad %d: x %d y %d z%d\n\n",report.ac_id,report.x,report.y,report.z);
 								if(report.state == 1)
 								{
+									printf("setting state of %d\n",report.ac_id);
 									this->Swarm_state->set_swarm_state(report.ac_id,s);
 								}
 							}
 							break;
 						default:
 							{
-								printf("MSG_ID %d does not match any\n\n",data.pprz_get_msg_id());
+								//printf("MSG_ID %d does not match any\n\n",data.pprz_get_msg_id());
 							}
 							break;
 				}

@@ -4,2329 +4,2791 @@ setting done
 Ground Control Station Created
 
 Initiliziing quadcopters
-
-
-
 reading...
-
-
-
 reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 df 01 00 
-quad 1: not yet in AP_MODE_NAV
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 ba 03 03 00 00 00 00 00 00 00 00 00 8e 3f dc ff 1b 00 00 00 2f 00 00 00 a4 ed ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 a4 38 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 31 03 00 03 00 00 00 03 00 00 00 03 00 00 
-MSG_ID is 49
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 d3 03 03 00 00 00 00 00 00 00 00 00 6e d7 de ff e3 ff ff ff de ff ff ff 2f ef ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 ff fb fc ff 00 00 00 00 00 00 00 00 27 23 1f 00 39 00 00 00 87 ff ff ff ed df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 9e 39 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 38 04 03 00 00 00 00 00 00 00 00 00 bb f9 e3 ff 13 00 00 00 32 00 00 00 54 f0 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 0e 00 
+----------------
+data content:02 e7 00 00 00 00 00 02 00 00 0c 00 00 04 05 00 00 31 00 
+----------------
 MSG_ID is 231
-setting telemetry mode of quad 1
-
-
-
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 93 00 00 00 00 00 00 00 00 f7 fb fc ff 00 00 00 00 00 00 00 00 ce 9c 1d 00 39 00 00 00 87 ff ff ff eb df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-MSG_ID 0 does not match any
-
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 c6 00 00 00 00 00 00 00 00 47 04 03 00 00 00 00 00 00 00 00 00 ae 87 e5 ff fb ff ff ff fe ff ff ff 4c f1 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 c6 00 00 00 00 00 00 00 00 71 04 03 00 00 00 00 00 00 00 00 00 10 bf e7 ff 07 00 00 00 ea ff ff ff 20 f2 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 93 00 00 00 00 00 00 00 00 69 fb fc ff 00 00 00 00 00 00 00 00 b8 b6 16 00 39 00 00 00 87 ff ff ff ee df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 df 01 00 
-quad 1: not yet in AP_MODE_NAV
-
-
-
-reading...
-01 9f 0b 00 00 00 00 02 00 
-MSG_ID is 159
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 8c 3c 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 87 04 03 00 00 00 00 00 00 00 00 00 65 db e8 ff dc ff ff ff ba ff ff ff 7f f2 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 59 fb fc ff 00 00 00 00 00 00 00 00 e7 dc 15 00 39 00 00 00 87 ff ff ff f1 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
+MSG: quad_swarm_report
+quad 2: ap_mode 12 state 0
+quad 2: x 462705218 y 11965075 z437275848
 
 reading...
 MSG_ID 0 does not match any
 
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 86 3d 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 9e 04 03 00 00 00 00 00 00 00 00 00 36 02 ea ff 3c 00 00 00 d1 ff ff ff 71 f3 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 52 fb fc ff 00 00 00 00 00 00 00 00 96 62 15 00 39 00 00 00 87 ff ff ff f3 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
 reading...
 MSG_ID 0 does not match any
 
-
-
+reading...
+reading...
+reading...
+reading...
+reading...
+reading...
+MSG_ID 0 does not match any
 
 reading...
-
-
+reading...
+reading...
+reading...
+reading...
+reading...
+reading...
+MSG_ID 0 does not match any
 
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
 reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 80 3e 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
 reading...
-01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 10 00 
+quad 2: not yet in geo_init block
+reading...
+reading...
+----------------
+data content:02 e7 00 00 00 00 00 02 00 00 0c 00 00 04 05 00 00 33 00 
+----------------
 MSG_ID is 231
-setting telemetry mode of quad 1
-
-
-
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 c6 00 00 00 00 00 00 00 00 74 04 03 00 00 00 00 00 00 00 00 00 43 c2 e8 ff 56 00 00 00 e4 ff ff ff ba f3 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 93 00 00 00 00 00 00 00 00 67 fb fc ff 00 00 00 00 00 00 00 00 1a c2 15 00 39 00 00 00 87 ff ff ff f1 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-MSG_ID 0 does not match any
-
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 7a 3f 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 a2 04 03 00 00 00 00 00 00 00 00 00 46 f2 ea ff 25 00 00 00 41 00 00 00 6e f4 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 81 fb fc ff 00 00 00 00 00 00 00 00 b8 3a 16 00 39 00 00 00 87 ff ff ff ee df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 74 40 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 reading...
 MSG_ID 0 does not match any
 
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 df 01 00 
-quad 1: not yet in AP_MODE_NAV
-
-
-
+quad 2: not yet in geo_init block
 reading...
 MSG_ID 0 does not match any
 
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
 reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 74 40 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 b0 04 03 00 00 00 00 00 00 00 00 00 33 9d ec ff ed ff ff ff f4 ff ff ff 3c f5 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 38 fb fc ff 00 00 00 00 00 00 00 00 6d 60 12 00 39 00 00 00 87 ff ff ff ef df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 02 10 46 b8 38 00 e9 08 e7 bf a4 5e fc f0 23 64 ed 3e 
-MSG_ID is 2
-setting telemetry mode of quad 1
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 68 42 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9f 0a 00 00 00 00 02 00 
-MSG_ID is 159
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 b1 04 03 00 00 00 00 00 00 00 00 00 a3 03 ed ff fa ff ff ff 1a 00 00 00 99 f5 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 2d fb fc ff 00 00 00 00 00 00 00 00 8e b2 11 00 3a 00 00 00 87 ff ff ff ed df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 31 05 00 01 00 00 00 00 00 00 00 03 00 00 
-MSG_ID is 49
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 68 42 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 11 00 
+----------------
+data content:02 e7 00 00 00 00 00 02 00 00 0c 00 00 04 05 00 00 34 00 
+----------------
 MSG_ID is 231
-setting telemetry mode of quad 1
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+MSG: quad_swarm_report
+quad 2: ap_mode 12 state 0
+quad 2: x 462705215 y 11965075 z437275846
+
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
 MSG_ID 0 does not match any
 
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 df 04 03 00 00 00 00 00 00 00 00 00 b5 da ee ff 18 00 00 00 f2 ff ff ff 18 f6 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 5c 44 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 f2 fa fc ff 00 00 00 00 00 00 00 00 22 96 0f 00 39 00 00 00 87 ff ff ff f3 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 5c 44 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 01 00 
-quad 1: not yet in AP_MODE_NAV
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 2d 05 03 00 00 00 00 00 00 00 00 00 ce 68 f1 ff 30 00 00 00 12 00 00 00 09 f7 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 ec fa fc ff 00 00 00 00 00 00 00 00 d9 86 0f 00 39 00 00 00 87 ff ff ff f4 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 50 46 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 2c 05 03 00 00 00 00 00 00 00 00 00 42 51 f1 ff 05 00 00 00 02 00 00 00 d9 f6 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 c7 fa fc ff 00 00 00 00 00 00 00 00 d7 3e 0e 00 3a 00 00 00 87 ff ff ff ef df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 12 00 
+reading...
+reading...
+reading...
+reading...
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 e7 00 00 00 00 00 02 00 00 0c 00 00 04 05 00 00 35 00 
+----------------
 MSG_ID is 231
-setting telemetry mode of quad 1
-
-
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+MSG_ID 0 does not match any
 
 reading...
-01 31 00 00 2a 00 00 00 2a 00 00 00 03 00 00 
-MSG_ID is 49
-setting telemetry mode of quad 1
-
-
-
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
+reading...
+reading...
 reading...
 MSG_ID 0 does not match any
 
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 03 05 03 00 00 00 00 00 00 00 00 00 1b f4 ef ff 12 00 00 00 e1 ff ff ff 52 f7 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 02 fb fc ff 00 00 00 00 00 00 00 00 23 28 10 00 3a 00 00 00 87 ff ff ff ee df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-01 9f 0e 00 00 00 00 02 00 
-MSG_ID is 159
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 44 48 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 0b 05 03 00 00 00 00 00 00 00 00 00 7b a5 f0 ff d1 ff ff ff 05 00 00 00 bd f7 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 0f fb fc ff 00 00 00 00 00 00 00 00 9c 2f 10 00 3a 00 00 00 86 ff ff ff ec df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
 reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 3e 49 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 fe fa fc ff 00 00 00 00 00 00 00 00 63 23 0f 00 3a 00 00 00 86 ff ff ff ef df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 38 4a 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 0c 05 03 00 00 00 00 00 00 00 00 00 e2 96 f1 ff b0 ff ff ff bf ff ff ff 8b f8 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
-reading...
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 32 4b 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-
-
-
-reading...
-MSG_ID 0 does not match any
-
-
-
-
-reading...
-
-
-
-reading...
-
-
-
-reading...
-
-
-
 reading...
-
-
-
-reading...
-
-
-
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
 reading...
-01 c6 00 00 00 00 00 00 00 00 2d 05 03 00 00 00 00 00 00 00 00 00 86 08 f3 ff b0 ff ff ff 33 00 00 00 68 f8 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
+MSG: quad_swarm_report
+quad 2: ap_mode 12 state 0
+quad 2: x 462705215 y 11965075 z437275846
 
-
 reading...
-
-
-
+quad 2: not yet in geo_init block
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
 reading...
-01 e7 00 00 00 00 00 00 3c 00 01 00 00 00 00 00 00 13 00 
+----------------
+data content:02 e7 00 00 00 00 00 02 00 00 0c 00 00 04 05 00 00 37 00 
+----------------
 MSG_ID is 231
-setting telemetry mode of quad 1
-
-
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+MSG: quad_swarm_report
+quad 2: ap_mode 12 state 0
+quad 2: x 462705208 y 11965075 z437275839
 
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
+quad 2: not yet in geo_init block
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 e7 00 00 00 00 00 02 00 00 0c 00 00 04 05 00 00 38 00 
+----------------
+MSG_ID is 231
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+MSG_ID 0 does not match any
 
 reading...
-
-
+reading...
+reading...
+reading...
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+MSG: quad_swarm_report
+quad 2: ap_mode 12 state 0
+quad 2: x 462705203 y 11965075 z437275835
 
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
+quad 2: not yet in geo_init block
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 e7 00 00 00 00 00 02 00 00 0c 00 00 04 05 00 00 39 00 
+----------------
+MSG_ID is 231
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+MSG_ID 0 does not match any
 
 reading...
-01 9b c4 43 04 26 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 98 bd ff ff 00 00 00 00 00 00 00 00 00 00 00 00 c0 df b6 26 c2 01 00 00 2c 4c 00 00 0f 27 00 00 
-MSG_ID is 155
-setting telemetry mode of quad 1
-01 31 01 00 00 00 00 00 00 00 00 00 03 00 00 
-MSG_ID is 49
-setting telemetry mode of quad 1
-
-
+reading...
+reading...
+reading...
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+MSG: quad_swarm_report
+quad 2: ap_mode 12 state 0
+quad 2: x 462705196 y 11965075 z437275828
 
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+quad 2: not yet in geo_init block
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 e7 00 00 00 00 00 02 00 00 0c 00 00 04 05 00 00 38 00 
+----------------
+MSG_ID is 231
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff fe 0 0 2 4 0 2 0 0 80 3f 2b 0
+reading...
+MSG_ID 0 does not match any
 
 reading...
-
-
-
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
 reading...
-01 df 00 00 
-quad 0: not yet in AP_MODE_NAV
-
-
-
 reading...
-
-
-
 reading...
-MSG: DL_VALUE
-sender_id 1, index 1, value 1.000000
-
-
-
-reading...
-01 c6 00 00 00 00 00 00 00 00 19 05 03 00 00 00 00 00 00 00 00 00 1f 68 f2 ff db ff ff ff df ff ff ff 87 f8 ff ff 
-MSG_ID is 198
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 93 00 00 00 00 00 00 00 00 d2 fa fc ff 00 00 00 00 00 00 00 00 6a c9 0c 00 3a 00 00 00 87 ff ff ff f4 df ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-MSG_ID is 147
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 d0 00 00 00 00 00 00 02 
-MSG_ID is 208
-setting telemetry mode of quad 1
-
-
-
-reading...
-01 9a 94 2
+----------------
+data content:02 04 00 02 00 00 80 3f 
+----------------
+MSG_ID is 4
+setting telemetry mode of quad 2
+02 04 00 02 00 00 80 3f 
+7e 0 16 10 0 0 0 0 0 0 0 0 0 ff 

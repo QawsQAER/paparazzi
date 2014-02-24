@@ -126,10 +126,10 @@ float pprz_msg::pprz_read_float()
 	}
 	else
 	{
-		printf("1st byte %02x\n",*(_data_ptr+_pos));
-		printf("2nd byte %02x\n",*(_data_ptr+_pos+1));
-		printf("3rd byte %02x\n",*(_data_ptr+_pos+2));
-		printf("4th byte %02x\n",*(_data_ptr+_pos+3));
+		//printf("1st byte %02x\n",*(_data_ptr+_pos));
+		//printf("2nd byte %02x\n",*(_data_ptr+_pos+1));
+		//printf("3rd byte %02x\n",*(_data_ptr+_pos+2));
+		//printf("4th byte %02x\n",*(_data_ptr+_pos+3));
 		union { uint32_t u; float f;} _f;
 		_f.u =  (uint32_t)(*((uint8_t*)_data_ptr + _pos) |*((uint8_t*)_data_ptr+_pos+1)<< 8 |((uint32_t)*((uint8_t*)_data_ptr+_pos+2))<<16|((uint32_t)*((uint8_t*)_data_ptr+_pos+3))<<24);
 		_pos += sizeof(float);

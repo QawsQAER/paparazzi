@@ -56,11 +56,6 @@
 void dl_parse_msg(void) {
 
   datalink_time = 0;
-
-  uint8_t tmp = 0;
-/*
-  DOWNLINK_SEND_quad_swarm_ack(DefaultChannel, DefaultDevice,&tmp,&tmp);
-*/
   uint8_t msg_id = IdOfMsg(dl_buffer);
   switch (msg_id) {
   case  DL_PING:
@@ -71,17 +66,16 @@ void dl_parse_msg(void) {
 
   case DL_SETTING :
     {
-      if (DL_SETTING_ac_id(dl_buffer) != AC_ID) break;
+      if (DL_SETTING_ac_id(dl_buffer) != AC_ID)
+	{
+		uint8_t ack = 255;
+		DOWNLINK_SEND_quad_swarm_ack(DefaultChannel,DefaultDevice,&ack,&ack);
+	 break;
+	}
       uint8_t i = DL_SETTING_index(dl_buffer);
       float var = DL_SETTING_value(dl_buffer);
       DlSetting(i, var);
-      
-      if(i == 0)
-      {
-	telemetry_mode_Main = 1;
-	tmp = var + 100;
-      	DOWNLINK_SEND_quad_swarm_ack(DefaultChannel, DefaultDevice,&tmp,&tmp);
-      }
+
       DOWNLINK_SEND_DL_VALUE(DefaultChannel, DefaultDevice, &i, &var);
     }
     break;
@@ -146,11 +140,6 @@ void dl_parse_msg(void) {
     } 
 /**------------------------------------------------------------------*/
 
-
-//TODO add parsing message quad_swarm_msg here
-#ifdef _QUAD_SWARM_H
-
-#endif
 #if defined USE_NAVIGATION
   case DL_BLOCK :
     {
