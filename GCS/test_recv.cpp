@@ -82,6 +82,7 @@ int main(int argc, char ** argv)
 						struct ROTORCRAFT_STATUS quad_status;
 						data.pprz_get_ROTORCRAFT_STATUS(quad_status);
 						printf("MSG: ROTORCRAFT_STATUS\n");
+						printf("link_imu_nb_err %d\n",quad_status.link_imu_nb_err);
 						uint8_t sender_id = 1;
 						pprz_msg dl_setting;
 						uint8_t index = DL_SETTING_TELEMETRY;
@@ -110,7 +111,7 @@ int main(int argc, char ** argv)
 									net_addr_lo,\
 									dl_setting.pprz_get_data_ptr(),\
 									dl_setting.pprz_get_length());
-						xbee_coor.XBEE_send_msg(set_dl);
+//						xbee_coor.XBEE_send_msg(set_dl);
 					}
 					break;
 				case(RECV_MSG_ID_ALIVE):

@@ -32,6 +32,7 @@
 #define FORWARD_MSG_ID_quad_swarm_akc_forwarded 18
 #define FORWARD_MSG_ID_DL_SETTING 4
 
+#define DL_SETTING_TELEMETRY 0
 /*****************************************************/
 /*                     block id                      */
 /*****************************************************/

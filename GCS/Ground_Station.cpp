@@ -48,7 +48,7 @@ void Ground_Station::init_quadcopters()
 			Com->msg.pop();
 			pprz_msg data = ptr->get_pprz_msg();
 			uint8_t sender_id = *data.pprz_get_data_ptr();
-			//if recevived any message not quad_swarm_ack, quad_swarm_msg or DL_VALUE
+			//if recevived any message not 	quad_swarm_ack, quad_swarm_msg or DL_VALUE
 			//set the sender quadcopter telemetry mode to no message
 			uint8_t msg_id = data.pprz_get_msg_id();
 			if(msg_id != RECV_MSG_ID_quad_swarm_ack && msg_id != RECV_MSG_ID_DL_VALUE && msg_id != 0)
