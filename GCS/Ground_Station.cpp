@@ -114,6 +114,7 @@ void Ground_Station::init_quadcopters()
 								printf("MSG: quad_swarm_report\n");
 								printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
 								printf("quad %d: x %d y %d z%d\n\n",report.ac_id,report.x,report.y,report.z);
+								this->update_on_quad_swarm_report(report);
 								if(report.state == 2)
 								{
 									printf("setting state of %d\n",report.ac_id);
@@ -164,14 +165,7 @@ void Ground_Station::negotiate_ref()
 				continue;
 				else
 				{
-					struct EcefCoor_i coor;
-					coor.x = report.x;
-					coor.y = report.y;
-					coor.z = report.z;
-					this->Swarm_state->set_quad_ecef(report.ac_id,coor);
-					uint8_t ack = 2;
-					//ask the quad to proceed to SWARM_WAIT_CMD
-					this->send_ack(report.ac_id,ack);
+					this->update_on_quad_swarm_report(report);
 				}
 			}
 			else if(msg_id == RECV_MSG_ID_quad_swarm_ack)
@@ -202,7 +196,6 @@ void Ground_Station::negotiate_ref()
 			printf("Your command is %s\n",cmd);
 		}
 	}
-	
 	wait_all_quads(SWARM_WAIT_CMD_START_ENGINE);
 	char cmd[16];
 	memset(cmd,0,sizeof(char) * 16);
@@ -215,6 +208,25 @@ void Ground_Station::negotiate_ref()
 	this->nav_takeoff();
 	printf("take off command sent\n");
 	wait_all_quads(SWARM_WAIT_CMD_TAKEOFF);
+}
+
+void Ground_Station::calculating_target()
+{
+	//should be calculating intermediate targets here
+	return ;
+}
+
+void Ground_Station::sending_target()
+{
+	//should be sending intermediate targets here
+	this->wait_all_quads(SWARM_SEND_ACK);
+	return ;	
+}
+
+void Ground_Station::wait_cmd_ack()
+{
+	//should be waiting for ack for command from quads
+	return ;
 }
 
 void Ground_Station::wait_all_quads(QuadState s)
@@ -254,10 +266,19 @@ void Ground_Station::wait_all_quads(QuadState s)
 					case(5):
 					{this->Swarm_state->set_quad_state(quad_swarm_id, SWARM_WAIT_CMD_TAKEOFF);}
 					break;
-
+					
+					case(6):
+					{this->Swarm_state->set_quad_state(quad_swarm_id,SWARM_SEND_ACK);}
+					break;
 					default:
 					break;
 				}			
+			}
+			else if(msg_id == RECV_MSG_ID_quad_swarm_report)
+			{
+				struct quad_swarm_report report;
+				data.pprz_get_quad_swarm_report(report);
+				this->update_on_quad_swarm_report(report);
 			}
 		}
 		switch(s)
@@ -296,6 +317,18 @@ void Ground_Station::wait_all_quads(QuadState s)
 				}
 			}
 			break;
+			case(SWARM_SEND_ACK):
+			{
+				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
+				{
+					if(this->Swarm_state->get_state(count) != SWARM_WAIT_CMD_TAKEOFF)
+					{
+						//TODO 
+						//send the target of this quadcopter
+					}
+				}
+			}
+			break;
 			default:
 			{
 			}
@@ -308,11 +341,9 @@ void Ground_Station::Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID)
 {	
 	pprz_msg data;
 	data.pprz_set_block(AC_ID,BLOCK_ID);
-	//data.show_hex();
 	XBEE_msg msg;
 	Swarm *temp = this->Swarm_state;
 	msg.set_tran_packet(temp->get_address_HI(AC_ID),temp->get_address_LO(AC_ID),0xFF,0xFE,data.pprz_get_data_ptr(),data.pprz_get_length());
-	//msg.show_hex();
 	this->Com->XBEE_send_msg(msg);	
 }
 void Ground_Station::send_ack(uint8_t AC_ID, uint8_t ack)
@@ -386,7 +417,12 @@ void Ground_Station::ap_nav_quadcopter(uint8_t AC_ID)
 
 void Ground_Station::update_on_quad_swarm_report(quad_swarm_report report)
 {
-	
+	struct EcefCoor_i pos;
+	pos.x = report.x;
+	pos.y = report.y;
+	pos.z = report.z;
+	this->Swarm_state->set_quad_ecef(report.ac_id,pos);
+	this->Swarm_state->set_quad_pacc(report.ac_id,report.pacc);
 }
 
 

@@ -157,6 +157,8 @@ void quad_swarm_periodic( void )
 			//send ack to GCS 
 			//to acknowledge the target position
 			//proceed to next state
+			quad_swarm_ack = 6;
+			send_quad_swarm_ack();
 			break;
 		}
 		case(SWARM_WAIT_EXEC_ACK):

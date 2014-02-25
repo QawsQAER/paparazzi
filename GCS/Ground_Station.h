@@ -35,6 +35,7 @@ class Ground_Station
 		XBEE *Com;
 		GroundControlStation_state GCS_state;
 		EcefCoor_i ref_ecef;
+		struct EcefCoor_i target[QUAD_NB + 1];
 		NedCoor_i ref_ned;
 		void Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID);
 	public:
@@ -49,7 +50,12 @@ class Ground_Station
 		//the navigation subsystem of quadcopter would be in block 2
 		void init_quadcopters();
 	
-		void negotiate_ref();		
+		void negotiate_ref();
+
+		void calculating_target();
+		
+		void wait_cmd_ack();
+		void sending_target();
 		//This function will ask quadcopters to takeoff
 		void nav_start_engine(uint8_t AC_ID);
 		void nav_start_engine();
@@ -66,7 +72,8 @@ class Ground_Station
 		void ap_kill_quadcopter();
 		void ap_nav_quadcopter(uint8_t AC_ID);
 		void wait_all_quads(QuadState s);
-		
+
+		//update the state of corresponding quadcopter according to content of report
 		void update_on_quad_swarm_report(quad_swarm_report report);
 };
 

@@ -41,6 +41,11 @@ void Swarm::set_quad_ecef(uint8_t &AC_ID, struct EcefCoor_i &pos)
 	this->pos[AC_ID].y = pos.y;
 	this->pos[AC_ID].z = pos.z;
 }
+
+void Swarm::set_quad_pacc(uint8_t &AC_ID, int32_t pacc)
+{
+	this->pacc[AC_ID] = pacc;
+}
 bool Swarm::all_in_state(QuadState s)
 {
 	uint8_t count = 0;
