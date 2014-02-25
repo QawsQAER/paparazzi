@@ -12,5 +12,11 @@ int main(int argc, char **argv)
 //	uint8_t ac_id = 162;
 	GCS->init_quadcopters();
 	GCS->negotiate_ref();
+	while(1)
+	{
+		GCS->calculating_target();
+		GCS->sending_target();
+		GCS->wait_cmd_ack();	
+	}
 	return 0;
 }
