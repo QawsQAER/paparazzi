@@ -137,8 +137,8 @@ void ins_update_gps(void) {
 }
 
 */
-extern void ned_of_ecef_point_i(struct NedCoor_i * ned, struct LtpDef_i *def, struct EcefCoor_i * ecef);
-
+extern void ned_of_ecef_pos_i(struct NedCoor_i* ned, struct LtpDef_i* def, struct EcefCoor_i* ecef);
+extern void enu_of_ecef_pos_i(struct EnuCoor_i* enu, struct LtpDef_i* def, struct EcefCoor_i* ecef);
 
 //*****************************************************//
 //*This function is called by the above function      *//
@@ -160,7 +160,10 @@ extern void enu_of_ecef_point_i(struct EnuCoor_i *enu, struct LtpDef_i *def, str
 
 #define HIGH_RES_TRIG_FRAC 20
 
-
-
+#define VECT3_SDIV(_vo, _vi, _s){\
+	(_vo).x = (_vi).x / (_s);\
+	(_vo).y = (_vi).y / (_s);\
+	(_vo).z = (_vi).z / (_s);\
+}
 
 #endif

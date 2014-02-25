@@ -158,12 +158,30 @@ void quad_swarm_periodic( void )
 			if(nav_block == 2)
 			quad_swarm_ack = 3;// the quad has not yet started engine
 			else if(nav_block == 3) 
-			quad_swarm_ack = 4;// the quad has started engine but not yet takeoff
-			else if(nav_block == 4)
-			quad_swarm_ack = 5;// the quad has taken off
-
+			{
+				//the quad has started engine but not yet takeoff
+				quad_swarm_ack = 4;
+				//the quad proceed to the next state.
+				quad_swarm_state = SWARM_WAIT_CMD_START_ENGINE;
+			}
 			send_quad_swarm_ack();
 			break;
+		}
+		case(SWARM_WAIT_CMD_START_ENGINE):
+		{
+			if(nav_block == 3)
+			quad_swarm_ack = 4;
+			else if(nav_block == 4)
+			{
+				quad_swarm_ack = 5;
+				quad_swarm_state = SWARM_WAIT_CMD_TAKEOFF;
+			}
+			send_quad_swarm_ack();
+			break;
+		}
+		case(SWARM_WAIT_CMD_TAKEOFF):
+		{
+			send_quad_swarm_ack();
 		}
 		case(SWARM_SEND_ACK):
 		{

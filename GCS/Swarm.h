@@ -41,11 +41,15 @@ class Swarm
 		uint32_t get_address_HI(uint8_t &AC_ID);
 		uint32_t get_address_LO(uint8_t &AC_ID);
 		QuadState get_state(uint8_t &AC_ID);
+		struct EcefCoor_i get_quad_coor(uint8_t &AC_ID);
+		
+		int32_t get_pacc(uint8_t &AC_ID);
+		
 		void set_quad_state(uint8_t &AC_ID, QuadState s);
 		void set_quad_ecef(uint8_t &AC_ID,struct EcefCoor_i &pos);
 		void set_quad_pacc(uint8_t &AC_ID,int32_t paac);
-		
 		void set_pos_mean_error();
+		
 		bool all_in_state(QuadState s);
 };
 #endif

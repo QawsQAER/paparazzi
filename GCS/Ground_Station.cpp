@@ -196,7 +196,17 @@ void Ground_Station::negotiate_ref()
 			}
 		}
 		//message handling done
-		
+		//find the positioning info with the smallest error
+		uint8_t count_ac = 0;
+		uint8_t min = 1;
+		for(count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+		{
+			if(this->Swarm_state->get_pacc(min) > this->Swarm_state->get_pacc(count_ac))
+				min = count_ac;
+		}
+		//set the Ref as the one with smallest error
+		this->ref.ecef = this->Swarm_state->get_quad_coor(min);
+		this->update_ned_coor_by_ecef_coor();
 		if(this->Swarm_state->all_in_state(SWARM_WAIT_CMD))
 		{
 			printf("All quads are waiting for command to start engine, ");
@@ -465,11 +475,15 @@ void Ground_Station::update_on_quad_swarm_report(quad_swarm_report report)
 	this->Swarm_state->set_quad_pacc(report.ac_id,report.pacc);
 }
 
-
-
-
-
-
+void Ground_Station::update_ned_coor_by_ecef_coor()
+{
+	uint8_t count_ac = 1;
+	for(count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+	{
+		struct EcefCoor_i pos = this->Swarm_state->get_quad_coor(count_ac);
+		ned_of_ecef_pos_i(&ned_pos[count_ac],&ref,&(pos));
+	}
+}
 
 
 

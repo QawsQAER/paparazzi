@@ -34,9 +34,11 @@ class Ground_Station
 		Swarm *Swarm_state;
 		XBEE *Com;
 		GroundControlStation_state GCS_state;
-		EcefCoor_i ref_ecef;
+		struct LtpDef_i ref;
+
 		struct EcefCoor_i target[QUAD_NB + 1];
-		NedCoor_i ref_ned;
+
+		struct NedCoor_i ned_pos[QUAD_NB + 1];
 		void Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID);
 	public:
 		//Ground_Station();
@@ -79,6 +81,7 @@ class Ground_Station
 
 		//update the state of corresponding quadcopter according to content of report
 		void update_on_quad_swarm_report(quad_swarm_report report);
+		void update_ned_coor_by_ecef_coor();
 };
 
 #endif

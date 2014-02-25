@@ -35,11 +35,14 @@
 #define SWARM_INIT 0
 #define SWARM_NEGOTIATE_REF 1
 #define SWARM_WAIT_CMD 2
-#define SWARM_SEND_ACK 3
-#define SWARM_WAIT_EXEC_ACK 4
-#define SWARM_EXEC_CMD 5
-#define SWARM_REPORT_STATE 6
-#define SWARM_KILLED 7
+#define SWARM_WAIT_CMD_START_ENGINE 3
+#define SWARM_WAIT_CMD_TAKEOFF 4
+#define SWARM_SEND_ACK 5
+#define SWARM_WAIT_EXEC_ACK 6
+#define SWARM_EXEC_CMD 7
+#define SWARM_REPORT_STATE 8
+#define SWARM_KILLED 9
+
 extern struct EcefCoor_i quad_swarm_target;
 extern uint8_t quad_swarm_state;
 extern void quad_swarm_init( void );

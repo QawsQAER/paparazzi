@@ -30,6 +30,19 @@ uint32_t Swarm::get_address_LO(uint8_t &AC_ID)
 
 QuadState Swarm::get_state(uint8_t &AC_ID)
 {return state[AC_ID];}
+
+struct EcefCoor_i Swarm::get_quad_coor(uint8_t &AC_ID)
+{
+	EcefCoor_i result;
+	result.x = this->pos[AC_ID].x;
+	result.y = this->pos[AC_ID].y;
+	result.z = this->pos[AC_ID].z;
+	return result;
+}
+
+int32_t Swarm::get_pacc(uint8_t &AC_ID)
+{return this->pacc[AC_ID];}
+
 void Swarm::set_quad_state(uint8_t &AC_ID, QuadState s)
 {
 	state[AC_ID] = s;
