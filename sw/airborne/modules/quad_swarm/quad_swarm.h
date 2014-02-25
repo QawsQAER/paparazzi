@@ -51,7 +51,7 @@ extern uint8_t quad_swarm_id;
 
 #define quad_swarm_datalink(){\
 	uint8_t ac_id = DL_quad_swarm_msg_ac_id(dl_buffer);\
-	if(quad_swarm_id == ac_id && quad_swarm_state = SWARM_WAIT_CMD)\
+	if(quad_swarm_id == ac_id && quad_swarm_state == SWARM_WAIT_CMD)\
 	{\
 		uint8_t dummy = DL_quad_swarm_msg_dummy(dl_buffer);\
 		if(ac_id == AC_ID)\
