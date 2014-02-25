@@ -114,7 +114,7 @@ void Ground_Station::init_quadcopters()
 								printf("MSG: quad_swarm_report\n");
 								printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
 								printf("quad %d: x %d y %d z%d\n\n",report.ac_id,report.x,report.y,report.z);
-								if(report.state == SWARM_NEGOTIATE_REF)
+								if(report.state == 2)
 								{
 									printf("setting state of %d\n",report.ac_id);
 									this->Swarm_state->set_quad_state(report.ac_id,s);
@@ -162,8 +162,11 @@ void Ground_Station::negotiate_ref()
 				printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
 				printf("quad %d: x %d y %d z %d\n\n",report.ac_id,report.x,report.y,report.z);
 				printf("quad %d: pacc %d\n",report.ac_id,report.pacc);
-				if(report.pacc > 5)
+				if(report.pacc/100 > 5)
 				continue;
+				else
+				{
+				printf("haha\n");
 				struct EcefCoor_i coor;
 				coor.x = report.x;
 				coor.y = report.y;
@@ -172,6 +175,7 @@ void Ground_Station::negotiate_ref()
 				this->Swarm_state->set_quad_state(report.ac_id,s);
 				uint8_t ack = 2;
 				this->send_ack(report.ac_id,ack);
+				}
 			}	
 		}
 		if(this->Swarm_state->all_in_state(s))
@@ -180,7 +184,7 @@ void Ground_Station::negotiate_ref()
 			printf("start engine?\n");
 			char cmd[16];
 			scanf("%s",cmd);
-			if(strcmp(cmd,"y"))
+			if(strcmp(cmd,"y") == 0)
 			{
 				this->takeoff_quadcopters();
 				break;
