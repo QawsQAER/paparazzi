@@ -45,6 +45,17 @@
 #include "generated/airframe.h"
 //for flight plan, nav_block, nav_stage etc
 #include "subsystems/navigation/common_flight_plan.h"
+//for block time, stage time
+#include "firmwares/rotorcraft/navigation.h"
+
+#define send_nav_info()  DOWNLINK_SEND_ROTORCRAFT_NAV_STATUS(\
+		DefaultChannel,\
+		DefaultDevice,\
+                   &block_time,				\
+                   &stage_time,				\
+                   &nav_block,				\
+                   &nav_stage,				\
+                   &horizontal_mode)			
 uint8_t quad_swarm_state;
 
 
@@ -74,8 +85,8 @@ void quad_swarm_init( void )
         &state.ecef_pos_i.y,\
         &state.ecef_pos_i.z,\
         &quad_swarm_state,\
-		&autopilot_mode,\
-		&gps.pacc)\
+	&autopilot_mode,\
+	&gps.pacc)\
 }
 #define send_quad_swarm_ack() DOWNLINK_SEND_quad_swarm_ack(\
 	DefaultChannel,\
@@ -131,6 +142,7 @@ void quad_swarm_periodic( void )
 			//sending its gps position to the GCS
 			//wait for GCS to ack this quad that GCS 
 			//has choose a gps position as the reference
+			//send_nav_info();
 			send_quad_swarm_ack();
 			//send_quad_swarm_report();
 			break;
@@ -142,17 +154,20 @@ void quad_swarm_periodic( void )
 			//if receive quad_swarm_msg 
 			//record the target position
 			//and proceed to next state
+			//send_nav_info();
 			if(nav_block == 2)
 			quad_swarm_ack = 3;// the quad has not yet started engine
 			else if(nav_block == 3) 
 			quad_swarm_ack = 4;// the quad has started engine but not yet takeoff
 			else if(nav_block == 4)
 			quad_swarm_ack = 5;// the quad has taken off
+
 			send_quad_swarm_ack();
 			break;
 		}
 		case(SWARM_SEND_ACK):
 		{
+			//send_nav_info();
 			//3
 			//send ack to GCS 
 			//to acknowledge the target position

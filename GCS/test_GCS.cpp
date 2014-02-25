@@ -13,7 +13,6 @@ void kill_all_quads(int32_t signum)
 
 int main(int argc, char **argv)
 {
-	signal(SIGINT,kill_all_quads);
 	char default_portname[32] = "/dev/ttyUSB0"; 
 	if(argc == 2)
 		GCS = new Ground_Station(argv[1]);	
@@ -23,6 +22,7 @@ int main(int argc, char **argv)
 
 	GCS->init_quadcopters();
 	GCS->negotiate_ref();
+	signal(SIGINT,kill_all_quads);
 	while(1)
 	{
 		GCS->calculating_target();

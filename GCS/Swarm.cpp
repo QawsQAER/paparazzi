@@ -53,7 +53,7 @@ bool Swarm::all_in_state(QuadState s)
 	{
 		if(this->state[count] != s)
 		{
-			printf("quad %d  not in state\n",count);
+			printf("quad %d  not in state %d but in %d\n",count,s,this->state[count]);
 			return false;
 		}
 	}
