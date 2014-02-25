@@ -39,7 +39,7 @@
 #define SWARM_WAIT_EXEC_ACK 4
 #define SWARM_EXEC_CMD 5
 #define SWARM_REPORT_STATE 6
-
+#define SWARM_KILLED 7
 extern struct EcefCoor_i quad_swarm_target;
 extern uint8_t quad_swarm_state;
 extern void quad_swarm_init( void );
@@ -69,6 +69,7 @@ extern uint8_t quad_swarm_id;
 	if(ack == 0xff)\
 	{\
 		autopilot_set_mode(AP_MODE_KILL);\
+		quad_swarm_state = SWARM_KILLED;\
 	}\
 	else if(ack == 0xfe)\
 	{\
@@ -76,7 +77,7 @@ extern uint8_t quad_swarm_id;
 	}\
 	else if(ack == 2)\
 	{\
-		quad_swarm_state = 2;\
+		quad_swarm_state = SWARM_WAIT_CMD;\
 	}\
 }
 extern void quad_swarm_start( void );

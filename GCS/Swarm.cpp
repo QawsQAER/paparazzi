@@ -28,7 +28,9 @@ uint32_t Swarm::get_address_HI(uint8_t &AC_ID)
 uint32_t Swarm::get_address_LO(uint8_t &AC_ID)
 {return XBEE_ADDR_LO[AC_ID];}
 
-void Swarm::set_quad_state(uint8_t &AC_ID, QuadState &s)
+QuadState Swarm::get_state(uint8_t &AC_ID)
+{return state[AC_ID];}
+void Swarm::set_quad_state(uint8_t &AC_ID, QuadState s)
 {
 	state[AC_ID] = s;
 }
@@ -39,7 +41,7 @@ void Swarm::set_quad_ecef(uint8_t &AC_ID, struct EcefCoor_i &pos)
 	this->pos[AC_ID].y = pos.y;
 	this->pos[AC_ID].z = pos.z;
 }
-bool Swarm::all_in_state(QuadState &s)
+bool Swarm::all_in_state(QuadState s)
 {
 	uint8_t count = 0;
 	for(count = 1; count < QUAD_NB + 1;count++)

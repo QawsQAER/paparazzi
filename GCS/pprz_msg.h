@@ -85,6 +85,7 @@ class pprz_msg
 		void pprz_set_DL_SETTING(uint8_t &ac_id, uint8_t &index, float &value);	
 		void pprz_set_msg(uint8_t &ac_id,struct quad_swarm_msg &msg);		
 		void pprz_set_ack(uint8_t &ac_id, uint8_t &ack);	
+
 		/************************************************/
 		/*   member functions to read pprz message      */
 		/************************************************/
@@ -96,6 +97,7 @@ class pprz_msg
 		void pprz_get_ALIVE();
 		
 		void pprz_get_ROTORCRAFT_NAV_STATUS(struct ROTORCRAFT_NAV_STATUS &rotorcraft_nav_status);
+
                 void pprz_get_quad_swarm_ack(uint8_t &ac_id, uint8_t &quad_swarm_id, uint8_t &quad_swarm_ack);
                 void pprz_get_quad_swarm_report(struct quad_swarm_report &report);
 

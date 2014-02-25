@@ -63,7 +63,11 @@ class Ground_Station
 		
 		void send_ack(uint8_t AC_ID, uint8_t ack);	
 		void ap_kill_quadcopter(uint8_t AC_ID);
+		void ap_kill_quadcopter();
 		void ap_nav_quadcopter(uint8_t AC_ID);
+		void wait_all_quads(QuadState s);
+		
+		void update_on_quad_swarm_report(quad_swarm_report report);
 };
 
 #endif
