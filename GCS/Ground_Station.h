@@ -44,18 +44,22 @@ class Ground_Station
 		Ground_Station(char * port_name);
 		~Ground_Station();
 		
+/********************************************************************************************/
+/*                                    MAIN STATE FUNCTIONS HERE                             */
+/********************************************************************************************/
 		
 		//after this function is called, 
 		//all quadcopters should be in SWARM_NEGOTIATE_REF
-		//the navigation subsystem of quadcopter would be in block 2
+		//the navigation subsystem of quadcopter would be in block 2		
 		void init_quadcopters();
-	
 		void negotiate_ref();
-
 		void calculating_target();
-		
-		void wait_cmd_ack();
 		void sending_target();
+		void wait_cmd_ack();
+
+/**********************************************************************************************/
+/**********************************************************************************************/
+/**********************************************************************************************/
 		//This function will ask quadcopters to takeoff
 		void nav_start_engine(uint8_t AC_ID);
 		void nav_start_engine();
