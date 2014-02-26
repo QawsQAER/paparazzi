@@ -180,7 +180,7 @@ void autopilot_set_mode(uint8_t new_autopilot_mode) {
   /* force kill mode as long as AHRS is not aligned */
   if (!ahrs_is_aligned())
 //Edward Edit this
-//new_autopilot_mode = AP_MODE_KILL;
+    //new_autopilot_mode = AP_MODE_KILL;
     new_autopilot_mode = AP_MODE_NAV;
 
   if (new_autopilot_mode != autopilot_mode) {

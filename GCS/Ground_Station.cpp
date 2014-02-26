@@ -116,7 +116,7 @@ void Ground_Station::init_quadcopters()
 								printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
 								printf("quad %d: x %d y %d z%d\n\n",report.ac_id,report.x,report.y,report.z);
 								this->update_on_quad_swarm_report(report);
-								printf("setting state of %d\n",report.ac_id);
+								printf("setting state of %d to be %d\n",report.ac_id,report.state);
 								this->Swarm_state->set_quad_state(report.ac_id,report.state);
 
 							}
@@ -209,6 +209,7 @@ void Ground_Station::negotiate_ref()
 	}
 	//set the Ref as the one with smallest error
 	this->ref.ecef = this->Swarm_state->get_quad_coor(min);
+	printf("the ref ecef is %d %d %d \n",ref.ecef.x,ref.ecef.y,ref.ecef.z);
 	this->update_ned_coor_by_ecef_coor();
 	
 	//wait for all quadcopters to be in SWARM_WAIT_CMD_START_ENGINE state
@@ -282,7 +283,10 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				data.pprz_get_quad_swarm_report(report);
 				this->update_on_quad_swarm_report(report);
 				this->Swarm_state->set_quad_state(report.ac_id,report.state);
+				this->update_ned_coor_by_ecef_coor();				
 				printf("quad %d in state %d\n",report.ac_id,report.state);
+				printf("ecef.x %d, ecef.y %d, ecef.z %d\n",report.x,report.y,report.z);
+				printf("ned.x %d ned.y %d ned.z%d\n",ned_pos[report.ac_id].x,ned_pos[report.ac_id].y,ned_pos[report.ac_id].z);
 			}
 		}
 		switch(s)
@@ -324,6 +328,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 			break;
 			case(SWARM_SEND_ACK):
 			{
+				
 				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
 				{
 					if(this->Swarm_state->get_state(count) != SWARM_WAIT_CMD_TAKEOFF)
@@ -440,6 +445,12 @@ void Ground_Station::update_ned_coor_by_ecef_coor()
 		struct EcefCoor_i pos = this->Swarm_state->get_quad_coor(count_ac);
 		ned_of_ecef_pos_i(&ned_pos[count_ac],&ref,&(pos));
 	}
+}
+
+void Ground_Station::update_ned_coor_by_ecef_coor(uint8_t AC_ID)
+{
+	struct EcefCoor_i pos = this->Swarm_state->get_quad_coor(AC_ID);
+	ned_of_ecef_pos_i(&ned_pos[AC_ID],&ref,&(pos));
 }
 
 

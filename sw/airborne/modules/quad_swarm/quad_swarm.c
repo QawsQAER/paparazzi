@@ -67,7 +67,7 @@ uint8_t quad_swarm_ack;
 uint8_t quad_swarm_initilized = 0;
 void quad_swarm_init( void ) 
 {
-	quad_swarm_state = SWARM_INIT;
+	quad_swarm_state = SWARM_KILLED;
 	memset(&quad_swarm_target,0,sizeof(struct EcefCoor_i));	
 	quad_swarm_id = AC_ID;
 	quad_swarm_ack = 0;
@@ -216,6 +216,11 @@ void quad_swarm_periodic( void )
 			//wait for ack
 			//if ack received
 			//go back to SWARM_WAIT_CMD
+			break;
+		}
+		case(SWARM_KILLED):
+		{
+			quad_swarm_initilized = 0;
 			break;
 		}
 		default:

@@ -82,6 +82,7 @@ class Ground_Station
 		//update the state of corresponding quadcopter according to content of report
 		void update_on_quad_swarm_report(quad_swarm_report report);
 		void update_ned_coor_by_ecef_coor();
+		void update_ned_coor_by_ecef_coor(uint8_t AC_ID);
 };
 
 #endif
