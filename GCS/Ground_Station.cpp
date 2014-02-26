@@ -35,7 +35,7 @@ void Ground_Station::init_quadcopters()
 {
 	printf("Initiliziing quadcopters\n");
 	bool all_init = 0;
-	QuadState s = SWARM_NEGOTIATE_REF;
+	uint8_t s = SWARM_NEGOTIATE_REF;
 	while(all_init == 0) 
 	{
 		Com->XBEE_read_into_recv_buff();
@@ -99,7 +99,7 @@ void Ground_Station::init_quadcopters()
 									printf("quad %d: not yet in AP_MODE_NAV\n",quad_swarm_id);
 								}
 								else if(quad_swarm_ack == 1)
-							{
+								{
 									printf("quad %d: not yet in geo_init block\n",quad_swarm_id);
 								}else if(quad_swarm_ack == 2)
 								{
@@ -116,11 +116,9 @@ void Ground_Station::init_quadcopters()
 								printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
 								printf("quad %d: x %d y %d z%d\n\n",report.ac_id,report.x,report.y,report.z);
 								this->update_on_quad_swarm_report(report);
-								if(report.state == 2)
-								{
-									printf("setting state of %d\n",report.ac_id);
-									this->Swarm_state->set_quad_state(report.ac_id,s);
-								}
+								printf("setting state of %d\n",report.ac_id);
+								this->Swarm_state->set_quad_state(report.ac_id,report.state);
+
 							}
 							break;
 						default:
@@ -168,8 +166,8 @@ void Ground_Station::negotiate_ref()
 				continue;
 				else
 				{
+					//the quadcopter should proceed to SWARM_WAIT_CMD
 					uint8_t ack = 2;
-					//this->Swarm_state->set_quad_state(report.ac_id,SWARM_WAIT_CMD);
 					this->update_on_quad_swarm_report(report);
 					this->send_ack(report.ac_id,ack);
 					should_proceed[report.ac_id] = 1;
@@ -186,27 +184,21 @@ void Ground_Station::negotiate_ref()
 				if(quad_swarm_ack == 3)
 				{
 					printf("quad %d proceeding to state %d\n",quad_swarm_id,SWARM_WAIT_CMD);
+					//update the local record about the quadcopter
 					this->Swarm_state->set_quad_state(quad_swarm_id,SWARM_WAIT_CMD);
 				}
 				else if(quad_swarm_ack == 2 && should_proceed[quad_swarm_id])
 				{
+					//if the quadcopter should be in SWARM_WAIT_CMD but still replies with ack = 2
+					//send ack = 2 again to the quadcopter.					
 					uint8_t ack = 2;
 					this->send_ack(quad_swarm_id,ack);
 				}
 			}
 		}
 		//message handling done
-		//find the positioning info with the smallest error
-		uint8_t count_ac = 0;
-		uint8_t min = 1;
-		for(count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
-		{
-			if(this->Swarm_state->get_pacc(min) > this->Swarm_state->get_pacc(count_ac))
-				min = count_ac;
-		}
-		//set the Ref as the one with smallest error
-		this->ref.ecef = this->Swarm_state->get_quad_coor(min);
-		this->update_ned_coor_by_ecef_coor();
+		
+		//if all quadcopter are in SWARM_WAIT_CMD state
 		if(this->Swarm_state->all_in_state(SWARM_WAIT_CMD))
 		{
 			printf("All quads are waiting for command to start engine, ");
@@ -215,12 +207,28 @@ void Ground_Station::negotiate_ref()
 			scanf("%s",cmd);
 			if(strcmp(cmd,"y") == 0)
 			{
+				//send navigation change block message to all quadcopters
 				this->nav_start_engine();
+				//stop the while(1) loop.
 				break;
 			}else
 			printf("Your command is %s\n",cmd);
 		}
 	}
+	
+	//find the positioning info with the smallest error
+	uint8_t count_ac = 0;
+	uint8_t min = 1;
+	for(count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+	{
+		if(this->Swarm_state->get_pacc(min) > this->Swarm_state->get_pacc(count_ac))
+			min = count_ac;
+	}
+	//set the Ref as the one with smallest error
+	this->ref.ecef = this->Swarm_state->get_quad_coor(min);
+	this->update_ned_coor_by_ecef_coor();
+	
+	//wait for all quadcopters to be in SWARM_WAIT_CMD_START_ENGINE state
 	wait_all_quads(SWARM_WAIT_CMD_START_ENGINE);
 	char cmd[16];
 	memset(cmd,0,sizeof(char) * 16);
@@ -230,9 +238,13 @@ void Ground_Station::negotiate_ref()
 		scanf("%s",cmd);
 	}
 	printf("taking off\n");
+	//send navigation change block message to all quadcopters
 	this->nav_takeoff();
 	printf("take off command sent\n");
+	//wait for all quadcopters to be in SWARM_WAIT_CMD_TAKEOFF state 
 	wait_all_quads(SWARM_WAIT_CMD_TAKEOFF);
+	//then return of this function
+	return ;
 }
 
 void Ground_Station::calculating_target()
@@ -254,7 +266,7 @@ void Ground_Station::wait_cmd_ack()
 	return ;
 }
 
-void Ground_Station::wait_all_quads(QuadState s)
+void Ground_Station::wait_all_quads(uint8_t s)
 {
 	while(!this->Swarm_state->all_in_state(s))
 	{

@@ -124,14 +124,14 @@ void quad_swarm_periodic( void )
 			{
 					quad_swarm_ack = 1;
 					//send_quad_swarm_report();
-					send_quad_swarm_ack();
+					//send_quad_swarm_ack();
 			}
 			if(nav_block == 2 && autopilot_mode == AP_MODE_NAV)
 			{
 				quad_swarm_state = SWARM_NEGOTIATE_REF;
 				quad_swarm_ack = 2;
 				//send_quad_swarm_report();
-				send_quad_swarm_ack();
+				//send_quad_swarm_ack();
 			}		
 			break;
 		}

@@ -77,7 +77,7 @@ class Ground_Station
 		void ap_kill_quadcopter(uint8_t AC_ID);
 		void ap_kill_quadcopter();
 		void ap_nav_quadcopter(uint8_t AC_ID);
-		void wait_all_quads(QuadState s);
+		void wait_all_quads(uint8_t s);
 
 		//update the state of corresponding quadcopter according to content of report
 		void update_on_quad_swarm_report(quad_swarm_report report);
