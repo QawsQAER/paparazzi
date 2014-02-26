@@ -3,39 +3,38 @@
 
 Ground_Station::Ground_Station(char *port_name)
 {
-	printf("Creating Ground Control Station\n");
-	this->Swarm_state = new Swarm();
-	int fd = open(port_name, O_RDWR | O_NOCTTY | O_SYNC);
-	if(fd < 0)
-	{
-		printf("Error: Cannot open the port\n");
-		fprintf(stderr,"%s\n",strerror(errno));
-		exit(0);
-		//the program should stop immediately
-	}
-	else
-	{
-		printf("setting baud rate attribute\n");
-		set_interface_attribs(fd,B57600,0);
-		set_blocking(fd,0);
-		this->Com = new XBEE(fd,0x00000000,0x0000ffff,0);
-		printf("setting done\n");
-	}
-	this->GCS_state = GCS_INIT;	
-	printf("Ground Control Station Created\n\n");
+  printf("Creating Ground Control Station\n");
+  this->Swarm_state = new Swarm();
+  int fd = open(port_name, O_RDWR | O_NOCTTY | O_SYNC);
+  if(fd < 0)
+  {
+    printf("Error: Cannot open the port\n");
+    fprintf(stderr,"%s\n",strerror(errno));
+    exit(0);
+    //the program should stop immediately
+  }
+  else
+  {
+    printf("setting baud rate attribute\n");
+    set_interface_attribs(fd,B57600,0);
+    set_blocking(fd,0);
+    this->Com = new XBEE(fd,0x00000000,0x0000ffff,0);
+    printf("setting done\n");
+  }
+  this->GCS_state = GCS_INIT;	
+  printf("Ground Control Station Created\n\n");
 }
 
 Ground_Station::~Ground_Station()
 {
-	delete this->Swarm_state;
-	delete this->Com;
+  delete this->Swarm_state;
+  delete this->Com;
 }
 
 void Ground_Station::init_quadcopters()
 {
 	printf("Initiliziing quadcopters\n");
 	bool all_init = 0;
-	uint8_t s = SWARM_NEGOTIATE_REF;
 	while(all_init == 0) 
 	{
 		Com->XBEE_read_into_recv_buff();
@@ -47,94 +46,96 @@ void Ground_Station::init_quadcopters()
 			Com->msg.pop();
 			pprz_msg data = ptr->get_pprz_msg();
 			uint8_t sender_id = *data.pprz_get_data_ptr();
-			//if recevived any message not 	quad_swarm_ack, quad_swarm_msg or DL_VALUE
+			//if recevived any message not quad_swarm_ack, quad_swarm_msg or DL_VALUE
 			//set the sender quadcopter telemetry mode to no message
 			uint8_t msg_id = data.pprz_get_msg_id();
 			if(msg_id != RECV_MSG_ID_quad_swarm_ack && msg_id != RECV_MSG_ID_DL_VALUE && msg_id != 0 && msg_id != RECV_MSG_ID_quad_swarm_report)
 			{
-					data.show_hex();
-					printf("MSG_ID is %d\n",data.pprz_get_msg_id());
-					printf("setting telemetry mode of quad %d\n",sender_id);
-					pprz_msg dl_setting;
-					uint8_t index = DL_SETTING_TELEMETRY;
-					float value = 1;
-					dl_setting.pprz_set_DL_SETTING(sender_id,index,value);
-					XBEE_msg set_dl;
-					uint32_t addr_hi = this->Swarm_state->get_address_HI(sender_id);
-					uint32_t addr_lo = this->Swarm_state->get_address_LO(sender_id);
-					uint16_t net_addr_hi = 0xff;
-					uint16_t net_addr_lo = 0xfe;
-					set_dl.set_tran_packet(addr_hi,\
-								addr_lo,\
-								net_addr_hi,\
-								net_addr_lo,\
-								dl_setting.pprz_get_data_ptr(),\
-								dl_setting.pprz_get_length());
-					Com->XBEE_send_msg(set_dl);
+				//data.show_hex();
+				printf("MSG_ID is %d\n",data.pprz_get_msg_id());
+				printf("setting telemetry mode of quad %d\n",sender_id);
+				pprz_msg dl_setting;
+				uint8_t index = DL_SETTING_TELEMETRY;
+				float value = 1;
+				dl_setting.pprz_set_DL_SETTING(sender_id,index,value);
+				XBEE_msg set_dl;
+				uint32_t addr_hi = this->Swarm_state->get_address_HI(sender_id);
+				uint32_t addr_lo = this->Swarm_state->get_address_LO(sender_id);
+				uint8_t net_addr_hi = XBEE_NET_ADDR_HI;
+				uint8_t net_addr_lo = XBEE_NET_ADDR_LO;
+				set_dl.set_tran_packet(addr_hi,\
+										addr_lo,\
+										net_addr_hi,\
+										net_addr_lo,\
+										dl_setting.pprz_get_data_ptr(),\
+										dl_setting.pprz_get_length());
+				Com->XBEE_send_msg(set_dl);
 			}
 			else
 			{
-					switch(data.pprz_get_msg_id())
+			switch(data.pprz_get_msg_id())
+			{
+				case(RECV_MSG_ID_DL_VALUE):
+				{
+					uint8_t cur_ac_id = 0,index = 0;
+					float value = 0;
+					data.pprz_get_DL_VALUE(cur_ac_id,index,value);
+					printf("MSG: DL_VALUE\n");
+					printf("sender_id %d, index %d, value %f\n",cur_ac_id,index,value);
+					if(int(value) == 1)
 					{
-						case(RECV_MSG_ID_DL_VALUE):
-							{
-								uint8_t cur_ac_id = 0,index = 0;
-								float value = 0;
-								data.pprz_get_DL_VALUE(cur_ac_id,index,value);
-								printf("MSG: DL_VALUE\n");
-								printf("sender_id %d, index %d, value %f\n",cur_ac_id,index,value);
-								if(int(value) == 1)
-								{
-									printf("quad %d has received the setting command\n",cur_ac_id);
-								}
-							}
-							break;
-						case(RECV_MSG_ID_quad_swarm_ack):
-							{
-								uint8_t ac_id, quad_swarm_id, quad_swarm_ack;
-								data.pprz_get_quad_swarm_ack(ac_id,quad_swarm_id,quad_swarm_ack);
-								if(quad_swarm_ack == 0)
-								{
-									data.show_hex();
-									printf("quad %d: not yet in AP_MODE_NAV\n",quad_swarm_id);
-								}
-								else if(quad_swarm_ack == 1)
-								{
-									printf("quad %d: not yet in geo_init block\n",quad_swarm_id);
-								}else if(quad_swarm_ack == 2)
-								{
-									this->Swarm_state->set_quad_state(quad_swarm_id,s);
-									printf("quad %d: ready\n",quad_swarm_id);
-								}
-							}
-							break;
-						case(RECV_MSG_ID_quad_swarm_report):	
-							{
-								struct quad_swarm_report report;
-								data.pprz_get_quad_swarm_report(report);
-								printf("MSG: quad_swarm_report\n");
-								printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
-								printf("quad %d: x %d y %d z%d\n\n",report.ac_id,report.x,report.y,report.z);
-								this->update_on_quad_swarm_report(report);
-								printf("setting state of %d to be %d\n",report.ac_id,report.state);
-								this->Swarm_state->set_quad_state(report.ac_id,report.state);
-								if(report.state == SWARM_KILLED)
-								{
-									uint8_t ack = 0xfe;
-									this->send_quad_ack(report.ac_id,ack);
-								}
-							}
-							break;
-						default:
-							{
-								//printf("MSG_ID %d does not match any\n\n",data.pprz_get_msg_id());
-							}
-							break;
+						printf("quad %d has received the setting command\n",cur_ac_id);
+					}
 				}
-				delete ptr;
+				break;
+				case(RECV_MSG_ID_quad_swarm_ack):
+				{
+					uint8_t ac_id, quad_swarm_id, quad_swarm_ack;
+					data.pprz_get_quad_swarm_ack(ac_id,quad_swarm_id,quad_swarm_ack);
+					if(quad_swarm_ack == 0)
+					{
+						//data.show_hex();
+						printf("quad%d: not yet in AP_MODE_NAV\n",quad_swarm_id);
+					}
+					else if(quad_swarm_ack == 1)
+					{printf("quad %d: not yet in geo_init block\n",quad_swarm_id);}
+					else if(quad_swarm_ack == 2)
+					{
+						this->Swarm_state->set_quad_state(quad_swarm_id,SWARM_NEGOTIATE_REF);
+						printf("quad %d: ready\n",quad_swarm_id);
+					}
+				}
+				break;
+				case(RECV_MSG_ID_quad_swarm_report):
+				{
+					struct quad_swarm_report report;
+					data.pprz_get_quad_swarm_report(report);
+					printf("MSG: quad_swarm_report\n");
+					printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
+					printf("quad %d: x %d y %d z%d\n\n",report.ac_id,report.x,report.y,report.z);
+					this->update_on_quad_swarm_report(report);
+					//printf("setting state of %d to be %d\n\n",report.ac_id,report.state);
+					this->Swarm_state->set_quad_state(report.ac_id,report.state);
+					if(report.state == SWARM_KILLED)
+					{
+						printf("Reinit quad %d ?[y/n] \n",report.ac_id);
+						char cmd[16];
+						scanf("%s",cmd);
+						if(strcmp(cmd,"y") == 0)
+						{
+							uint8_t ack = 0xfe;
+							this->send_ack(report.ac_id,ack);
+						}
+					}
+				}
+				break;
+				default:
+				break;
 			}
-			//Check State of Swarm
-			all_init = this->Swarm_state->all_in_state(s);
+		delete ptr;
+		}
+		//Check State of Swarm
+		all_init = this->Swarm_state->all_in_state(SWARM_NEGOTIATE_REF);
 		}
 	}	
 	printf("quadcopters initlization done\n");
@@ -163,8 +164,8 @@ void Ground_Station::negotiate_ref()
 				data.pprz_get_quad_swarm_report(report);
 				printf("MSG: quad_swarm_report\n");
 				printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
-				printf("quad %d: x %d y %d z %d\n\n",report.ac_id,report.x,report.y,report.z);
-				printf("quad %d: pacc %d\n",report.ac_id,report.pacc);
+				printf("quad %d: x %d y %d z %d\n",report.ac_id,report.x,report.y,report.z);
+				printf("quad %d: pacc %d\n\n",report.ac_id,report.pacc);
 				if(report.pacc/100 > 10)
 				continue;
 				else
@@ -212,7 +213,8 @@ void Ground_Station::negotiate_ref()
 			min = count_ac;
 	}
 	//set the Ref as the one with smallest error
-	this->ref.ecef = this->Swarm_state->get_quad_coor(min);
+	struct EcefCoor_i min_pos = this->Swarm_state->get_quad_coor(min);
+	ltp_def_from_ecef_i(&(this->ref),&min_pos);
 	printf("the ref ecef is %d %d %d \n",ref.ecef.x,ref.ecef.y,ref.ecef.z);
 	this->update_ned_coor_by_ecef_coor();
 	
@@ -225,12 +227,13 @@ void Ground_Station::negotiate_ref()
 		printf("now all quads have started engine, takeoff? [y/n] :");
 		scanf("%s",cmd);
 	}
-	printf("taking off\n");
+
 	//send navigation change block message to all quadcopters
 	this->nav_takeoff();
-	printf("take off command sent\n");
+	printf("taking off\n");
 	//wait for all quadcopters to be in SWARM_WAIT_CMD_TAKEOFF state 
 	wait_all_quads(SWARM_WAIT_CMD_TAKEOFF);
+	printf("all quadcopters has taken off\n");
 	//then return of this function
 	return ;
 }
@@ -238,6 +241,11 @@ void Ground_Station::negotiate_ref()
 void Ground_Station::calculating_target()
 {
 	//should be calculating intermediate targets here
+	struct NedCoor_i ned_tar1, ned_pos2;
+	ned_tar1.x = 50 + POS_FLOAT_OF_BFP(this->ned_pos[1].x) * 100;//add 50cm to x (North)
+	ned_tar1.y = POS_FLOAT_OF_BFP(this->ned_pos[1].y) * 100;//keep the original y
+	ned_tar1.z = POS_FLOAT_OF_BFP(this->ned_pos[1].z) * 100;//keep the original z
+	ecef_of_ned_point_i(&(this->target[1]),&(this->ref),&ned_tar1);
 	return ;
 }
 
@@ -270,6 +278,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 			uint8_t msg_id = data.pprz_get_msg_id();
 			if(msg_id == 159)
 			{
+				//if received navigation info, just used for debugging
 				printf("-----------------\n");
 				data.show_hex();
 				data.pprz_read_byte();
@@ -287,16 +296,18 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				data.pprz_get_quad_swarm_report(report);
 				this->update_on_quad_swarm_report(report);
 				this->Swarm_state->set_quad_state(report.ac_id,report.state);
-				this->update_ned_coor_by_ecef_coor();				
+				this->update_ned_coor_by_ecef_coor(report.ac_id);				
 				printf("quad %d in state %d\n",report.ac_id,report.state);
 				printf("ecef.x %d, ecef.y %d, ecef.z %d\n",report.x,report.y,report.z);
-				printf("ned.x %d ned.y %d ned.z%d\n",ned_pos[report.ac_id].x,ned_pos[report.ac_id].y,ned_pos[report.ac_id].z);
+				struct NedCoor_i pos = ned_pos[report.ac_id];
+				printf("ned.x %f ned.y %f ned.z %f\n",POS_FLOAT_OF_BFP(pos.x),POS_FLOAT_OF_BFP(pos.y),POS_FLOAT_OF_BFP(pos.z));
 			}
 		}
 		switch(s)
 		{
 			case(SWARM_KILLED):
 			{
+				//all quadcopters should be killed
 				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
 				{
 					if(this->Swarm_state->get_state(count) != SWARM_KILLED)
@@ -308,6 +319,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 			break;
 			case(SWARM_WAIT_CMD_START_ENGINE):
 			{
+				//all quadcopters should be in state SWARM_WAIT_CMD_START_ENGINE 3, from SWARM_WAIT_CMD 2
 				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
 				{
 					if(this->Swarm_state->get_state(count) != SWARM_WAIT_CMD_START_ENGINE)
@@ -318,9 +330,9 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				}
 			}
 			break;
-			//waiting all quads to enter SWARM_WAIT_CMD_TAKEOFF state
 			case(SWARM_WAIT_CMD_TAKEOFF):
 			{
+				//all quadcopters should be in state SWARM_WAIT_CMD_TAKEOFF 4, from SWARM_WAIT_START_ENGINE 3
 				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
 				{
 					if(this->Swarm_state->get_state(count) != SWARM_WAIT_CMD_TAKEOFF)
@@ -332,7 +344,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 			break;
 			case(SWARM_SEND_ACK):
 			{
-				
+				//all quadcopters should be in state SWARM_SEND_ACK 5, from SWARM_WAIT_TAKEOFF 4
 				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
 				{
 					if(this->Swarm_state->get_state(count) != SWARM_WAIT_CMD_TAKEOFF)

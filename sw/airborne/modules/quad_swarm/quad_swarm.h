@@ -77,7 +77,7 @@ extern uint8_t quad_swarm_id;
 	}\
 	else if(ack == 0xfe)\
 	{\
-		autopilot_set_mode(AP_MODE_NAV);\
+		quad_swarm_state = SWARM_INIT;\
 	}\
 	else if(ack == 2)\
 	{\

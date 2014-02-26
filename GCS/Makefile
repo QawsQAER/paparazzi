@@ -45,6 +45,8 @@ test_GCS: test_GCS.o $(OBJECT)
 test_recv: test_recv.o $(OBJECT)
 	$(CC) -o test_recv test_recv.o $(OBJECT) $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
 	rm -f *.o
+test_geo: test_geo.cpp geo.o
+	$(CC) -o test_geo test_geo.cpp geo.o
 ##############################################################################
 ##############################################################################
 ##############################################################################

@@ -106,8 +106,7 @@ void quad_swarm_periodic( void )
 	if(autopilot_mode != AP_MODE_NAV)
 	{
 		//quad_swarm_ack = 0 means this quadcopter is not ready in NAV mode
-		quad_swarm_ack = 0;
-		
+		quad_swarm_init();
 		send_quad_swarm_ack();
 		return ;
 	}
@@ -123,15 +122,11 @@ void quad_swarm_periodic( void )
 			if(nav_block != 2)
 			{
 					quad_swarm_ack = 1;
-					//send_quad_swarm_report();
-					//send_quad_swarm_ack();
 			}
 			if(nav_block == 2 && autopilot_mode == AP_MODE_NAV)
 			{
 				quad_swarm_state = SWARM_NEGOTIATE_REF;
 				quad_swarm_ack = 2;
-				//send_quad_swarm_report();
-				//send_quad_swarm_ack();
 			}		
 			break;
 		}
@@ -142,9 +137,6 @@ void quad_swarm_periodic( void )
 			//sending its gps position to the GCS
 			//wait for GCS to ack this quad that GCS 
 			//has choose a gps position as the reference
-			//send_nav_info();
-			//send_quad_swarm_ack();
-			//send_quad_swarm_report();
 			break;
 		}
 		case(SWARM_WAIT_CMD):
@@ -164,7 +156,6 @@ void quad_swarm_periodic( void )
 				//the quad proceed to the next state.
 				quad_swarm_state = SWARM_WAIT_CMD_START_ENGINE;
 			}
-			//send_quad_swarm_ack();
 			break;
 		}
 		case(SWARM_WAIT_CMD_START_ENGINE):
