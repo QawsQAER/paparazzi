@@ -143,7 +143,7 @@ void quad_swarm_periodic( void )
 			//wait for GCS to ack this quad that GCS 
 			//has choose a gps position as the reference
 			//send_nav_info();
-			send_quad_swarm_ack();
+			//send_quad_swarm_ack();
 			//send_quad_swarm_report();
 			break;
 		}
@@ -164,7 +164,7 @@ void quad_swarm_periodic( void )
 				//the quad proceed to the next state.
 				quad_swarm_state = SWARM_WAIT_CMD_START_ENGINE;
 			}
-			send_quad_swarm_ack();
+			//send_quad_swarm_ack();
 			break;
 		}
 		case(SWARM_WAIT_CMD_START_ENGINE):
@@ -176,12 +176,13 @@ void quad_swarm_periodic( void )
 				quad_swarm_ack = 5;
 				quad_swarm_state = SWARM_WAIT_CMD_TAKEOFF;
 			}
-			send_quad_swarm_ack();
+			//send_quad_swarm_ack();
 			break;
 		}
 		case(SWARM_WAIT_CMD_TAKEOFF):
 		{
-			send_quad_swarm_ack();
+			//send_quad_swarm_ack();
+			break;
 		}
 		case(SWARM_SEND_ACK):
 		{
@@ -191,7 +192,6 @@ void quad_swarm_periodic( void )
 			//to acknowledge the target position
 			//proceed to next state
 			quad_swarm_ack = 6;
-			send_quad_swarm_ack();
 			break;
 		}
 		case(SWARM_WAIT_EXEC_ACK):

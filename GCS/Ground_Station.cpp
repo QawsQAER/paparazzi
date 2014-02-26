@@ -140,8 +140,7 @@ void Ground_Station::negotiate_ref()
 {
 	printf("\n\n\n************************\n***********************\n");
 	printf("\nnegotiating reference point\n");
-	uint8_t should_proceed[QUAD_NB + 1];
-	memset(should_proceed,0,sizeof(uint8_t) * (QUAD_NB + 1));
+
 	while(1)
 	{
 		Com->XBEE_read_into_recv_buff();
@@ -166,33 +165,17 @@ void Ground_Station::negotiate_ref()
 				continue;
 				else
 				{
-					//the quadcopter should proceed to SWARM_WAIT_CMD
-					uint8_t ack = 2;
-					this->update_on_quad_swarm_report(report);
-					this->send_ack(report.ac_id,ack);
-					should_proceed[report.ac_id] = 1;
-				}
-			}
-			else if(msg_id == RECV_MSG_ID_quad_swarm_ack)
-			{
-				uint8_t cur_ac_id = 0;
-				uint8_t quad_swarm_id = 0;
-				uint8_t quad_swarm_ack = 0;
-				data.pprz_get_quad_swarm_ack(cur_ac_id,quad_swarm_id,quad_swarm_ack);
-				//if received ack telling GCS that the quad is in SWARM_WAIT_CMD
-				//and nav_block = NAV_HOLDING_POINT
-				if(quad_swarm_ack == 3)
-				{
-					printf("quad %d proceeding to state %d\n",quad_swarm_id,SWARM_WAIT_CMD);
-					//update the local record about the quadcopter
-					this->Swarm_state->set_quad_state(quad_swarm_id,SWARM_WAIT_CMD);
-				}
-				else if(quad_swarm_ack == 2 && should_proceed[quad_swarm_id])
-				{
-					//if the quadcopter should be in SWARM_WAIT_CMD but still replies with ack = 2
-					//send ack = 2 again to the quadcopter.					
-					uint8_t ack = 2;
-					this->send_ack(quad_swarm_id,ack);
+					if(report.state == SWARM_NEGOTIATE_REF)
+					{
+						//the quadcopter should proceed to SWARM_WAIT_CMD
+						uint8_t ack = 2;
+						this->update_on_quad_swarm_report(report);
+						this->send_ack(report.ac_id,ack);
+					}else if(report.state == SWARM_WAIT_CMD)
+					{
+						this->update_on_quad_swarm_report(report);
+						this->Swarm_state->set_quad_state(report.ac_id,report.state);
+					}
 				}
 			}
 		}
@@ -293,50 +276,12 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				printf("block time %d stage time %d cur_block %d cur_stage %d\n",block_time,stage_time,cur_block,cur_stage);
 				printf("------------------\n");	
 			}
-			if(msg_id == RECV_MSG_ID_quad_swarm_ack)
-			{
-				uint8_t cur_ac_id = 0;
-				uint8_t quad_swarm_id = 0;
-				uint8_t quad_swarm_ack = 0;
-				data.pprz_get_quad_swarm_ack(cur_ac_id,quad_swarm_id,quad_swarm_ack);
-				printf("debugging: quad_swarm_ack received\n");
-				printf("quad_swarm_ack %d\n",quad_swarm_ack);
-				switch(quad_swarm_ack)
-				{
-					case(0):
-					{this->Swarm_state->set_quad_state(quad_swarm_id, SWARM_KILLED);}
-					break;
-					
-					case(3):
-					{
-						printf("quad %d: received ack %d setting quad into state %d\n",quad_swarm_id,quad_swarm_ack,SWARM_WAIT_CMD);
-						this->Swarm_state->set_quad_state(quad_swarm_id,SWARM_WAIT_CMD);
-					}
-					break;
-
-					case(4):
-					{
-						printf("quad %d: received ack %d setting quad into state %d\n",quad_swarm_id,quad_swarm_ack,SWARM_WAIT_CMD_START_ENGINE);
-						this->Swarm_state->set_quad_state(quad_swarm_id, SWARM_WAIT_CMD_START_ENGINE);
-					}
-					break;
-		
-					case(5):
-					{this->Swarm_state->set_quad_state(quad_swarm_id, SWARM_WAIT_CMD_TAKEOFF);}
-					break;
-					
-					case(6):
-					{this->Swarm_state->set_quad_state(quad_swarm_id,SWARM_SEND_ACK);}
-					break;
-					default:
-					break;
-				}			
-			}
 			else if(msg_id == RECV_MSG_ID_quad_swarm_report)
 			{
 				struct quad_swarm_report report;
 				data.pprz_get_quad_swarm_report(report);
 				this->update_on_quad_swarm_report(report);
+				this->Swarm_state->set_quad_state(report.ac_id,report.state);
 				printf("quad %d in state %d\n",report.ac_id,report.state);
 			}
 		}
