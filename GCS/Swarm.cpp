@@ -12,7 +12,7 @@ Swarm::Swarm()
 	uint8_t count = 1;
 	while(count < QUAD_NB + 1)
 	{
-		state[count] = SWARM_INIT;
+		state[count] = SWARM_KILLED;
 		memset((void *) &pos[count],0,sizeof(struct EcefCoor_i));
 		printf("XBEE_ADDR_HI[%d] %x XBEE_ADDR_LO[%d] %x\n",count,XBEE_ADDR_HI[count],count,XBEE_ADDR_LO[count]);
 		count++;

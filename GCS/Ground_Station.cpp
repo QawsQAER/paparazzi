@@ -118,7 +118,11 @@ void Ground_Station::init_quadcopters()
 								this->update_on_quad_swarm_report(report);
 								printf("setting state of %d to be %d\n",report.ac_id,report.state);
 								this->Swarm_state->set_quad_state(report.ac_id,report.state);
-
+								if(report.state == SWARM_KILLED)
+								{
+									uint8_t ack = 0xfe;
+									this->send_quad_ack(report.ac_id,ack);
+								}
 							}
 							break;
 						default:
