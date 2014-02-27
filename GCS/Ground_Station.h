@@ -16,6 +16,8 @@
 #include "Serial.h"
 #include "geo.h"
 
+#define ACK_TO_SWARM_WAIT_CMD 2
+#define ACK_TO_SWARM_EXEC_CMD 3
 enum GroundControlStation_state {GCS_INIT,\
 		GCS_NEGOTIATE_REF,\
 		GCS_WAIT_TO_START_ENGINE,\
@@ -58,7 +60,8 @@ class Ground_Station
 		void calculating_target();
 		void sending_target();
 		void wait_cmd_ack();
-
+		void send_exec_cmd_ack();
+		void wait_report();
 /**********************************************************************************************/
 /**********************************************************************************************/
 /**********************************************************************************************/
@@ -73,7 +76,9 @@ class Ground_Station
 		//This function will ask the quadcopter to takeoff
 		void takeoff_quadcopters();
 		void takeoff_quadcopter(uint8_t AC_ID);
-		
+	
+		//land here
+		void land_here();
 		void send_ack(uint8_t AC_ID, uint8_t ack);	
 		void ap_kill_quadcopter(uint8_t AC_ID);
 		void ap_kill_quadcopter();
@@ -86,5 +91,12 @@ class Ground_Station
 		void update_ned_coor_by_ecef_coor();
 		void update_ned_coor_by_ecef_coor(uint8_t AC_ID);
 };
+
+#define GCS_SHOW_REPORT(report) {\
+	printf("MSG: quad_swarm_report\n");\
+	printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);\
+	printf("quad %d: x %d y %d z %d\n",report.ac_id,report.x,report.y,report.z);\
+	printf("quad %d: pacc %d\n\n",report.ac_id,report.pacc);\
+}
 
 #endif

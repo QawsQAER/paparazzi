@@ -159,6 +159,7 @@ void quad_swarm_periodic( void )
 		}
 		case(SWARM_WAIT_CMD_START_ENGINE):
 		{
+			//STATE 3
 			if(nav_block == 3)
 			quad_swarm_ack = 4;
 			else if(nav_block == 4)
@@ -166,50 +167,52 @@ void quad_swarm_periodic( void )
 				quad_swarm_ack = 5;
 				quad_swarm_state = SWARM_WAIT_CMD_TAKEOFF;
 			}
-			//send_quad_swarm_ack();
 			break;
 		}
 		case(SWARM_WAIT_CMD_TAKEOFF):
 		{
-			//send_quad_swarm_ack();
+			//STATE 4
 			break;
 		}
 		case(SWARM_SEND_ACK):
 		{
-			//send_nav_info();
-			//3
+			//STATE 5
 			//send ack to GCS 
 			//to acknowledge the target position
 			//proceed to next state
-			quad_swarm_ack = 6;
+			quad_swarm_state = SWARM_WAIT_EXEC_ACK;
 			break;
 		}
 		case(SWARM_WAIT_EXEC_ACK):
 		{
-			//4
+			//STATE 6
 			//wait for ack to carry out the previous cmd
 			break;
 		}
 		case(SWARM_EXEC_CMD):
 		{
-			//5
-                        //change the target position of the navigation system
-                        //check the the execution status
-                        //if reach the target
-                        //proceed to the next state
+			//STATE 7
+			//change the target position of the navigation system
+			//check the the execution status
+			//if reach the target
+			//proceed to the next state
+			if(quad_swarm_reach_tar())
+			{
+				quad_swarm_state = SWARM_REPORT_STATE;
+			}
 			break;
 		}
 		case(SWARM_REPORT_STATE):
 		{
-			//6
+			//STATE 8
 			//report that this quad has finished the task
-			//wait for ack
-			//if ack received
-			//go back to SWARM_WAIT_CMD
+			//if the quad received quad_swarm_msg, 
+			//it will go back to SWARM_SEND_ACK
 			break;
 		}
 		case(SWARM_KILLED):
 		{
+			//STATE 9
 			//quad_swarm_initilized = 0;
 			break;
 		}
@@ -222,7 +225,10 @@ void quad_swarm_periodic( void )
 }
 
 void quad_swarm_event( void ) {}
-
+uint8_t quad_swarm_reach_tar()
+{
+	return 1;			
+}
 /*void quad_swarm_datalink( void )
 {
 	//handle the incoming message

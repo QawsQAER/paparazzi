@@ -41,13 +41,14 @@
 #define SWARM_REPORT_STATE 8
 #define SWARM_KILLED 9
 
+#define SWARM_REACH_CRITERION 9
 extern struct EcefCoor_i quad_swarm_target;
 extern uint8_t quad_swarm_state;
 extern void quad_swarm_init( void );
 extern void quad_swarm_periodic( void );
 extern void quad_swarm_event( void );
 extern uint8_t quad_swarm_id;
-
+extern uint8_t quad_swarm_reach_tar( void );
 //called when DL_quad_swarm_msg is detected
 
 #define quad_swarm_datalink(){\
@@ -60,7 +61,6 @@ extern uint8_t quad_swarm_id;
 		quad_swarm_target.x = DL_quad_swarm_msg_tar_ecef_pos_x(dl_buffer);\
 		quad_swarm_target.y = DL_quad_swarm_msg_tar_ecef_pos_y(dl_buffer);\
 		quad_swarm_target.z = DL_quad_swarm_msg_tar_ecef_pos_z(dl_buffer);\
-		ltp_def_from_ecef_i(&ins_ltp_def, &quad_swarm_target);\
 		}\
 		quad_swarm_state = SWARM_SEND_ACK;\
 	}\
@@ -84,6 +84,10 @@ extern uint8_t quad_swarm_id;
 	else if(ack == 2)\
 	{\
 		quad_swarm_state = SWARM_WAIT_CMD;\
+	}\
+	else if(ack == 3)\
+	{\
+		quad_swarm_state = SWARM_EXEC_CMD;\
 	}\
 }
 extern void quad_swarm_start( void );

@@ -23,10 +23,21 @@ int main(int argc, char **argv)
 	GCS->init_quadcopters();
 	GCS->negotiate_ref();
 	signal(SIGINT,kill_all_quads);
+	char input[16];
 	while(1)
 	{
 		GCS->calculating_target();
-		GCS->sending_target();
+		printf("Send target ? [y] Land quadcopter ? [l]");
+		scanf("%s",input);
+		if(strcmp(input,"y") == 0)
+		{
+			GCS->sending_target();
+			GCS->wait_cmd_ack();
+			GCS->send_exec_cmd_ack();
+			GCS->wait_report();
+		}
+		else if(strcmp(input,"l") == 0)
+			GCS->land_here();
 		//GCS->wait_cmd_ack();	
 	}
 	return 0;
