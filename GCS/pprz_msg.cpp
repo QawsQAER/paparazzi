@@ -179,6 +179,7 @@ void pprz_msg::pprz_set_msg(uint8_t &ac_id, struct quad_swarm_msg &msg)
 {
 	this->pprz_put_byte(&ac_id);
 	this->pprz_put_byte((uint8_t) FORWARD_MSG_ID_quad_swarm_msg);
+	this->pprz_put_byte(&ac_id);
 	uint8_t dummy = 0;
 	this->pprz_put_byte(&dummy);
 	this->pprz_put_4bytes((uint8_t *)&msg.x);

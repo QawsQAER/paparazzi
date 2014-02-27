@@ -62,6 +62,7 @@ class Ground_Station
 /**********************************************************************************************/
 /**********************************************************************************************/
 /**********************************************************************************************/
+		
 		//This function will ask quadcopters to takeoff
 		void nav_start_engine(uint8_t AC_ID);
 		void nav_start_engine();
@@ -69,8 +70,8 @@ class Ground_Station
 		void nav_takeoff(uint8_t AC_ID);
 		void nav_takeoff();
 		
-		void takeoff_quadcopters();
 		//This function will ask the quadcopter to takeoff
+		void takeoff_quadcopters();
 		void takeoff_quadcopter(uint8_t AC_ID);
 		
 		void send_ack(uint8_t AC_ID, uint8_t ack);	
@@ -79,6 +80,7 @@ class Ground_Station
 		void ap_nav_quadcopter(uint8_t AC_ID);
 		void wait_all_quads(uint8_t s);
 
+		void send_target(uint8_t AC_ID, struct EcefCoor_i *tar);
 		//update the state of corresponding quadcopter according to content of report
 		void update_on_quad_swarm_report(quad_swarm_report report);
 		void update_ned_coor_by_ecef_coor();

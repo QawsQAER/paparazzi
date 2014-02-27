@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	{
 		GCS->calculating_target();
 		GCS->sending_target();
-		GCS->wait_cmd_ack();	
+		//GCS->wait_cmd_ack();	
 	}
 	return 0;
 }

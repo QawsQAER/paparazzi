@@ -26,11 +26,9 @@
 
 //for autopilot_set_mode
 #include "autopilot.h"
-#ifndef DL_quad_swarm_msg
 
-#define DL_quad_swarm_msg 
-
-#endif
+//for flight plan, nav_block, nav_stage etc
+#include "subsystems/navigation/common_flight_plan.h"
 
 #define SWARM_INIT 0
 #define SWARM_NEGOTIATE_REF 1
@@ -54,7 +52,7 @@ extern uint8_t quad_swarm_id;
 
 #define quad_swarm_datalink(){\
 	uint8_t ac_id = DL_quad_swarm_msg_ac_id(dl_buffer);\
-	if(quad_swarm_id == ac_id && quad_swarm_state == SWARM_WAIT_CMD)\
+	if(quad_swarm_id == ac_id && quad_swarm_state == SWARM_WAIT_CMD_TAKEOFF)\
 	{\
 		uint8_t dummy = DL_quad_swarm_msg_dummy(dl_buffer);\
 		if(ac_id == AC_ID)\
@@ -62,6 +60,7 @@ extern uint8_t quad_swarm_id;
 		quad_swarm_target.x = DL_quad_swarm_msg_tar_ecef_pos_x(dl_buffer);\
 		quad_swarm_target.y = DL_quad_swarm_msg_tar_ecef_pos_y(dl_buffer);\
 		quad_swarm_target.z = DL_quad_swarm_msg_tar_ecef_pos_z(dl_buffer);\
+		ltp_def_from_ecef_i(&ins_ltp_def, &quad_swarm_target);\
 		}\
 		quad_swarm_state = SWARM_SEND_ACK;\
 	}\
@@ -77,7 +76,10 @@ extern uint8_t quad_swarm_id;
 	}\
 	else if(ack == 0xfe)\
 	{\
+		autopilot_set_mode(AP_MODE_NAV);\
 		quad_swarm_state = SWARM_INIT;\
+		nav_block = 0;\
+		nav_stage = 0;\
 	}\
 	else if(ack == 2)\
 	{\

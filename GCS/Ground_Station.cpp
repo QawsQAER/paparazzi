@@ -118,7 +118,7 @@ void Ground_Station::init_quadcopters()
 					this->Swarm_state->set_quad_state(report.ac_id,report.state);
 					if(report.state == SWARM_KILLED)
 					{
-						printf("Reinit quad %d ?[y/n] \n",report.ac_id);
+						printf("init quad %d ?[y/n] \n",report.ac_id);
 						char cmd[16];
 						scanf("%s",cmd);
 						if(strcmp(cmd,"y") == 0)
@@ -166,7 +166,7 @@ void Ground_Station::negotiate_ref()
 				printf("quad %d: ap_mode %d state %d\n",report.ac_id,report.ap_mode,report.state);
 				printf("quad %d: x %d y %d z %d\n",report.ac_id,report.x,report.y,report.z);
 				printf("quad %d: pacc %d\n\n",report.ac_id,report.pacc);
-				if(report.pacc/100 > 10)
+				if(report.pacc/100 > 20)
 				continue;
 				else
 				{
@@ -252,13 +252,19 @@ void Ground_Station::calculating_target()
 void Ground_Station::sending_target()
 {
 	//should be sending intermediate targets here
-	this->wait_all_quads(SWARM_SEND_ACK);
+	char cmd[5];
+	scanf("send? %s",cmd);
+	if(strcmp(cmd,"y") == 0)
+	{this->send_target(1,&target[1]);printf("target sent\n");}
+	//this->wait_all_quads(SWARM_SEND_ACK);
+	//printf("all quads are in SWARM_SEND_ACK");
 	return ;	
 }
 
 void Ground_Station::wait_cmd_ack()
 {
 	//should be waiting for ack for command from quads
+	printf("all quads are waiting for cmd ack for exec\n");
 	return ;
 }
 
@@ -296,11 +302,19 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				data.pprz_get_quad_swarm_report(report);
 				this->update_on_quad_swarm_report(report);
 				this->Swarm_state->set_quad_state(report.ac_id,report.state);
+				this->Swarm_state->set_quad_pacc(report.ac_id,report.pacc);
 				this->update_ned_coor_by_ecef_coor(report.ac_id);				
 				printf("quad %d in state %d\n",report.ac_id,report.state);
-				printf("ecef.x %d, ecef.y %d, ecef.z %d\n",report.x,report.y,report.z);
+				//printf("ecef.x %d, ecef.y %d, ecef.z %d\n",report.x,report.y,report.z);
 				struct NedCoor_i pos = ned_pos[report.ac_id];
 				printf("ned.x %f ned.y %f ned.z %f\n",POS_FLOAT_OF_BFP(pos.x),POS_FLOAT_OF_BFP(pos.y),POS_FLOAT_OF_BFP(pos.z));
+				double dis_x = POS_FLOAT_OF_BFP(ned_pos[1].x) - POS_FLOAT_OF_BFP(ned_pos[2].x);
+				double dis_y = POS_FLOAT_OF_BFP(ned_pos[1].y) - POS_FLOAT_OF_BFP(ned_pos[2].y);
+				double dis_z = POS_FLOAT_OF_BFP(ned_pos[1].z) - POS_FLOAT_OF_BFP(ned_pos[2].z);
+				double total = (dis_x) * (dis_x) + (dis_y) * (dis_y);
+				uint8_t ac1 = 1;
+				uint8_t ac2 = 2;
+				printf("distance x %f y %f z %f total %f\n pacc 1 %d pacc 2 %d\n\n",dis_x,dis_y,dis_z,total,this->Swarm_state->get_pacc(ac1),this->Swarm_state->get_pacc(ac2));
 			}
 		}
 		switch(s)
@@ -363,6 +377,21 @@ void Ground_Station::wait_all_quads(uint8_t s)
 	}
 }
 
+void Ground_Station::send_target(uint8_t AC_ID, struct EcefCoor_i * tar)
+{
+	struct quad_swarm_msg content;
+	content.ac_id = AC_ID;
+	content.dummy = 0;
+	content.x = tar->x;
+	content.y = tar->y;
+	content.z = tar->z; 
+	pprz_msg frame;
+	frame.pprz_set_msg(AC_ID,content);
+	XBEE_msg msg;
+	Swarm *temp = this->Swarm_state;
+	msg.set_tran_packet(temp->get_address_HI(AC_ID),temp->get_address_LO(AC_ID),0xFF,0xFE,frame.pprz_get_data_ptr(),frame.pprz_get_length());
+	this->Com->XBEE_send_msg(msg);
+}
 void Ground_Station::Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID)
 {	
 	pprz_msg data;

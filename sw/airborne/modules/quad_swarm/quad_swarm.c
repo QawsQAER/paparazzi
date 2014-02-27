@@ -43,8 +43,7 @@
 #endif
 //for AC_ID
 #include "generated/airframe.h"
-//for flight plan, nav_block, nav_stage etc
-#include "subsystems/navigation/common_flight_plan.h"
+
 //for block time, stage time
 #include "firmwares/rotorcraft/navigation.h"
 
@@ -211,7 +210,7 @@ void quad_swarm_periodic( void )
 		}
 		case(SWARM_KILLED):
 		{
-			quad_swarm_initilized = 0;
+			//quad_swarm_initilized = 0;
 			break;
 		}
 		default:

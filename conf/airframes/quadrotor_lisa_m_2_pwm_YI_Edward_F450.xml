@@ -168,21 +168,21 @@
 
     <!-- feedback -->         <!--Set 1-->   <!--Set 2-->  <!--Set 3-->
     <define name="PHI_PGAIN" value="530" /> <!--"565"/--> <!--"1166"/-->
-    <define name="PHI_DGAIN" value="165" /> <!--"165"/--> <!--"384"/-->
+    <define name="PHI_DGAIN" value="148" /> <!--"165"/--> <!--"384"/-->
     <define name="PHI_IGAIN" value="40" /> <!--"102"/--> <!--"185"/-->
  
     <define name="THETA_PGAIN" value="530" /> <!--"565"/--> <!--"1166"/-->
-    <define name="THETA_DGAIN" value="165" /> <!--"165"/--> <!--"384"/-->
+    <define name="THETA_DGAIN" value="148" /> <!--"165"/--> <!--"384"/-->
     <define name="THETA_IGAIN" value="40" /> <!--"102"/--> <!--"185"/-->
 
-    <define name="PSI_PGAIN" value="530" />
-    <define name="PSI_DGAIN" value="320" />
+    <define name="PSI_PGAIN" value="370" />
+    <define name="PSI_DGAIN" value="120" />
     <define name="PSI_IGAIN" value="40" />
 
     <!-- feedforward -->
-    <define name="PHI_DDGAIN" value="300" />
-    <define name="THETA_DDGAIN" value="300" />
-    <define name="PSI_DDGAIN" value="280" />
+    <define name="PHI_DDGAIN" value="280" />
+    <define name="THETA_DDGAIN" value="280" />
+    <define name="PSI_DDGAIN" value="350" />
   </section>
 
   <section name="GUIDANCE_V" prefix="GUIDANCE_V_">
@@ -191,8 +191,8 @@
     <define name="MIN_ERR_ZD" value="SPEED_BFP_OF_REAL(-10.)"/>
     <define name="MAX_ERR_ZD" value="SPEED_BFP_OF_REAL( 10.)"/>
     <define name="MAX_SUM_ERR" value="2000000"/>
-    <define name="HOVER_KP" value="95"/> <!--120--><!--150-->
-    <define name="HOVER_KD" value="73"/> <!--80-->
+    <define name="HOVER_KP" value="93"/> <!--120--><!--150-->
+    <define name="HOVER_KD" value="15"/> <!--80-->
     <define name="HOVER_KI" value="5"/> <!--20-->
     <!-- 1.5m/s for full stick : BOOZ_SPEED_I_OF_F(1.5) / (MAX_PPRZ/2) -->
     <define name="RC_CLIMB_COEF" value="163"/>
@@ -213,10 +213,10 @@
   <section name="GUIDANCE_H" prefix="GUIDANCE_H_">
     <define name="USE_REF" value="1"/>
     <define name="MAX_BANK" value="30." unit="deg"/>
-    <define name="PGAIN" value="35"/> <!--30-->
+    <define name="PGAIN" value="25"/> <!--30-->
     <define name="DGAIN" value="75"/> <!--90-->
-    <define name="AGAIN" value="0"/> <!--0-->
-    <define name="IGAIN" value="20"/> <!--15-->
+    <define name="AGAIN" value="5"/> <!--0-->
+    <define name="IGAIN" value="28"/> <!--15-->
   </section>
 
 
