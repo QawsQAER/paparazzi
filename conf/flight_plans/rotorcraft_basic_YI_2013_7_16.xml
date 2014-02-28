@@ -1,6 +1,6 @@
 <!DOCTYPE flight_plan SYSTEM "flight_plan.dtd">
 
-<flight_plan alt="149" ground_alt="147" lat0="43 33 50.83" lon0="1 28 52.61" max_dist_from_home="60" name="MYAC-TEST" security_height="2">
+<flight_plan alt="148" ground_alt="147" lat0="43 33 50.83" lon0="1 28 52.61" max_dist_from_home="60" name="MYAC-TEST" security_height="1">
   <header>
 #include "autopilot.h"
   </header>
@@ -9,7 +9,7 @@
   <!--x is east, y is north, refer to the "HOME" waypoint-->
   <waypoints>
     <waypoint name="HOME" x="0.0" y="0.0"/>
-    <waypoint name="STDBY" x="3.0" y="0.0"/>
+    <waypoint name="STDBY" x="0.0" y="0.0"/>
     <waypoint name="p1" x="3.0" y="3.0"/>
     <waypoint name="p2" x="3.0" y="-3.0"/>
     <waypoint name="LZ" x="1.0" y="0.0"/>

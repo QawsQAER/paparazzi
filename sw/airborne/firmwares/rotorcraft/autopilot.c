@@ -82,8 +82,8 @@ PRINT_CONFIG_MSG("Using default AP_MODE_NAV as MODE_STARTUP")
 void autopilot_init(void) {
   /* mode is finally set at end of init if MODE_STARTUP is not KILL */
 //Edward edit this
-  autopilot_mode = AP_MODE_KILL;
-  //autopilot_mode = AP_MODE_NAV;
+  //autopilot_mode = AP_MODE_KILL;
+  autopilot_mode = AP_MODE_NAV;
   autopilot_motors_on = FALSE;
   kill_throttle = ! autopilot_motors_on;
   autopilot_in_flight = FALSE;

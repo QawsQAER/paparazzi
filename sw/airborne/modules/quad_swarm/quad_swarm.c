@@ -56,7 +56,7 @@
                    &nav_stage,				\
                    &horizontal_mode)			
 uint8_t quad_swarm_state;
-
+uint8_t quad_swarm_recv_ack = 0;
 
 //like the ac_id
 uint8_t quad_swarm_id = AC_ID;
@@ -70,6 +70,7 @@ void quad_swarm_init( void )
 	memset(&quad_swarm_target,0,sizeof(struct EcefCoor_i));	
 	quad_swarm_id = AC_ID;
 	quad_swarm_ack = 0;
+	quad_swarm_recv_ack = 0;
 	quad_swarm_initilized = 1;
 }
 
@@ -228,6 +229,12 @@ void quad_swarm_event( void ) {}
 uint8_t quad_swarm_reach_tar()
 {
 	return 1;			
+}
+
+void quad_swarm_target_to_waypoint()
+{
+	enu_of_ecef_pos_i(&navigation_target,&ins_ltp_def,&quad_swarm_target);
+	return ;
 }
 /*void quad_swarm_datalink( void )
 {

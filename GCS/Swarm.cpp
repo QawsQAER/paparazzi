@@ -66,7 +66,7 @@ bool Swarm::all_in_state(uint8_t s)
 	{
 		if(this->state[count] != s)
 		{
-			//printf("quad %d  not in state %d but in %d\n",count,s,this->state[count]);
+			printf("quad %d  not in state %d but in %d\n",count,s,this->state[count]);
 			return false;
 		}
 	}

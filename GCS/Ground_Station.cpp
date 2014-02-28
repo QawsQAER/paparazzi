@@ -115,9 +115,9 @@ void Ground_Station::init_quadcopters()
 					if(report.state == SWARM_KILLED)
 					{
 						printf("init quad %d ?[y/n] \n",report.ac_id);
-						char cmd[16];
-						scanf("%s",cmd);
-						if(strcmp(cmd,"y") == 0)
+						char cmd;
+						cmd = getc();
+						if(cmd == 'y')
 						{
 							uint8_t ack = 0xfe;
 							this->send_ack(report.ac_id,ack);
@@ -184,9 +184,9 @@ void Ground_Station::negotiate_ref()
 		{
 			printf("All quads are waiting for command to start engine\n");
 			printf("start engine?[y/n]\n");
-			char cmd[16];
-			scanf("%s",cmd);
-			if(strcmp(cmd,"y") == 0)
+			char cmd;
+			cmd = getc();
+			if(cmd == 'y')
 			{
 				//send navigation change block message to all quadcopters
 				this->nav_start_engine();
@@ -213,12 +213,11 @@ void Ground_Station::negotiate_ref()
 	
 	//wait for all quadcopters to be in SWARM_WAIT_CMD_START_ENGINE state
 	wait_all_quads(SWARM_WAIT_CMD_START_ENGINE);
-	char cmd[16];
-	memset(cmd,0,sizeof(char) * 16);
-	while(strcmp(cmd,"y") != 0)
+	char cmd = 0;;
+	while(cmd != 'y')
 	{
 		printf("now all quads have started engine, takeoff? [y/n] :");
-		scanf("%s",cmd);
+		cmd = getc();
 	}
 
 	//send navigation change block message to all quadcopters
@@ -236,7 +235,7 @@ void Ground_Station::calculating_target()
 	//should be calculating intermediate targets here
 	struct NedCoor_i ned_tar[QUAD_NB + 1];
 	//the 1st quadcopter should proceed to north with 0.5 meters
-	ned_tar[1].x = 50 + POS_FLOAT_OF_BFP(this->ned_pos[1].x) * 100;//add 50cm to x (North)
+	ned_tar[1].x = 100 + POS_FLOAT_OF_BFP(this->ned_pos[1].x) * 100;//add 50cm to x (North)
 	ned_tar[1].y = POS_FLOAT_OF_BFP(this->ned_pos[1].y) * 100;//keep the original y
 	ned_tar[1].z = POS_FLOAT_OF_BFP(this->ned_pos[1].z) * 100;//keep the original z
 	//the 2nd quadcopter should be 3 meters south to the 1st quad	
@@ -274,18 +273,31 @@ void Ground_Station::wait_cmd_ack()
 
 void Ground_Station::send_exec_cmd_ack()
 {
+	printf("send_exec_cmd_ack\n");
 	wait_all_quads(SWARM_EXEC_CMD);
 	return ;
 }
 
 void Ground_Station::wait_report()
 {
+	printf("waiting report\n");
 	wait_all_quads(SWARM_REPORT_STATE);
+	return ;
 }
 void Ground_Station::wait_all_quads(uint8_t s)
 {
 	while(!this->Swarm_state->all_in_state(s))
 	{
+		if(s == SWARM_SEND_ACK)
+		{
+			if(this->Swarm_state->all_in_state(SWARM_WAIT_EXEC_ACK))
+			{break;}
+		}
+		if(s == SWARM_EXEC_CMD)
+		{
+			if(this->Swarm_state->all_in_state(SWARM_REPORT_STATE))
+			break;
+		}
 		//read any buffer
 		Com->XBEE_read_into_recv_buff();
 		Com->XBEE_parse_XBEE_msg();
@@ -386,6 +398,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 						//TODO 
 						//send the target of this quadcopter
 						this->send_target(count,&target[count]);
+						printf("resending target to quad %d\n",count);
 					}
 				}
 			}
@@ -399,7 +412,8 @@ void Ground_Station::wait_all_quads(uint8_t s)
 					if(quad_state != SWARM_EXEC_CMD && quad_state != SWARM_REPORT_STATE)
 					{
 						uint8_t ack_for_exec_cmd = 3;
-						this->send_ack(count_ac,ack_for_exec_cmd);	
+						this->send_ack(count_ac,ack_for_exec_cmd);
+						printf("sending exec_ack to quad %d\n",count_ac);
 					}
 				}
 			}

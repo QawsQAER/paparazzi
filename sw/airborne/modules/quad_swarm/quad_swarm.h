@@ -43,17 +43,22 @@
 
 #define SWARM_REACH_CRITERION 9
 extern struct EcefCoor_i quad_swarm_target;
-extern uint8_t quad_swarm_state;
+
 extern void quad_swarm_init( void );
 extern void quad_swarm_periodic( void );
 extern void quad_swarm_event( void );
-extern uint8_t quad_swarm_id;
 extern uint8_t quad_swarm_reach_tar( void );
+extern void quad_swarm_target_to_waypoint( void );
+
+extern uint8_t quad_swarm_state;
+extern uint8_t quad_swarm_id;
+extern uint8_t quad_swarm_recv_ack;
+
 //called when DL_quad_swarm_msg is detected
 
 #define quad_swarm_datalink(){\
 	uint8_t ac_id = DL_quad_swarm_msg_ac_id(dl_buffer);\
-	if(quad_swarm_id == ac_id && quad_swarm_state == SWARM_WAIT_CMD_TAKEOFF)\
+	if(quad_swarm_id == ac_id && (quad_swarm_state == SWARM_WAIT_CMD_TAKEOFF || quad_swarm_state == SWARM_REPORT_STATE))\
 	{\
 		uint8_t dummy = DL_quad_swarm_msg_dummy(dl_buffer);\
 		if(ac_id == AC_ID)\
@@ -78,16 +83,16 @@ extern uint8_t quad_swarm_reach_tar( void );
 	{\
 		autopilot_set_mode(AP_MODE_NAV);\
 		quad_swarm_state = SWARM_INIT;\
-		nav_block = 0;\
-		nav_stage = 0;\
+		nav_init();\
 	}\
-	else if(ack == 2)\
+	else if(ack == 2 && quad_swarm_state == SWARM_NEGOTIATE_REF)\
 	{\
 		quad_swarm_state = SWARM_WAIT_CMD;\
 	}\
-	else if(ack == 3)\
+	else if(ack == 3 && quad_swarm_state == SWARM_WAIT_EXEC_ACK)\
 	{\
 		quad_swarm_state = SWARM_EXEC_CMD;\
+		quad_swarm_target_to_waypoint();\
 	}\
 }
 extern void quad_swarm_start( void );
