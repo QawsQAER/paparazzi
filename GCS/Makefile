@@ -13,10 +13,12 @@ CFLAGS = -Wall -g
 #############################################
 
 
-TARGETS= main test test_sender test_pprz_msg test_GCS test_recv
+TARGETS= main test test_sender test_pprz_msg test_GCS test_recv test_GUI
 
 OBJECT = Swarm.o geo.o Ground_Station.o XBEE.o XBEE_msg.o pprz_msg.o Serial.o 
 GROUND_STATION_SOURCES= Ground_Station.cpp #Swarm.cpp Serial.cpp XBEE.cpp XBEE_msg.cpp pprz_msg.cpp
+GTK_FLAG = `pkg-config --cflags gtk+-2.0`
+GTK_LINK_FLAG = `pkg-config --libs gtk+-2.0`
 all: main test
 	rm -f *.o	
 
@@ -37,7 +39,9 @@ test_sender: test_sender.o Serial.o XBEE.o XBEE_msg.o pprz_msg.o
 test_pprz_msg: test_pprz_msg.o pprz_msg.o XBEE_msg.o
 	$(CC) -o test_pprz_msg test_pprz_msg.o pprz_msg.o XBEE_msg.o $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
 	rm -f *.o
-
+#-----------------------------------------------------------------------------#
+test_GUI: test_GUI.o 
+	$(CC) test_GUI.o -o test_GUI $(GTK_LINK_FLAG)
 #-----------------------------------------------------------------------------#
 test_GCS: test_GCS.o $(OBJECT)
 	$(CC) -o test_GCS test_GCS.o $(OBJECT) $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
@@ -50,7 +54,8 @@ test_geo: test_geo.cpp geo.o
 ##############################################################################
 ##############################################################################
 ##############################################################################
-
+test_GUI.o: test_GUI.cpp
+	$(CC) -o test_GUI.o -c test_GUI.cpp $(GTK_FLAG)
 Ground_Station.o: Ground_Station.h Ground_Station.cpp
 	$(CC) -o Ground_Station.o -c $(GROUND_STATION_SOURCES) $(CFLAGS) $(DEBUGS_MACRO) $(OPTION)
 test.o: test.cpp
