@@ -115,9 +115,9 @@ void Ground_Station::init_quadcopters()
 					if(report.state == SWARM_KILLED)
 					{
 						printf("init quad %d ?[y/n] \n",report.ac_id);
-						char cmd;
-						cmd = getc();
-						if(cmd == 'y')
+						char cmd[16];
+						scanf("%s",cmd);
+						if(strcmp(cmd,"y") == 0)
 						{
 							uint8_t ack = 0xfe;
 							this->send_ack(report.ac_id,ack);
@@ -184,9 +184,9 @@ void Ground_Station::negotiate_ref()
 		{
 			printf("All quads are waiting for command to start engine\n");
 			printf("start engine?[y/n]\n");
-			char cmd;
-			cmd = getc();
-			if(cmd == 'y')
+			char cmd[16];
+			scanf("%s",cmd);
+			if(strcmp(cmd,"y") == 0)
 			{
 				//send navigation change block message to all quadcopters
 				this->nav_start_engine();
@@ -213,11 +213,12 @@ void Ground_Station::negotiate_ref()
 	
 	//wait for all quadcopters to be in SWARM_WAIT_CMD_START_ENGINE state
 	wait_all_quads(SWARM_WAIT_CMD_START_ENGINE);
-	char cmd = 0;;
-	while(cmd != 'y')
+	char cmd[16];
+	memset(cmd,0,16);
+	while(strcmp(cmd,"y") == 0)
 	{
 		printf("now all quads have started engine, takeoff? [y/n] :");
-		cmd = getc();
+		scanf("%s",cmd);
 	}
 
 	//send navigation change block message to all quadcopters
@@ -445,6 +446,7 @@ void Ground_Station::send_target(uint8_t AC_ID, struct EcefCoor_i * tar)
 	Swarm *temp = this->Swarm_state;
 	msg.set_tran_packet(temp->get_address_HI(AC_ID),temp->get_address_LO(AC_ID),0xFF,0xFE,frame.pprz_get_data_ptr(),frame.pprz_get_length());
 	this->Com->XBEE_send_msg(msg);
+	printf("sending target to quad %d\n",AC_ID);
 }
 void Ground_Station::Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID)
 {	

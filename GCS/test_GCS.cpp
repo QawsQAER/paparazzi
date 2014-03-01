@@ -38,7 +38,6 @@ int main(int argc, char **argv)
 		}
 		else if(strcmp(input,"l") == 0)
 			GCS->land_here();
-		//GCS->wait_cmd_ack();	
 	}
 	return 0;
 }
