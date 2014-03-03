@@ -1,6 +1,7 @@
 #include "main.h"
 #include "Ground_Station.h"
 #include "signal.h"
+#include <pthread.h>
 
 Ground_Station * GCS;
 void kill_all_quads(int32_t signum)
@@ -18,8 +19,14 @@ int main(int argc, char **argv)
 		GCS = new Ground_Station(argv[1]);	
 	else	
 		GCS = new Ground_Station(default_portname);
-//	uint8_t ac_id = 162;
-
+	
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	
+	
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,GCS->periodic_data_handle,NULL);
+	
 	GCS->init_quadcopters();
 	GCS->negotiate_ref();
 	signal(SIGINT,kill_all_quads);

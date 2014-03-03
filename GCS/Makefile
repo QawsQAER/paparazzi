@@ -17,8 +17,10 @@ TARGETS= main test test_sender test_pprz_msg test_GCS test_recv test_GUI
 
 OBJECT = Swarm.o geo.o Ground_Station.o XBEE.o XBEE_msg.o pprz_msg.o Serial.o 
 GROUND_STATION_SOURCES= Ground_Station.cpp #Swarm.cpp Serial.cpp XBEE.cpp XBEE_msg.cpp pprz_msg.cpp
+
 GTK_FLAG = `pkg-config --cflags gtk+-2.0`
 GTK_LINK_FLAG = `pkg-config --libs gtk+-2.0`
+PTHREAD_FLAG = -lpthread
 all: main test
 	rm -f *.o	
 
@@ -44,7 +46,7 @@ test_GUI: test_GUI.o
 	$(CC) test_GUI.o -o test_GUI $(GTK_LINK_FLAG)
 #-----------------------------------------------------------------------------#
 test_GCS: test_GCS.o $(OBJECT)
-	$(CC) -o test_GCS test_GCS.o $(OBJECT) $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
+	$(CC) -o test_GCS test_GCS.o $(OBJECT) $(CFLAGS) $(DEBUG_MACRO) $(OPTION) $(PTHREAD_FLAG)
 	rm -f *.o
 test_recv: test_recv.o $(OBJECT)
 	$(CC) -o test_recv test_recv.o $(OBJECT) $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
