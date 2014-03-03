@@ -178,56 +178,6 @@ void Ground_Station::wait_all_quads(uint8_t s)
 			break;
 		}
 		//read any buffer
-		Com->XBEE_read_into_recv_buff();
-		Com->XBEE_parse_XBEE_msg();
-		//then update state
-		while(!Com->msg.empty())
-		{
-			XBEE_msg *ptr = Com->msg.front();
-			Com->msg.pop();
-			pprz_msg data = ptr->get_pprz_msg();
-			uint8_t msg_id = data.pprz_get_msg_id();
-			if(msg_id == 159)
-			{
-				//if received navigation info, just used for debugging
-				printf("-----------------\n");
-				data.show_hex();
-				data.pprz_read_byte();
-				data.pprz_read_byte();
-				uint16_t block_time = data.pprz_read_2bytes();
-				uint16_t stage_time = data.pprz_read_2bytes();
-				uint8_t cur_block = data.pprz_read_byte();
-				uint8_t cur_stage = data.pprz_read_byte();
-				printf("block time %d stage time %d cur_block %d cur_stage %d\n",block_time,stage_time,cur_block,cur_stage);
-				printf("------------------\n");	
-			}
-			else if(msg_id == RECV_MSG_ID_quad_swarm_report)
-			{
-				struct quad_swarm_report report;
-				data.pprz_get_quad_swarm_report(report);
-				update_on_quad_swarm_report(report);
-				Swarm_state->set_quad_state(report.ac_id,report.state);
-				Swarm_state->set_quad_pacc(report.ac_id,report.pacc);
-				update_ned_coor_by_ecef_coor(report.ac_id);				
-				struct NedCoor_i pos = ned_pos[report.ac_id];
-				
-				printf("quad %d in state %d\n",report.ac_id,report.state);
-				printf("quad %d ned.x %f ned.y %f ned.z %f\n",report.ac_id,POS_FLOAT_OF_BFP(pos.x),POS_FLOAT_OF_BFP(pos.y),POS_FLOAT_OF_BFP(pos.z));
-			
-				#if QUAD_NB >= 2
-				double dis_x = POS_FLOAT_OF_BFP(ned_pos[1].x) - POS_FLOAT_OF_BFP(ned_pos[2].x);
-				double dis_y = POS_FLOAT_OF_BFP(ned_pos[1].y) - POS_FLOAT_OF_BFP(ned_pos[2].y);
-				double dis_z = POS_FLOAT_OF_BFP(ned_pos[1].z) - POS_FLOAT_OF_BFP(ned_pos[2].z);
-				double total = (dis_x) * (dis_x) + (dis_y) * (dis_y);
-				uint8_t ac1 = 1;
-				uint8_t ac2 = 2;
-				printf("distance x %f y %f z %f total %f\nquad 1 pacc  %d quad 2 pacc  %d\n\n",\
-						dis_x,dis_y,dis_z,sqrt(total),\
-						Swarm_state->get_pacc(ac1),\
-						Swarm_state->get_pacc(ac2));
-				#endif
-			}
-		}
 		switch(s)
 		{
 			case(SWARM_KILLED):
