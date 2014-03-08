@@ -9,6 +9,8 @@
 
 #ifndef _GROUND_STATION_H
 #define _GROUND_STATION_H
+#include <gtk/gtk.h>
+#include "GUI.h"
 #include "main.h"
 #include "XBEE.h"
 #include "pprz_msg.h"
@@ -42,10 +44,12 @@ class Ground_Station
 		static struct NedCoor_i ned_pos[QUAD_NB + 1];
 		//-------------------------------------------//
 		static void Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID);
+
 	public:
+		static GUI* GCS_GUI;
 		//Ground_Station();
 		//This function will initilize the serial port for communication and the xbee module etc.
-		Ground_Station(char * port_name);
+		Ground_Station(char * port_name,int argc, char ** argv);
 		~Ground_Station();
 		
 /********************************************************************************************/
@@ -92,6 +96,7 @@ class Ground_Station
 		static void update_ned_coor_by_ecef_coor(uint8_t AC_ID);
 		
 		static void * periodic_data_handle(void * arg);
+		static gboolean update_GUI_quad_status(gpointer userdata);
 };
 
 #define GCS_SHOW_REPORT(report) {\

@@ -10,6 +10,9 @@ GtkWidget* GUI::label = NULL;
 
 GUI::GUI(int argc, char** argv)
 {
+	#ifdef QUAD_NB
+	printf("Quadcopter number is %d\n",QUAD_NB);
+	#endif
 	table = gtk_table_new(2,2,TRUE);
 	gtk_init(&argc,&argv);
 
@@ -41,23 +44,15 @@ GUI::GUI(int argc, char** argv)
 	gtk_table_attach_defaults(GTK_TABLE(table),button,1,2,0,1);
 	gtk_widget_show(button);
 
-	GtkWidget *frame = gtk_frame_new("Quad status");
-	label = gtk_label_new("ned ");
-	gtk_container_add(GTK_CONTAINER(frame),label);
-	//adding frame into box1
-	//gtk_box_pack_start(GTK_BOX(box1), frame,FALSE,FALSE,0);
-	gtk_table_attach_defaults(GTK_TABLE(table),frame,0,1,1,2);
 
-	gtk_widget_show(frame);
-	gtk_widget_show(label);
-	//show box1
-	//gtk_widget_show(box1);
-	
+	quad_status_frame[0] = GUI_quad_status_frame(1);
+	printf("creating new quad_status_frame done\n");
+	gtk_table_attach_defaults(GTK_TABLE(table),quad_status_frame[0].frame,0,1,1,2);
+
+	gtk_widget_show(quad_status_frame[0].frame);
+
 	gtk_widget_show(table);
 	gtk_widget_show(window);
-
-	gtk_main();
-
 }
 
 GUI::~GUI()
@@ -65,6 +60,48 @@ GUI::~GUI()
 
 }
 
+struct GUI_quad_status_frame GUI::GUI_quad_status_frame(uint8_t AC_ID)
+{
+			struct GUI_quad_status_frame tmp;
+			tmp.frame = gtk_frame_new("Quad_status 1");
+			tmp.box = gtk_vbox_new(FALSE,0);
+			tmp.label_ned_x = gtk_label_new("ned x: 0");
+			tmp.label_ned_y = gtk_label_new("ned y: 0");
+			tmp.label_ned_z = gtk_label_new("ned z: 0");
+			tmp.label_ecef_x = gtk_label_new("ecef x: 0");
+			tmp.label_ecef_y = gtk_label_new("ecef y: 0");
+			tmp.label_ecef_z = gtk_label_new("ecef z: 0");
+			tmp.label_pacc = gtk_label_new("pacc : 0");
+			tmp.label_state = gtk_label_new("state: 0");
+
+			gtk_box_pack_start(GTK_BOX(tmp.box),tmp.label_ned_x,TRUE,TRUE,0);
+			gtk_box_pack_start(GTK_BOX(tmp.box),tmp.label_ned_y,TRUE,TRUE,0);
+			gtk_box_pack_start(GTK_BOX(tmp.box),tmp.label_ned_z,TRUE,TRUE,0);
+			gtk_box_pack_start(GTK_BOX(tmp.box),tmp.label_ecef_x,TRUE,TRUE,0);
+			gtk_box_pack_start(GTK_BOX(tmp.box),tmp.label_ecef_y,TRUE,TRUE,0);
+			gtk_box_pack_start(GTK_BOX(tmp.box),tmp.label_ecef_z,TRUE,TRUE,0);
+			gtk_box_pack_start(GTK_BOX(tmp.box),tmp.label_pacc,TRUE,TRUE,0);
+			gtk_box_pack_start(GTK_BOX(tmp.box),tmp.label_state,TRUE,TRUE,0);
+
+			gtk_container_add(GTK_CONTAINER(tmp.frame),tmp.box);
+
+			gtk_widget_show(tmp.label_ned_x);
+			gtk_widget_show(tmp.label_ned_y);
+			gtk_widget_show(tmp.label_ned_z);
+			gtk_widget_show(tmp.label_ecef_x);
+			gtk_widget_show(tmp.label_ecef_y);
+			gtk_widget_show(tmp.label_ecef_z);
+			gtk_widget_show(tmp.label_pacc);
+			gtk_widget_show(tmp.label_state);
+			gtk_widget_show(tmp.box);
+
+			return tmp;
+}
+
+void GUI::GUI_main()
+{
+	gtk_main();
+}
 gboolean GUI::delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
 {
 	gtk_main_quit();
@@ -76,3 +113,4 @@ void GUI::callback(GtkWidget *widget, gpointer data)
 	g_print("Hello again - %s was presssed\n",(gchar*) data);
 	gtk_label_set_text(GTK_LABEL(label),(gchar*) data);	
 }
+

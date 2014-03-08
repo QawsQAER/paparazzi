@@ -16,9 +16,9 @@ int main(int argc, char **argv)
 {
 	char default_portname[32] = "/dev/ttyUSB0"; 
 	if(argc == 2)
-		GCS = new Ground_Station(argv[1]);	
+		GCS = new Ground_Station(argv[1],argc,argv);	
 	else	
-		GCS = new Ground_Station(default_portname);
+		GCS = new Ground_Station(default_portname,argc,argv);
 	
 	pthread_t tid = 0;
 	pthread_attr_t thread_attr;
@@ -27,6 +27,8 @@ int main(int argc, char **argv)
 	pthread_attr_init(&thread_attr);
 	pthread_create(&tid,&thread_attr,GCS->periodic_data_handle,NULL);
 	
+	GCS->GCS_GUI->GUI_main();
+	printf("haha\n");
 	GCS->init_quadcopters();
 	GCS->negotiate_ref();
 	signal(SIGINT,kill_all_quads);

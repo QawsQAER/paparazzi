@@ -10,7 +10,6 @@
 #define QUAD_RECV 1
 #define QUAD_EXEC 2
 
-#define QUAD_NB 1
 
 #define SWARM_INIT 0
 #define SWARM_NEGOTIATE_REF 1

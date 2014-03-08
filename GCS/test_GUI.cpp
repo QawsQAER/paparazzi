@@ -4,5 +4,6 @@
 int main(int argc, char **argv)
 {
 	GUI graphic(argc,argv);
+	graphic.GUI_main();
 	return 0;	
 }

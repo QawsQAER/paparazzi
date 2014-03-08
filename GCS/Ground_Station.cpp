@@ -1,15 +1,14 @@
 #include "Ground_Station.h"
 
-
 Swarm* Ground_Station::Swarm_state = NULL;
 XBEE* Ground_Station::Com = NULL;
 GroundControlStation_state Ground_Station::GCS_state;
 struct LtpDef_i Ground_Station::ref;
 struct EcefCoor_i Ground_Station::target[QUAD_NB + 1];
 struct NedCoor_i Ground_Station::ned_pos[QUAD_NB + 1];
+GUI* Ground_Station::GCS_GUI = NULL;
 
-
-Ground_Station::Ground_Station(char *port_name)
+Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 {
 	printf("Creating Ground Control Station\n");
 	Swarm_state = new Swarm();
@@ -31,6 +30,7 @@ Ground_Station::Ground_Station(char *port_name)
 	}
 	GCS_state = GCS_INIT;
 	printf("Ground Control Station Created\n\n");
+	GCS_GUI = new GUI(argc,argv);
 }
 
 Ground_Station::~Ground_Station()
@@ -420,7 +420,9 @@ void * Ground_Station::periodic_data_handle(void * arg)
 				update_on_quad_swarm_report(report);
 				Swarm_state->set_quad_state(report.ac_id,report.state);
 				Swarm_state->set_quad_pacc(report.ac_id,report.pacc);
-				update_ned_coor_by_ecef_coor(report.ac_id);				
+				update_ned_coor_by_ecef_coor(report.ac_id);
+
+				g_main_context_invoke(NULL,update_GUI_quad_status,(gpointer) &report.ac_id);
 				struct NedCoor_i pos = ned_pos[report.ac_id];
 				
 				printf("quad %d in state %d\n",report.ac_id,report.state);
@@ -444,8 +446,12 @@ void * Ground_Station::periodic_data_handle(void * arg)
 	return NULL;
 }
 
-
-
+gboolean Ground_Station::update_GUI_quad_status(gpointer userdata)
+{
+	uint8_t ac_id = *(uint8_t*)userdata;
+	char buffer[50];
+	return G_SOURCE_REMOVE;
+}
 
 
 
