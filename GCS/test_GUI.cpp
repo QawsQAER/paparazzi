@@ -1,8 +1,10 @@
 #include <gtk/gtk.h>
 
+GtkWidget *label;
 static void callback(GtkWidget *widget, gpointer data)
 {
 	g_print("Hello again - %s was presssed\n",(gchar*) data);
+	gtk_label_set_text(GTK_LABEL(label),(gchar*) data);	
 }
 
 static gboolean delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
@@ -45,7 +47,7 @@ int main(int argc, char **argv)
 	gtk_widget_show(button);
 
 	GtkWidget *frame = gtk_frame_new("Quad status");
-	GtkWidget *label = gtk_label_new("state: ");
+	label = gtk_label_new("ned ");
 	gtk_container_add(GTK_CONTAINER(frame),label);
 	//adding frame into box1
 	//gtk_box_pack_start(GTK_BOX(box1), frame,FALSE,FALSE,0);
