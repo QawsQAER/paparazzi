@@ -42,8 +42,8 @@ test_pprz_msg: test_pprz_msg.o pprz_msg.o XBEE_msg.o
 	$(CC) -o test_pprz_msg test_pprz_msg.o pprz_msg.o XBEE_msg.o $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
 	rm -f *.o
 #-----------------------------------------------------------------------------#
-test_GUI: test_GUI.o 
-	$(CC) test_GUI.o -o test_GUI $(GTK_LINK_FLAG)
+test_GUI: test_GUI.o GUI.o
+	$(CC) -o test_GUI test_GUI.o GUI.o $(GTK_LINK_FLAG)
 #-----------------------------------------------------------------------------#
 test_GCS: test_GCS.o $(OBJECT)
 	$(CC) -o test_GCS test_GCS.o $(OBJECT) $(CFLAGS) $(DEBUG_MACRO) $(OPTION) $(PTHREAD_FLAG)
@@ -58,6 +58,8 @@ test_geo: test_geo.cpp geo.o
 ##############################################################################
 test_GUI.o: test_GUI.cpp
 	$(CC) -o test_GUI.o -c test_GUI.cpp $(GTK_FLAG)
+GUI.o: GUI.cpp GUI.h
+	$(CC) -o GUI.o -c GUI.cpp $(GTK_FLAG)
 Ground_Station.o: Ground_Station.h Ground_Station.cpp
 	$(CC) -o Ground_Station.o -c $(GROUND_STATION_SOURCES) $(CFLAGS) $(DEBUGS_MACRO) $(OPTION)
 test.o: test.cpp
