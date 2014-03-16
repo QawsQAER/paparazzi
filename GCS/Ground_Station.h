@@ -59,7 +59,7 @@ class Ground_Station
 		//after this function is called, 
 		//all quadcopters should be in SWARM_NEGOTIATE_REF
 		//the navigation subsystem of quadcopter would be in block 2		
-		static void init_quadcopters();
+		static void *init_quadcopters();
 		static void negotiate_ref();
 		static void calculating_target();
 		static void sending_target();
@@ -87,7 +87,7 @@ class Ground_Station
 		static void ap_kill_quadcopter(uint8_t AC_ID);
 		static void ap_kill_quadcopter();
 		static void ap_nav_quadcopter(uint8_t AC_ID);
-		static void wait_all_quads(uint8_t s);
+		static void wait_all_quads(uint8_t state);
 
 		static void send_target(uint8_t AC_ID, struct EcefCoor_i *tar);
 		//update the state of corresponding quadcopter according to content of report

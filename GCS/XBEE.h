@@ -29,7 +29,7 @@
 #endif
 
 //#include "ADDRESS.h"
-#define XBEE_BUFF_SIZE 1 * MB
+#define XBEE_BUFF_SIZE 5 * MB
 
 class XBEE
 {

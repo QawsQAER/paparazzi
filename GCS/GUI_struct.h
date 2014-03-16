@@ -22,5 +22,11 @@ struct GUI_quad_control_panel
 	GtkWidget *button_start_engine;
 	GtkWidget *button_takeoff;
 	GtkWidget *button_landhere;
-	GtkWidget *button_killed;
+};
+
+struct GUI_GCS_status_frame
+{
+	GtkWidget *frame;
+	GtkWidget *box;
+	GtkWidget *label_status;	
 };

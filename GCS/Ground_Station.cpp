@@ -31,6 +31,7 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	GCS_state = GCS_INIT;
 	printf("Ground Control Station Created\n\n");
 	GCS_GUI = new GUI(argc,argv);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_init,init_quadcopters);
 }
 
 Ground_Station::~Ground_Station()
@@ -39,15 +40,10 @@ Ground_Station::~Ground_Station()
   delete Com;
 }
 
-void Ground_Station::init_quadcopters()
+void *Ground_Station::init_quadcopters()
 {
 	printf("Initiliziing quadcopters\n");
-	bool all_init = 0;
-	while(all_init == 0) 
-	{
-		//the thread will be updating the information
-		all_init = Swarm_state->all_in_state(SWARM_NEGOTIATE_REF);
-	}	
+	wait_all_quads(SWARM_INIT);
 	printf("quadcopters initlization done\n");
 }
 
@@ -177,7 +173,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 			if(Swarm_state->all_in_state(SWARM_REPORT_STATE))
 			break;
 		}
-		//read any buffer
+
 		switch(s)
 		{
 			case(SWARM_KILLED):
@@ -188,6 +184,18 @@ void Ground_Station::wait_all_quads(uint8_t s)
 					if(Swarm_state->get_state(count) != SWARM_KILLED)
 					{
 						ap_kill_quadcopter(count);
+					}
+				}
+			}
+			break;
+			case(SWARM_INIT):
+			{
+				//waiting for all quadcopter to be in SWARM_INIT state
+				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+				{
+					if(Swarm_state->get_state(count_ac) != SWARM_INIT)
+					{
+						send_ack(count_ac,0xfe);
 					}
 				}
 			}
@@ -429,7 +437,7 @@ void * Ground_Station::periodic_data_handle(void * arg)
 				update_ned_coor_by_ecef_coor(report.ac_id);
 
 				update_GUI_quad_status(report);
-				g_main_context_invoke(NULL,update_GUI_quad_status,(gpointer) &report.ac_id);
+				//g_main_context_invoke(NULL,update_GUI_quad_status,(gpointer) &report.ac_id);
 				//gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_state),"haha");
 				struct NedCoor_i pos = ned_pos[report.ac_id];
 				
@@ -456,8 +464,8 @@ void * Ground_Station::periodic_data_handle(void * arg)
 
 gboolean Ground_Station::update_GUI_quad_status(gpointer userdata)
 {
-	uint8_t ac_id = *(uint8_t*)userdata;
-	char buffer[50];
+	//uint8_t ac_id = *(uint8_t*)userdata;
+	//char buffer[50];
 	return G_SOURCE_REMOVE;
 }
 
@@ -476,11 +484,11 @@ void Ground_Station::update_GUI_quad_status(struct quad_swarm_report &report)
 	char buffer[64];
 	memset(buffer,0,sizeof(char)*64);
 
-	sprintf(buffer,"ned x: %d",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].x));
+	sprintf(buffer,"ned x: %f",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].x));
 	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_ned_x),buffer);
-	sprintf(buffer,"ned y: %d",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].y));
+	sprintf(buffer,"ned y: %f",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].y));
 	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_ned_y),buffer);
-	sprintf(buffer,"ned z: %d",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].z));
+	sprintf(buffer,"ned z: %f",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].z));
 	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_ned_z),buffer);
 
 	sprintf(buffer,"ecef x: %d",report.x);
