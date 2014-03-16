@@ -3,7 +3,6 @@
 
 GtkWidget* GUI::window = NULL;
 GtkWidget* GUI::button = NULL;
-GtkWidget* GUI::box1 = NULL;
 GtkWidget* GUI::table = NULL;
 GtkWidget* GUI::label = NULL;
 struct GUI_quad_status_frame GUI::quad_status_frame[QUAD_NB + 1];
@@ -92,14 +91,15 @@ struct GUI_quad_status_frame GUI::GUI_generate_quad_status_frame(uint8_t AC_ID)
 	gtk_widget_show(tmp.label_ecef_z);
 	gtk_widget_show(tmp.label_pacc);
 	gtk_widget_show(tmp.label_state);
-			gtk_widget_show(tmp.box);
+	gtk_widget_show(tmp.box);
 
 			return tmp;
 }
 
 struct GUI_quad_control_panel GUI_generate_quad_control_panel()
 {
-
+	struct GUI_quad_control_panel tmp;
+	tmp.frame = gtk_frame_new("Quadcopters Control");
 }
 
 void GUI::GUI_main()
@@ -118,3 +118,7 @@ void GUI::callback(GtkWidget *widget, gpointer data)
 	gtk_label_set_text(GTK_LABEL(label),(gchar*) data);	
 }
 
+void GUI:button_add_event_listener(GtkWidget *button, (void *) fun())
+{
+
+}

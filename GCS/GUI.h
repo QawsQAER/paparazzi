@@ -9,10 +9,10 @@ class GUI
 	private:
 		static GtkWidget* window;
 		static GtkWidget* button;
-		static GtkWidget* box1;
-		static GtkWidget* table;
-		static GtkWidget* label;
 		
+		static GtkWidget* table;
+		static GtkWidget* label;	
+
 		static struct GUI_quad_control_panel quad_control_panel;
 	public:
 		static struct GUI_quad_status_frame quad_status_frame[QUAD_NB + 1];
@@ -23,6 +23,8 @@ class GUI
 		static gboolean delete_event(GtkWidget *widget, GdkEvent *event, gpointer data);
 		static struct GUI_quad_status_frame GUI_generate_quad_status_frame(uint8_t AC_ID);
 		static struct GUI_quad_control_panel GUI_generate_quad_control_panel();
+		static void button_add_event_listener(GtkWidget* button, (void *) fun());
+
 };
 
 #endif
