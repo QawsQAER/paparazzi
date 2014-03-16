@@ -399,6 +399,12 @@ void * Ground_Station::periodic_data_handle(void * arg)
 			Com->msg.pop();
 			pprz_msg data = ptr->get_pprz_msg();
 			uint8_t msg_id = data.pprz_get_msg_id();
+			if(msg_id == 155)
+			{
+				printf("\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				data.show_hex();
+				printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
+			}
 			if(msg_id == 159)
 			{
 				//if received navigation info, just used for debugging
@@ -422,12 +428,14 @@ void * Ground_Station::periodic_data_handle(void * arg)
 				Swarm_state->set_quad_pacc(report.ac_id,report.pacc);
 				update_ned_coor_by_ecef_coor(report.ac_id);
 
+				update_GUI_quad_status(report);
 				g_main_context_invoke(NULL,update_GUI_quad_status,(gpointer) &report.ac_id);
+				//gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_state),"haha");
 				struct NedCoor_i pos = ned_pos[report.ac_id];
 				
 				printf("quad %d in state %d\n",report.ac_id,report.state);
 				printf("quad %d ned.x %f ned.y %f ned.z %f\n",report.ac_id,POS_FLOAT_OF_BFP(pos.x),POS_FLOAT_OF_BFP(pos.y),POS_FLOAT_OF_BFP(pos.z));
-			
+				
 				#if QUAD_NB >= 2
 				double dis_x = POS_FLOAT_OF_BFP(ned_pos[1].x) - POS_FLOAT_OF_BFP(ned_pos[2].x);
 				double dis_y = POS_FLOAT_OF_BFP(ned_pos[1].y) - POS_FLOAT_OF_BFP(ned_pos[2].y);
@@ -453,7 +461,41 @@ gboolean Ground_Station::update_GUI_quad_status(gpointer userdata)
 	return G_SOURCE_REMOVE;
 }
 
+void Ground_Station::update_GUI_quad_status(struct quad_swarm_report &report)
+{
+	/*
+	tmp.label_ned_x = gtk_label_new("ned x: 0");
+	tmp.label_ned_y = gtk_label_new("ned y: 0");
+	tmp.label_ned_z = gtk_label_new("ned z: 0");
+	tmp.label_ecef_x = gtk_label_new("ecef x: 0");
+	tmp.label_ecef_y = gtk_label_new("ecef y: 0");
+	tmp.label_ecef_z = gtk_label_new("ecef z: 0");
+	tmp.label_pacc = gtk_label_new("pacc : 0");
+	tmp.label_state = gtk_label_new("state: 0");
+	*/
+	char buffer[64];
+	memset(buffer,0,sizeof(char)*64);
 
+	sprintf(buffer,"ned x: %d",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].x));
+	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_ned_x),buffer);
+	sprintf(buffer,"ned y: %d",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].y));
+	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_ned_y),buffer);
+	sprintf(buffer,"ned z: %d",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].z));
+	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_ned_z),buffer);
+
+	sprintf(buffer,"ecef x: %d",report.x);
+	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_ecef_x),buffer);
+	sprintf(buffer,"ecef y: %d",report.y);
+	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_ecef_y),buffer);
+	sprintf(buffer,"ecef z: %d",report.z);
+	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_ecef_z),buffer);
+	
+	sprintf(buffer,"pacc : %d",report.pacc);
+	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_pacc),buffer);
+	
+	sprintf(buffer,"state: %d",report.state);
+	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_state),buffer);
+}
 
 
 

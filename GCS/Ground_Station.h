@@ -97,6 +97,7 @@ class Ground_Station
 		
 		static void * periodic_data_handle(void * arg);
 		static gboolean update_GUI_quad_status(gpointer userdata);
+		static void update_GUI_quad_status(struct quad_swarm_report &report);
 };
 
 #define GCS_SHOW_REPORT(report) {\

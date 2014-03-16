@@ -12,14 +12,17 @@ class GUI
 		static GtkWidget* box1;
 		static GtkWidget* table;
 		static GtkWidget* label;
-		struct GUI_quad_status_frame quad_status_frame[QUAD_NB + 1];
+		
+		static struct GUI_quad_control_panel quad_control_panel;
 	public:
+		static struct GUI_quad_status_frame quad_status_frame[QUAD_NB + 1];
 		GUI(int argc, char**argv);
 		~GUI();
 		static void GUI_main();
 		static void callback(GtkWidget *widget, gpointer data);
 		static gboolean delete_event(GtkWidget *widget, GdkEvent *event, gpointer data);
-		static struct GUI_quad_status_frame GUI_quad_status_frame(uint8_t AC_ID);
+		static struct GUI_quad_status_frame GUI_generate_quad_status_frame(uint8_t AC_ID);
+		static struct GUI_quad_control_panel GUI_generate_quad_control_panel();
 };
 
 #endif
