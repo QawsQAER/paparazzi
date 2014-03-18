@@ -150,8 +150,8 @@ void GUI::callback(GtkWidget *widget, gpointer data)
 	gtk_label_set_text(GTK_LABEL(label),(gchar*) data);	
 }
 
-void GUI::button_add_event_listener(GtkWidget *button, void *fun())
+void GUI::button_add_event_listener(GtkWidget *button, void *fun(void *),void * arg)
 {
-	g_signal_connect(button,"clicked",G_CALLBACK(fun),NULL);
+	g_signal_connect(button,"clicked",G_CALLBACK(fun),(gpointer) arg);
 	return ;
 }

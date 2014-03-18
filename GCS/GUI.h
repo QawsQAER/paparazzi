@@ -28,7 +28,7 @@ class GUI
 		static void GUI_show_quad_status_frame(uint8_t AC_ID);
 
 		static struct GUI_quad_control_panel GUI_generate_quad_control_panel();
-		static void button_add_event_listener(GtkWidget* button, void *fun());
+		static void button_add_event_listener(GtkWidget* button, void *fun(void *), void * arg);
 		static void GUI_show_quad_control_panel();
 
 };

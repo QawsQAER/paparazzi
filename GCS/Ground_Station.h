@@ -58,9 +58,21 @@ class Ground_Station
 		
 		//after this function is called, 
 		//all quadcopters should be in SWARM_NEGOTIATE_REF
-		//the navigation subsystem of quadcopter would be in block 2		
-		static void *init_quadcopters();
+		//the navigation subsystem of quadcopter would be in block 2
+
+		//static void *init_quadcopters(void * arg);
+		//this function will try to initilize all the quadcopters to be in 
+		static void *init_quadcopters( void * arg);
+		static void *init_quadcopters_thread( void * arg);
+
 		static void negotiate_ref();
+
+		static void *start_engine( void * arg);
+		static void *start_engine_thread(void * arg);
+		
+		static void *takeoff(void * arg);
+		static void *takeoff_thread(void * arg);
+		
 		static void calculating_target();
 		static void sending_target();
 		static void wait_cmd_ack();
@@ -70,6 +82,8 @@ class Ground_Station
 /**********************************************************************************************/
 /**********************************************************************************************/
 		
+
+		//Command on the navigation_block
 		//This function will ask quadcopters to takeoff
 		static void nav_start_engine(uint8_t AC_ID);
 		static void nav_start_engine();
@@ -83,6 +97,9 @@ class Ground_Station
 	
 		//land here
 		static void land_here();
+
+
+		//
 		static void send_ack(uint8_t AC_ID, uint8_t ack);	
 		static void ap_kill_quadcopter(uint8_t AC_ID);
 		static void ap_kill_quadcopter();
@@ -96,8 +113,7 @@ class Ground_Station
 		static void update_ned_coor_by_ecef_coor(uint8_t AC_ID);
 		
 		static void * periodic_data_handle(void * arg);
-		static gboolean update_GUI_quad_status(gpointer userdata);
-		static void update_GUI_quad_status(struct quad_swarm_report &report);
+		static gboolean update_GUI_quad_status_pthread(gpointer userdata);
 };
 
 #define GCS_SHOW_REPORT(report) {\

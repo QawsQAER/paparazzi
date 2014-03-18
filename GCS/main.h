@@ -1,6 +1,7 @@
+#ifndef _MAIN_H
+#define _MAIN_H
+
 #define _USE_MBED 0
-
-
 
 //-------------------------------------------//
 
@@ -13,6 +14,7 @@
 #include "string.h"
 #include <fcntl.h>
 #include "Serial.h"
+
 
 typedef unsigned int uint32_t;
 typedef int int32_t;
@@ -28,8 +30,15 @@ typedef unsigned long long uint64_t;
 #include <signal.h>
 #include <time.h>
 
+#include <pthread.h>
+//this mutex indicates whether the quadcopters status if currently being modified by data handler
+extern pthread_mutex_t quad_status_readable;
+//this mutex indicates whether GCS is busy executing an command.
+extern pthread_mutex_t GCS_busy;
 #endif
 //-------------------------------------------//
 
 #define KB 1024
 #define MB KB * KB
+
+#endif

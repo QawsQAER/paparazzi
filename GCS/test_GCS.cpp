@@ -1,9 +1,13 @@
 #include "main.h"
 #include "Ground_Station.h"
 #include "signal.h"
-#include <pthread.h>
+
 
 Ground_Station * GCS;
+//mutex indicating whether the status of quadcopters are readable
+pthread_mutex_t quad_status_readable = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t GCS_busy = PTHREAD_MUTEX_INITIALIZER;
+
 void kill_all_quads(int32_t signum)
 {
 	printf("killing all quads\n");
@@ -23,11 +27,18 @@ int main(int argc, char **argv)
 	pthread_t tid = 0;
 	pthread_attr_t thread_attr;
 	
+	pthread_mutex_init(&quad_status_readable,NULL);
+	pthread_mutex_init(&GCS_busy,NULL);
 	
 	pthread_attr_init(&thread_attr);
 	pthread_create(&tid,&thread_attr,GCS->periodic_data_handle,NULL);
 	
 	GCS->GCS_GUI->GUI_main();
+	
+
+
+
+	/*
 	printf("haha\n");
 	GCS->init_quadcopters();
 	GCS->negotiate_ref();
@@ -48,5 +59,6 @@ int main(int argc, char **argv)
 		else if(strcmp(input,"l") == 0)
 			GCS->land_here();
 	}
+	*/
 	return 0;
 }

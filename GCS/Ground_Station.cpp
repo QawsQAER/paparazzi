@@ -31,7 +31,10 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	GCS_state = GCS_INIT;
 	printf("Ground Control Station Created\n\n");
 	GCS_GUI = new GUI(argc,argv);
-	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_init,init_quadcopters);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_init,init_quadcopters,(void *) &GCS_busy);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_start_engine,start_engine,(void *) &GCS_busy);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_takeoff,takeoff,(void *) &GCS_busy);
+
 }
 
 Ground_Station::~Ground_Station()
@@ -40,13 +43,150 @@ Ground_Station::~Ground_Station()
   delete Com;
 }
 
-void *Ground_Station::init_quadcopters()
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//static void *init_quadcopters(void * arg);
+//this function will try to initilize all the quadcopters to be in
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+void *Ground_Station::init_quadcopters(void * arg)
 {
-	printf("Initiliziing quadcopters\n");
-	wait_all_quads(SWARM_INIT);
-	printf("quadcopters initlization done\n");
+	//invoke a thread
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for init\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,init_quadcopters_thread,NULL);
+	return NULL;
 }
 
+void *Ground_Station::init_quadcopters_thread( void * arg)
+{
+	int rev = 0;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		//Critical Section, sending command, waitting to next stage.
+		printf("init_quadcopters_thread: GCS_busy locking\n");
+		wait_all_quads(SWARM_INIT);
+		printf("init_quadcopters_thread: All quadcopters in SWARM_INIT\n");
+
+		//waiting for all quadcopter to enter SWARM_WAIT_CMD stage
+		wait_all_quads(SWARM_NEGOTIATE_REF);
+
+		wait_all_quads(SWARM_WAIT_CMD);
+		printf("init_quadcopters_thread: All quadcopters in SWARM_WAIT_CMD\n");
+
+		printf("init_quadcopters_thread: GCS_busy unlocking\n");
+		
+		pthread_mutex_unlock(&GCS_busy);
+	}
+	else if (rev == EBUSY)
+	{
+		printf("init_quadcopters_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("init_quadcopters_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("init_quadcopters_thread ERROR: arg is not a valid pointer\n");
+	}
+	return NULL;
+}
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+void *Ground_Station::start_engine(void * arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for start_engine\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,start_engine_thread,NULL);
+	return NULL;
+}
+
+void *Ground_Station::start_engine_thread(void *arg)
+{
+	int rev = 0;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		//Critical Section, sending command, waitting to next stage.
+		printf("start_engine_thread: GCS_busy locking\n");
+		wait_all_quads(SWARM_WAIT_CMD_START_ENGINE);
+
+		printf("start_engine_thread: All quadcopters in SWARM_WAIT_START_ENGINE\n");
+
+		printf("start_engine_thread: GCS_busy unlocking\n");
+		
+		pthread_mutex_unlock(&GCS_busy);
+	}
+	else if (rev == EBUSY)
+	{
+		printf("start_engine_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("start_engine_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("start_engine_thread ERROR: arg is not a valid pointer\n");
+	}
+	return NULL;
+}
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+void *Ground_Station::takeoff(void *arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for takeoff\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,takeoff_thread,NULL);
+	return NULL;
+}
+
+void *Ground_Station::takeoff_thread(void *arg)
+{
+	int rev = 0;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		//Critical Section, sending command, waitting to next stage.
+		printf("start_engine_thread: GCS_busy locking\n");
+		wait_all_quads(SWARM_WAIT_CMD_TAKEOFF);
+
+		printf("start_engine_thread: All quadcopters in SWARM_WAIT_CMD_TAKEOFF\n");
+
+		printf("start_engine_thread: GCS_busy unlocking\n");
+		
+		pthread_mutex_unlock(&GCS_busy);
+
+
+		//Set the origin of the coordination system.
+	}
+	else if (rev == EBUSY)
+	{
+		printf("start_engine_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("start_engine_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("start_engine_thread ERROR: arg is not a valid pointer\n");
+	}
+	return NULL;
+}
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
 void Ground_Station::negotiate_ref()
 {
 	printf("\n\n\n************************\n***********************\n");
@@ -105,6 +245,8 @@ void Ground_Station::negotiate_ref()
 	return ;
 }
 
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
 void Ground_Station::calculating_target()
 {
 	//should be calculating intermediate targets here
@@ -159,6 +301,9 @@ void Ground_Station::wait_report()
 	wait_all_quads(SWARM_REPORT_STATE);
 	return ;
 }
+
+
+
 void Ground_Station::wait_all_quads(uint8_t s)
 {
 	while(!Swarm_state->all_in_state(s))
@@ -196,6 +341,17 @@ void Ground_Station::wait_all_quads(uint8_t s)
 					if(Swarm_state->get_state(count_ac) != SWARM_INIT)
 					{
 						send_ack(count_ac,0xfe);
+					}
+				}
+			}
+			break;
+			case(SWARM_WAIT_CMD):
+			{
+				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+				{
+					if(Swarm_state->get_state(count_ac) != SWARM_WAIT_CMD)
+					{
+						send_ack(count_ac,2);
 					}
 				}
 			}
@@ -284,6 +440,7 @@ void Ground_Station::send_target(uint8_t AC_ID, struct EcefCoor_i * tar)
 	Com->XBEE_send_msg(msg);
 	printf("sending target to quad %d\n",AC_ID);
 }
+
 void Ground_Station::Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID)
 {	
 	pprz_msg data;
@@ -294,6 +451,7 @@ void Ground_Station::Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID)
 	//msg.show_hex();
 	Com->XBEE_send_msg(msg);	
 }
+
 void Ground_Station::send_ack(uint8_t AC_ID, uint8_t ack)
 {
 	pprz_msg pprz_ack;
@@ -431,13 +589,19 @@ void * Ground_Station::periodic_data_handle(void * arg)
 			{
 				struct quad_swarm_report report;
 				data.pprz_get_quad_swarm_report(report);
+				pthread_mutex_lock(&quad_status_readable);
+				printf("Data_handler: Locked for updating data");
 				update_on_quad_swarm_report(report);
 				Swarm_state->set_quad_state(report.ac_id,report.state);
 				Swarm_state->set_quad_pacc(report.ac_id,report.pacc);
 				update_ned_coor_by_ecef_coor(report.ac_id);
+				pthread_mutex_unlock(&quad_status_readable);
+				//this is the unproper method
+				//update_GUI_quad_status(report);
 
-				update_GUI_quad_status(report);
-				//g_main_context_invoke(NULL,update_GUI_quad_status,(gpointer) &report.ac_id);
+				//this is what should be used if want to change the content from another thread
+
+				g_main_context_invoke(NULL,update_GUI_quad_status_pthread,(gpointer) &report);
 				//gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_state),"haha");
 				struct NedCoor_i pos = ned_pos[report.ac_id];
 				
@@ -462,26 +626,11 @@ void * Ground_Station::periodic_data_handle(void * arg)
 	return NULL;
 }
 
-gboolean Ground_Station::update_GUI_quad_status(gpointer userdata)
+gboolean Ground_Station::update_GUI_quad_status_pthread(gpointer userdata)
 {
-	//uint8_t ac_id = *(uint8_t*)userdata;
-	//char buffer[50];
-	return G_SOURCE_REMOVE;
-}
-
-void Ground_Station::update_GUI_quad_status(struct quad_swarm_report &report)
-{
-	/*
-	tmp.label_ned_x = gtk_label_new("ned x: 0");
-	tmp.label_ned_y = gtk_label_new("ned y: 0");
-	tmp.label_ned_z = gtk_label_new("ned z: 0");
-	tmp.label_ecef_x = gtk_label_new("ecef x: 0");
-	tmp.label_ecef_y = gtk_label_new("ecef y: 0");
-	tmp.label_ecef_z = gtk_label_new("ecef z: 0");
-	tmp.label_pacc = gtk_label_new("pacc : 0");
-	tmp.label_state = gtk_label_new("state: 0");
-	*/
-	char buffer[64];
+	struct quad_swarm_report report = *(struct quad_swarm_report *)userdata;
+	
+	char *buffer = (char *) malloc(sizeof(char) * 64);
 	memset(buffer,0,sizeof(char)*64);
 
 	sprintf(buffer,"ned x: %f",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].x));
@@ -503,7 +652,9 @@ void Ground_Station::update_GUI_quad_status(struct quad_swarm_report &report)
 	
 	sprintf(buffer,"state: %d",report.state);
 	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_state),buffer);
-}
 
+	free(buffer);
+	return G_SOURCE_REMOVE;
+}
 
 
