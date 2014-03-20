@@ -20,7 +20,9 @@
 #define SWARM_WAIT_EXEC_ACK 6
 #define SWARM_EXEC_CMD 7
 #define SWARM_REPORT_STATE 8
-#define SWARM_KILLED 9
+#define SWARM_LANDHERE 9
+#define SWARM_LANDED 10
+#define SWARM_KILLED 11
 
 class Swarm
 {

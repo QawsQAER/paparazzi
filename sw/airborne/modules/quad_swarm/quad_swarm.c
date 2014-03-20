@@ -111,6 +111,15 @@ void quad_swarm_periodic( void )
 		return ;
 	}
 
+	if(nav_block == 11)
+	{
+		quad_swarm_state == SWARM_LANDHERE;
+	}
+	else if(nav_block == 12)
+	{
+		quad_swarm_state == SWARM_LANDED;
+	}
+
 	
 	switch(quad_swarm_state)
 	{

@@ -141,7 +141,9 @@ extern void nav_route_xy(float last_wp_x, float last_wp_y, float wp_x, float wp_
   nav_route_xy(waypoints[_start].x, waypoints[_start].y, waypoints[_end].x, waypoints[_end].y)
 
 bool_t nav_approaching_xy(float x, float y, float from_x, float from_y, float approaching_time);
+
 #define NavApproaching(wp, time) nav_approaching_xy(waypoints[wp].x, waypoints[wp].y, last_x, last_y, time)
+
 #define NavApproachingFrom(wp, from, time) nav_approaching_xy(waypoints[wp].x, waypoints[wp].y, waypoints[from].x, waypoints[from].y, time)
 
 
