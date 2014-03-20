@@ -318,8 +318,11 @@ float fp_pitch; /* deg */
  */
 bool_t nav_approaching_xy(float x, float y, float from_x, float from_y, float approaching_time) {
   /** distance to waypoint in x */
+  //target position x - current position x
   float pw_x = x - stateGetPositionEnu_f()->x;
+  
   /** distance to waypoint in y */
+  //target position y - current position y
   float pw_y = y - stateGetPositionEnu_f()->y;
 
   dist2_to_wp = pw_x*pw_x + pw_y *pw_y;
