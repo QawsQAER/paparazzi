@@ -97,7 +97,7 @@ void quad_swarm_init( void )
 	
 void quad_swarm_periodic( void )
 {
-	send_quad_swarm_report();	
+	send_quad_swarm_report();
 	if(!quad_swarm_initilized)
 	{
 		quad_swarm_init();
@@ -111,6 +111,7 @@ void quad_swarm_periodic( void )
 		return ;
 	}
 
+	
 	switch(quad_swarm_state)
 	{
 		case(SWARM_INIT):
