@@ -23,28 +23,18 @@ GUI::GUI(int argc, char** argv)
 	g_signal_connect(window, "delete_event", G_CALLBACK(delete_event),NULL);
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_container_add(GTK_CONTAINER(window),table);
-/*
-	button = gtk_button_new_with_label("Button 1");
-	printf("connecting button\n");
-	g_signal_connect(button,"clicked",G_CALLBACK(callback),(gpointer) "button 1");
-	printf("connecting button done\n");
 
-	gtk_table_attach_defaults(GTK_TABLE(table),button,0,1,0,1);
-	printf("showing button\n");
-	gtk_widget_show(button);
-	printf("showing button done\n");
-*/
+	//Construction and display of gtk frame that will show control panel
 	quad_control_panel = GUI_generate_quad_control_panel();
 	GUI_show_quad_control_panel();
-
 	gtk_table_attach_defaults(GTK_TABLE(table),quad_control_panel.frame,0,QUAD_NB + 1,0,1);
+
+	//Construction and display of gtk frame that will show quadcopter status.
 	for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 	{
 		quad_status_frame[count_ac] = GUI_generate_quad_status_frame(count_ac);
 		GUI_show_quad_status_frame(count_ac);
-
 		gtk_table_attach_defaults(GTK_TABLE(table),quad_status_frame[count_ac].frame,count_ac - 1,count_ac,1,2);
-		//gtk_widget_show(quad_status_frame[count_ac].frame);
 		printf("creating new quad_status_frame done\n");
 	}
 
