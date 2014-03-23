@@ -96,7 +96,8 @@ class Ground_Station
 		static void takeoff_quadcopter(uint8_t AC_ID);
 	
 		//land here
-		static void nav_land_here();
+		static void* nav_land_here(void *arg);
+		static void* nav_land_here_thread(void *arg);
 
 
 		//
