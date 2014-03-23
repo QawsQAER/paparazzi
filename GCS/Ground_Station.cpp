@@ -540,9 +540,10 @@ void Ground_Station::nav_takeoff(uint8_t AC_ID)
 void Ground_Station::nav_land_here()
 {
 	uint8_t count_ac = 1;
+	uint8_t block_id = BLOCK_ID_LAND_HERE;
 	for(count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 	{
-		Send_Msg_Block(AC_ID,BLOCK_ID_LANDHERE);
+		Send_Msg_Block(count_ac,block_id);
 	}
 }
 //------------------------------------------------------------------//
