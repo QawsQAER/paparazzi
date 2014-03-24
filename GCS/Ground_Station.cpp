@@ -45,9 +45,12 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	GCS_state = GCS_INIT;
 	printf("Ground Control Station Created\n\n");
 	GCS_GUI = new GUI(argc,argv);
+
+	//Add event listener for the buttons.
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_init,init_quadcopters,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_start_engine,start_engine,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_takeoff,takeoff,(void *) &GCS_busy);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_landhere,nav_land_here,(void *)&GCS_busy);
 
 }
 
@@ -434,13 +437,15 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				}
 			}
 			break;
+			
 			case(SWARM_EXEC_CMD):
 			{
+				uint8_t quad_state = 0;
 				//all quadcopters should be executing the command sent by GCS
 				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 				{
-					uint8_t quad_state = Swarm_state->get_state(count_ac);
-					if(quad_state != SWARM_EXEC_CMD && quad_state != SWARM_REPORT_STATE && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000))
+					quad_state = Swarm_state->get_state(count_ac);
+					if(quad_state != SWARM_EXEC_CMD && quad_state != SWARM_REPORT_STATE && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000))					{
 					{
 						uint8_t ack_for_exec_cmd = 3;
 						send_ack(count_ac,ack_for_exec_cmd);
@@ -449,11 +454,28 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				}
 			}
 			break;
+			
 			case(SWARM_REPORT_STATE):
 			{
 				//you can do nothing if the quad has not reach the target destination
 			}
 			break;
+
+			case(SWARM_LANDED):
+			{
+				uint8_t quad_state = 0;
+				uint8_t block_id_landhere = BLOCK_ID_LAND_HERE;
+				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+				{
+					quad_state = Swarm_state->get_state(count_ac);
+					if(quad_state != SWARM_LANDHERE && quad_state != SWARM_LANDED)
+					{
+						Send_Msg_Block(count_ac,block_id_landhere);
+					}
+				}
+			}
+			break;
+
 			default:
 			{
 			}
@@ -514,7 +536,7 @@ void Ground_Station::send_ack(uint8_t AC_ID, uint8_t ack)
     						net_addr_lo,\
     						pprz_ack.pprz_get_data_ptr(),\
     						pprz_ack.pprz_get_length());
-	Com->XBEE_send_msg(msg_ack);	
+	Com->XBEE_send_msg(msg_ack);
 }
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
@@ -560,14 +582,47 @@ void Ground_Station::nav_takeoff(uint8_t AC_ID)
 //------------------------------------------------------------------//
 
 //TODO implement land here functionality
-void Ground_Station::nav_land_here()
+void* Ground_Station::nav_land_here(void * arg)
 {
-	uint8_t count_ac = 1;
-	uint8_t block_id = BLOCK_ID_LAND_HERE;
-	for(count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for landhere\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,nav_land_here_thread,NULL);
+	return NULL;
+}
+
+void* Ground_Station::nav_land_here_thread(void * arg)
+{
+	int rev = 0;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
 	{
-		Send_Msg_Block(count_ac,block_id);
+		//Critical Section, sending command, waitting to next stage.
+		printf("nav_land_here_thread: GCS_busy locking\n");
+		wait_all_quads(SWARM_LANDED);
+
+		printf("nav_land_here_thread: All quadcopters in SWARM_WAIT_CMD_TAKEOFF\n");
+
+		printf("nav_land_here_thread: GCS_busy unlocking\n");
+		
+		pthread_mutex_unlock(&GCS_busy);
+
+
+		//Set the origin of the coordination system.
 	}
+	else if (rev == EBUSY)
+	{
+		printf("nav_land_here_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("nav_land_here_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("nav_land_here_thread ERROR: arg is not a valid pointer\n");
+	}
+	return NULL;
 }
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
