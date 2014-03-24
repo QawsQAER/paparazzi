@@ -28,7 +28,8 @@ typedef unsigned long long uint64_t;
 
 //for POSIX timer, should link with -lrt
 #include <signal.h>
-#include <time.h>
+//#include <time.h>
+#include <sys/time.h>
 
 #include <pthread.h>
 //this mutex indicates whether the quadcopters status if currently being modified by data handler

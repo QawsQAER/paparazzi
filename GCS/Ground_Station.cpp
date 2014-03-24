@@ -1,5 +1,6 @@
 #include "Ground_Station.h"
 
+char state_string[12][32];
 Swarm* Ground_Station::Swarm_state = NULL;
 XBEE* Ground_Station::Com = NULL;
 GroundControlStation_state Ground_Station::GCS_state;
@@ -10,6 +11,19 @@ GUI* Ground_Station::GCS_GUI = NULL;
 
 Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 {
+	strcpy(state_string[0],"SWARM_INIT");
+	strcpy(state_string[1],"SWARM_NEGOTIATE_REF");
+	strcpy(state_string[2],"SWARM_WAIT_CMD");
+	strcpy(state_string[3],"SWARM_WAIT_CMD_START_ENGINE");
+	strcpy(state_string[4],"SWARM_WAIT_CMD_TAKEOFF");
+	strcpy(state_string[5],"SWARM_SEND_ACK");
+	strcpy(state_string[6],"SWARM_WAIT_EXEC_ACK");
+	strcpy(state_string[7],"SWARM_EXEC_CMD");
+	strcpy(state_string[8],"SWARM_REPORT_STATE");
+	strcpy(state_string[9],"SWARM_LANDHERE");
+	strcpy(state_string[10],"SWARM_LANDED");
+	strcpy(state_string[11],"SWARM_KILLED");
+
 	printf("Creating Ground Control Station\n");
 	Swarm_state = new Swarm();
 	int fd = open(port_name, O_RDWR | O_NOCTTY | O_SYNC);
@@ -321,6 +335,7 @@ void Ground_Station::wait_report()
 //------------------------------------------------------------------//
 void Ground_Station::wait_all_quads(uint8_t s)
 {
+	struct timeval current_time;
 	while(!Swarm_state->all_in_state(s))
 	{
 		if(s == SWARM_SEND_ACK)
@@ -341,7 +356,8 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				//all quadcopters should be killed
 				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
 				{
-					if(Swarm_state->get_state(count) != SWARM_KILLED)
+					gettimeofday(&current_time,NULL); 
+					if(Swarm_state->get_state(count) != SWARM_KILLED && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000))
 					{
 						ap_kill_quadcopter(count);
 					}
@@ -350,11 +366,15 @@ void Ground_Station::wait_all_quads(uint8_t s)
 			break;
 			case(SWARM_INIT):
 			{
+				//printf("checking\n");
 				//waiting for all quadcopter to be in SWARM_INIT state
+				
 				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 				{
-					if(Swarm_state->get_state(count_ac) != SWARM_INIT)
+					gettimeofday(&current_time,NULL); 
+					if(Swarm_state->get_state(count_ac) != SWARM_INIT && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000) )
 					{
+						//printf("sending 0xfe to quad %d\n",count_ac);
 						send_ack(count_ac,0xfe);
 					}
 				}
@@ -364,7 +384,8 @@ void Ground_Station::wait_all_quads(uint8_t s)
 			{
 				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 				{
-					if(Swarm_state->get_state(count_ac) != SWARM_WAIT_CMD)
+					gettimeofday(&current_time,NULL); 
+					if(Swarm_state->get_state(count_ac) != SWARM_WAIT_CMD && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000))
 					{
 						send_ack(count_ac,2);
 					}
@@ -376,7 +397,8 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				//all quadcopters should be in state SWARM_WAIT_CMD_START_ENGINE 3, from SWARM_WAIT_CMD 2
 				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
 				{
-					if(Swarm_state->get_state(count) != SWARM_WAIT_CMD_START_ENGINE)
+					gettimeofday(&current_time,NULL); 
+					if(Swarm_state->get_state(count) != SWARM_WAIT_CMD_START_ENGINE && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000))
 					{
 						printf("trying to start engine quad %d\n",count);
 						nav_start_engine(count);
@@ -389,7 +411,8 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				//all quadcopters should be in state SWARM_WAIT_CMD_TAKEOFF 4, from SWARM_WAIT_START_ENGINE 3
 				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
 				{
-					if(Swarm_state->get_state(count) != SWARM_WAIT_CMD_TAKEOFF)
+					gettimeofday(&current_time,NULL); 
+					if(Swarm_state->get_state(count) != SWARM_WAIT_CMD_TAKEOF && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000))
 					{
 						nav_takeoff(count);
 					}
@@ -401,7 +424,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				//all quadcopters should be in state SWARM_SEND_ACK 5, from SWARM_WAIT_TAKEOFF 4
 				for(uint8_t count = 1;count < QUAD_NB + 1;count++)
 				{
-					if(Swarm_state->get_state(count) != SWARM_SEND_ACK && Swarm_state->get_state(count) != SWARM_WAIT_EXEC_ACK)
+					if(Swarm_state->get_state(count) != SWARM_SEND_ACK && Swarm_state->get_state(count) != SWARM_WAIT_EXEC_ACK && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000))
 					{
 						//TODO 
 						//send the target of this quadcopter
@@ -417,7 +440,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 				{
 					uint8_t quad_state = Swarm_state->get_state(count_ac);
-					if(quad_state != SWARM_EXEC_CMD && quad_state != SWARM_REPORT_STATE)
+					if(quad_state != SWARM_EXEC_CMD && quad_state != SWARM_REPORT_STATE && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000))
 					{
 						uint8_t ack_for_exec_cmd = 3;
 						send_ack(count_ac,ack_for_exec_cmd);
@@ -667,7 +690,7 @@ void * Ground_Station::periodic_data_handle(void * arg)
 				struct quad_swarm_report report;
 				data.pprz_get_quad_swarm_report(report);
 				pthread_mutex_lock(&quad_status_readable);
-				printf("Data_handler: Locked for updating data");
+				printf("Data_handler: Locked for updating data\n");
 				update_on_quad_swarm_report(report);
 				Swarm_state->set_quad_state(report.ac_id,report.state);
 				Swarm_state->set_quad_pacc(report.ac_id,report.pacc);
@@ -730,7 +753,7 @@ gboolean Ground_Station::update_GUI_quad_status_pthread(gpointer userdata)
 	sprintf(buffer,"pacc : %d",report.pacc);
 	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_pacc),buffer);
 	
-	sprintf(buffer,"state: %d",report.state);
+	sprintf(buffer,"state: %s",state_string[report.state]);
 	gtk_label_set_text(GTK_LABEL(GCS_GUI->quad_status_frame[report.ac_id].label_state),buffer);
 
 	free(buffer);
