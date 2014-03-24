@@ -97,6 +97,7 @@ void quad_swarm_init( void )
 	
 void quad_swarm_periodic( void )
 {
+	//send_nav_info();
 	send_quad_swarm_report();
 	if(!quad_swarm_initilized)
 	{
@@ -113,11 +114,11 @@ void quad_swarm_periodic( void )
 
 	if(nav_block == 11)
 	{
-		quad_swarm_state == SWARM_LANDHERE;
+		quad_swarm_state = SWARM_LANDHERE;
 	}
 	else if(nav_block == 12)
 	{
-		quad_swarm_state == SWARM_LANDED;
+		quad_swarm_state = SWARM_LANDED;
 	}
 
 	
