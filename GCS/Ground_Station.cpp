@@ -48,6 +48,7 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 
 	//Add event listener for the buttons.
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_init,init_quadcopters,(void *) &GCS_busy);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_end_negotiate,end_negotiate,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_start_engine,start_engine,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_takeoff,takeoff,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_landhere,nav_land_here,(void *)&GCS_busy);
@@ -204,6 +205,22 @@ void *Ground_Station::takeoff_thread(void *arg)
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
+
+void *Ground_Station::end_negotiate(void *arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for end negotiation\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,end_negotiate_thread,NULL);
+	return NULL;
+}
+
+void *Ground_Station::end_negotiate_thread(void *arg)
+{
+	//choose the reference local tangent plane coordination here.
+	return NULL;
+}
 void Ground_Station::negotiate_ref()
 {
 	printf("\n\n\n************************\n***********************\n");

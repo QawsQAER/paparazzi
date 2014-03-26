@@ -98,7 +98,7 @@ void quad_swarm_init( void )
 void quad_swarm_periodic( void )
 {
 	//send_nav_info();
-	send_quad_swarm_report();
+	
 	if(!quad_swarm_initilized)
 	{
 		quad_swarm_init();
@@ -126,18 +126,14 @@ void quad_swarm_periodic( void )
 	{
 		case(SWARM_INIT):
 		{
+			send_quad_swarm_report();
 			//0
 			//wait for AP_NAV  to start the module
-			//if received quad_swarm_msg with (0,0,0)
-			//proceed to the next state
-			if(nav_block != 2)
-			{
-					quad_swarm_ack = 1;
-			}
+			//if the nav_block is 2 (which means that GPS has got 3D fixed)
+			//go to next state SWARM_NEGOTIATE_REF.
 			if(nav_block == 2 && autopilot_mode == AP_MODE_NAV)
 			{
 				quad_swarm_state = SWARM_NEGOTIATE_REF;
-				quad_swarm_ack = 2;
 			}		
 			break;
 		}
@@ -146,63 +142,74 @@ void quad_swarm_periodic( void )
 			//1
 			//module started
 			//sending its gps position to the GCS
-			//wait for GCS to ack this quad that GCS 
-			//has choose a gps position as the reference
+			//wait for GCS to ack this quad that GCS has choose a gps position as the reference
+			//goto next state SWARM_WAIT_CMD when received ack=0x02 at this state.
+
+			//Try to send the ECEF coordinate of current quadcopter's local tangent plane coorrdination
+			//Not sure whether it would work fine. 
+			DOWNLINK_SEND_quad_swarm_report(\
+        									DefaultChannel,\
+        									DefaultDevice,\
+        									&quad_swarm_id,\
+        									&state.ned_origin_i.ecef.x,\
+        									&state.ned_origin_i.ecef.y,\
+        									&state.ned_origin_i.ecef.z,\
+        									&quad_swarm_state,\
+											&autopilot_mode,\
+											&gps.pacc);
+			//
 			break;
 		}
 		case(SWARM_WAIT_CMD):
-		{
-			//2
-			//wait for command
-			//if receive quad_swarm_msg 
-			//record the target position
-			//and proceed to next state
-			//send_nav_info();
-			if(nav_block == 2)
-			quad_swarm_ack = 3;// the quad has not yet started engine
-			else if(nav_block == 3) 
+		{	
+			send_quad_swarm_report();
+			//2 -- the quadcopter has negotiate the reference point
+			//wait for command (nav_block) to start engine	
+			if(nav_block == 3) 
 			{
 				//the quad has started engine but not yet takeoff
-				quad_swarm_ack = 4;
-				//the quad proceed to the next state.
 				quad_swarm_state = SWARM_WAIT_CMD_START_ENGINE;
 			}
 			break;
 		}
 		case(SWARM_WAIT_CMD_START_ENGINE):
 		{
-			//STATE 3
-			if(nav_block == 3)
-			quad_swarm_ack = 4;
-			else if(nav_block == 4)
+			send_quad_swarm_report();
+			//3 -- the quacopter has started engine.
+			//wait for command (nav_block) to takeoff.
+			if(nav_block == 4)
 			{
-				quad_swarm_ack = 5;
 				quad_swarm_state = SWARM_WAIT_CMD_TAKEOFF;
 			}
 			break;
 		}
 		case(SWARM_WAIT_CMD_TAKEOFF):
 		{
-			//STATE 4
+			send_quad_swarm_report();
+			//4 -- the quadcopter has taken off.
+			//at this state, the quadcopetr is waiting for a command message from the GCS.
+			//the message is dealt with in quad_swram.h quad_swarm_datalink() MACRO.
 			break;
 		}
 		case(SWARM_SEND_ACK):
 		{
+			send_quad_swarm_report();
 			//STATE 5
-			//send ack to GCS 
-			//to acknowledge the target position
-			//proceed to next state
+			//send ack to GCS to acknowledge the target position has been saved.
+			//
 			quad_swarm_state = SWARM_WAIT_EXEC_ACK;
 			break;
 		}
 		case(SWARM_WAIT_EXEC_ACK):
 		{
+			send_quad_swarm_report();
 			//STATE 6
 			//wait for ack to carry out the previous cmd
 			break;
 		}
 		case(SWARM_EXEC_CMD):
 		{
+			send_quad_swarm_report();
 			//STATE 7
 			//change the target position of the navigation system
 			//check the the execution status
@@ -216,20 +223,33 @@ void quad_swarm_periodic( void )
 		}
 		case(SWARM_REPORT_STATE):
 		{
+			send_quad_swarm_report();
 			//STATE 8
 			//report that this quad has finished the task
 			//if the quad received quad_swarm_msg, 
 			//it will go back to SWARM_SEND_ACK
 			break;
 		}
+		case(SWARM_LANDHERE):
+		{
+			send_quad_swarm_report();
+		}
+		break;
+		case(SWARM_LANDED):
+		{
+			send_quad_swarm_report();
+		}
+		break;
 		case(SWARM_KILLED):
 		{
+			send_quad_swarm_report();
 			//STATE 9
 			//quad_swarm_initilized = 0;
 			break;
 		}
 		default:
 		{
+			send_quad_swarm_report();
 			//Encounter Error, please handle
 			break;
 		}

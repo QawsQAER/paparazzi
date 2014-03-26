@@ -99,11 +99,13 @@ struct GUI_quad_control_panel GUI::GUI_generate_quad_control_panel()
 	tmp.frame = gtk_frame_new("Quadcopters Control");
 	tmp.box = gtk_vbox_new(FALSE,0);
 	tmp.button_init = gtk_button_new_with_label("init");
+	tmp.button_end_negotiate = gtk_button_new_with_label("end negotiation");
 	tmp.button_start_engine = gtk_button_new_with_label("start engine");
 	tmp.button_takeoff = gtk_button_new_with_label("takeoff");
 	tmp.button_landhere = gtk_button_new_with_label("landhere");
 	
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_init,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_end_negotiate,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_start_engine,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_takeoff,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_landhere,TRUE,TRUE,0);

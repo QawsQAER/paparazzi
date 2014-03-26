@@ -66,6 +66,8 @@ class Ground_Station
 		static void *init_quadcopters_thread( void * arg);
 
 		static void negotiate_ref();
+		static void *end_negotiate(void *arg);
+		static void *end_negotiate_thread(void *arg);
 
 		static void *start_engine( void * arg);
 		static void *start_engine_thread(void * arg);

@@ -19,6 +19,7 @@ struct GUI_quad_control_panel
 	GtkWidget *frame;
 	GtkWidget *box;
 	GtkWidget *button_init;
+	GtkWidget *button_end_negotiate;
 	GtkWidget *button_start_engine;
 	GtkWidget *button_takeoff;
 	GtkWidget *button_landhere;
