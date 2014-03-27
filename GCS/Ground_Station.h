@@ -18,8 +18,13 @@
 #include "Serial.h"
 #include "geo.h"
 
+#define LINE 0
+#define TRI 1
+#define REC 2
+
 #define ACK_TO_SWARM_WAIT_CMD 2
 #define ACK_TO_SWARM_EXEC_CMD 3
+
 enum GroundControlStation_state {GCS_INIT,\
 		GCS_NEGOTIATE_REF,\
 		GCS_WAIT_TO_START_ENGINE,\
@@ -44,7 +49,7 @@ class Ground_Station
 		static struct NedCoor_i ned_pos[QUAD_NB + 1];
 		//-------------------------------------------//
 		static void Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID);
-
+		static uint8_t Formation_type;
 	public:
 		static GUI* GCS_GUI;
 		//Ground_Station();
@@ -85,6 +90,7 @@ class Ground_Station
 /**********************************************************************************************/
 		
 
+/**********************************************************************************************/
 		//Command on the navigation_block
 		//This function will ask quadcopters to takeoff
 		static void nav_start_engine(uint8_t AC_ID);
