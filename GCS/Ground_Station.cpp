@@ -8,6 +8,8 @@ struct LtpDef_i Ground_Station::ref;
 struct EcefCoor_i Ground_Station::target[QUAD_NB + 1];
 struct NedCoor_i Ground_Station::ned_pos[QUAD_NB + 1];
 GUI* Ground_Station::GCS_GUI = NULL;
+uint8_t Ground_Station::Formation_type = 0;
+uint8_t Ground_Station::leader_id = 0;
 
 Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 {
@@ -52,6 +54,7 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_start_engine,start_engine,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_takeoff,takeoff,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_landhere,nav_land_here,(void *)&GCS_busy);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_go_north,go_north,(void *) &GCS_busy);
 	printf("Ground Control Station Created\n\n");
 }
 
@@ -219,6 +222,28 @@ void *Ground_Station::end_negotiate(void *arg)
 void *Ground_Station::end_negotiate_thread(void *arg)
 {
 	//choose the reference local tangent plane coordination here.
+	struct EcefCoor_i tmp = Swarm_state->get_quad_coor(leader_id);
+	ltp_def_from_ecef_i(&(ref),&(tmp));
+	return NULL;
+}
+
+void *Ground_Station::go_north(void *arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for go north command\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,go_north_thread,NULL);
+	return NULL;
+}
+
+void *Ground_Station::go_north_thread(void *arg)
+{
+	//1. pthread lock
+	//2. compute the target position
+	//3. send the computed target to the quadcopters
+	//4. check whether the quadcopters has received and execute the command
+	compute_go_north(leader_id,100);
 	return NULL;
 }
 void Ground_Station::negotiate_ref()
@@ -284,12 +309,50 @@ void Ground_Station::negotiate_ref()
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
+
+void Ground_Station::compute_go_north(uint8_t ac_id, uint8_t distance)
+{
+	struct NedCoor_i ned_tar;
+	//add [distance] cm to x (North)
+	ned_tar.x = distance + POS_FLOAT_OF_BFP(ned_pos[ac_id].x) * 100;
+	//keep the original y
+	ned_tar.y = POS_FLOAT_OF_BFP(ned_pos[ac_id].y) * 100;
+	//keep the original 
+	ned_tar.z = POS_FLOAT_OF_BFP(ned_pos[ac_id].z) * 100;
+
+	ecef_of_ned_point_i(&target[ac_id],&ref,&ned_tar);
+	return ;
+}
+
+void Ground_Station::compute_go_south(uint8_t ac_id, uint8_t distance)
+{
+	return ;
+}
+
+void Ground_Station::compute_go_west(uint8_t ac_id, uint8_t distance)
+{
+	return ;
+}
+void Ground_Station::compute_go_east(uint8_t ac_id, uint8_t distance)
+{
+	return ;
+}
+
+void Ground_Station::compute_stright_line_NS()
+{
+	return ;
+}
+
+void Ground_Station::compute_stright_line_WE()
+{
+	return ;
+}
 void Ground_Station::calculating_target()
 {
 	//should be calculating intermediate targets here
 	struct NedCoor_i ned_tar[QUAD_NB + 1];
 	//the 1st quadcopter should proceed to north with 0.5 meters
-	ned_tar[1].x = 100 + POS_FLOAT_OF_BFP(ned_pos[1].x) * 100;//add 50cm to x (North)
+	ned_tar[1].x = 100 + POS_FLOAT_OF_BFP(ned_pos[1].x) * 100;//add 100cm to x (North)
 	ned_tar[1].y = POS_FLOAT_OF_BFP(ned_pos[1].y) * 100;//keep the original y
 	ned_tar[1].z = POS_FLOAT_OF_BFP(ned_pos[1].z) * 100;//keep the original z
 	//the 2nd quadcopter should be 3 meters south to the 1st quad	
@@ -300,6 +363,8 @@ void Ground_Station::calculating_target()
 	#endif
 	for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 	{
+		//convert a ned coordinate in cm unit 
+		//to a ecef coordinates in cm unit
 		ecef_of_ned_point_i(&(target[count_ac]),&(ref),&ned_tar[count_ac]);
 	}
 	return ;
@@ -769,18 +834,20 @@ void * Ground_Station::periodic_data_handle(void * arg)
 			else if(msg_id == RECV_MSG_ID_quad_swarm_report)
 			{
 				struct quad_swarm_report report;
-				struct EcefCoor_i tmp;
-				tmp.x = report.x;
-				tmp.y = report.y;
-				tmp.z = report.z;
+				//struct EcefCoor_i tmp;
+				//tmp.x = report.x;
+				//tmp.y = report.y;
+				//tmp.z = report.z;
 				data.pprz_get_quad_swarm_report(report);
 				pthread_mutex_lock(&quad_status_readable);
 
+				/*
 				if(report.ac_id == LEADER_ID && report.pacc < 5)
 				{
 					//use leader's GPS position as the ref point
 					ltp_def_from_ecef_i(&(ref),&(tmp));
 				}
+				*/
 				printf("Data_handler: Locked for updating data\n");
 				update_on_quad_swarm_report(report);
 				Swarm_state->set_quad_state(report.ac_id,report.state);
@@ -797,6 +864,10 @@ void * Ground_Station::periodic_data_handle(void * arg)
 				struct NedCoor_i pos = ned_pos[report.ac_id];
 				
 				printf("quad %d in state %d\n",report.ac_id,report.state);
+				
+				//POS_FLOAT_OF_BFP(pos.x) convert the pos.x from a user unfriendly data type
+				//into a user friendly double type.
+				//with unit as meters.
 				printf("quad %d ned.x %f ned.y %f ned.z %f\n",report.ac_id,POS_FLOAT_OF_BFP(pos.x),POS_FLOAT_OF_BFP(pos.y),POS_FLOAT_OF_BFP(pos.z));
 				
 				#if QUAD_NB >= 2

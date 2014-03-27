@@ -7,7 +7,7 @@ GtkWidget* GUI::table = NULL;
 GtkWidget* GUI::label = NULL;
 struct GUI_quad_status_frame GUI::quad_status_frame[QUAD_NB + 1];
 struct GUI_quad_control_panel GUI::quad_control_panel;
-
+struct GUI_quad_flight_control GUI::quad_flight_control;
 
 GUI::GUI(int argc, char** argv)
 {
@@ -27,8 +27,11 @@ GUI::GUI(int argc, char** argv)
 	//Construction and display of gtk frame that will show control panel
 	quad_control_panel = GUI_generate_quad_control_panel();
 	GUI_show_quad_control_panel();
-	gtk_table_attach_defaults(GTK_TABLE(table),quad_control_panel.frame,0,QUAD_NB + 1,0,1);
+	gtk_table_attach_defaults(GTK_TABLE(table),quad_control_panel.frame,0,1,0,1);
 
+	quad_flight_control = GUI_generate_quad_flight_control();
+	GUI_show_quad_flight_control();
+	gtk_table_attach_defaults(GTK_TABLE(table),quad_flight_control.frame,1,QUAD_NB + 1,0,2);
 	//Construction and display of gtk frame that will show quadcopter status.
 	for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 	{
@@ -126,6 +129,36 @@ void GUI::GUI_show_quad_control_panel()
 	gtk_widget_show(quad_control_panel.box);
 	gtk_widget_show(quad_control_panel.frame);
 
+	return ;
+}
+
+struct GUI_quad_flight_control GUI::GUI_generate_quad_flight_control()
+{
+	struct GUI_quad_flight_control tmp;
+	tmp.frame = gtk_frame_new("Flight Control");
+	tmp.box = gtk_vbox_new(FALSE,0);
+	tmp.button_go_north = gtk_button_new_with_label("go north");
+	tmp.button_go_south = gtk_button_new_with_label("go south");
+	tmp.button_go_west = gtk_button_new_with_label("go west");
+	tmp.button_go_east = gtk_button_new_with_label("go east");
+
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_north,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_south,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_east,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_west,TRUE,TRUE,0);
+	gtk_container_add(GTK_CONTAINER(tmp.frame),tmp.box);
+	
+	return tmp;
+}
+
+void GUI::GUI_show_quad_flight_control()
+{
+	gtk_widget_show(quad_flight_control.button_go_north);
+	gtk_widget_show(quad_flight_control.button_go_south);
+	gtk_widget_show(quad_flight_control.button_go_east);
+	gtk_widget_show(quad_flight_control.button_go_west);
+	gtk_widget_show(quad_flight_control.box);
+	gtk_widget_show(quad_flight_control.frame);
 	return ;
 }
 void GUI::GUI_main()

@@ -43,13 +43,15 @@ class Ground_Station
 		static Swarm *Swarm_state;
 		static XBEE *Com;
 		static GroundControlStation_state GCS_state;
+		static uint8_t Formation_type;
+		static uint8_t leader_id;
 		//---------geodetic information--------------//
 		static struct LtpDef_i ref;
 		static struct EcefCoor_i target[QUAD_NB + 1];
 		static struct NedCoor_i ned_pos[QUAD_NB + 1];
 		//-------------------------------------------//
 		static void Send_Msg_Block(uint8_t &AC_ID, uint8_t &BLOCK_ID);
-		static uint8_t Formation_type;
+
 	public:
 		static GUI* GCS_GUI;
 		//Ground_Station();
@@ -80,6 +82,9 @@ class Ground_Station
 		static void *takeoff(void * arg);
 		static void *takeoff_thread(void * arg);
 		
+		static void *go_north(void * arg);
+		static void *go_north_thread(void *arg);
+		
 		static void calculating_target();
 		static void sending_target();
 		static void wait_cmd_ack();
@@ -91,8 +96,26 @@ class Ground_Station
 		
 
 /**********************************************************************************************/
+/*							Functions for formation computation								  */
+/**********************************************************************************************/
+
+		//these four functions set the target variables to
+		//diviates from the current reference point
+		//[distance] variable is in cm.
+		static void compute_go_north(uint8_t ac_id, uint8_t distance);
+		static void compute_go_south(uint8_t ac_id, uint8_t distance);
+		static void compute_go_east(uint8_t ac_id, uint8_t distance);
+		static void compute_go_west(uint8_t ac_id, uint8_t distance);
+
+		static void compute_stright_line_NS();
+		static void compute_stright_line_WE();
+
+/**********************************************************************************************/
+/**********************************************************************************************/
+/**********************************************************************************************/
 		//Command on the navigation_block
 		//This function will ask quadcopters to takeoff
+
 		static void nav_start_engine(uint8_t AC_ID);
 		static void nav_start_engine();
 		

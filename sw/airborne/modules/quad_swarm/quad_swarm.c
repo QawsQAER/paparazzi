@@ -74,6 +74,8 @@ void quad_swarm_init( void )
 	quad_swarm_initilized = 1;
 }
 
+//sending the ecef coordinate to the ground control station
+//the unit is cm
 #define send_quad_swarm_report()  {\
 	if (!bit_is_set(state.pos_status, POS_ECEF_I))\
 	stateCalcPositionEcef_i();\

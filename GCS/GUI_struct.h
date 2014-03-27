@@ -25,6 +25,16 @@ struct GUI_quad_control_panel
 	GtkWidget *button_landhere;
 };
 
+struct GUI_quad_flight_control
+{
+	GtkWidget *frame;
+	GtkWidget *box;
+	GtkWidget *button_go_north;
+	GtkWidget *button_go_south;
+	GtkWidget *button_go_east;
+	GtkWidget *button_go_west;
+};
+
 struct GUI_GCS_status_frame
 {
 	GtkWidget *frame;
