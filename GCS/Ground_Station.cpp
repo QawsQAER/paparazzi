@@ -43,7 +43,7 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 		printf("setting done\n");
 	}
 	GCS_state = GCS_INIT;
-	printf("Ground Control Station Created\n\n");
+	
 	GCS_GUI = new GUI(argc,argv);
 
 	//Add event listener for the buttons.
@@ -52,7 +52,7 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_start_engine,start_engine,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_takeoff,takeoff,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_landhere,nav_land_here,(void *)&GCS_busy);
-
+	printf("Ground Control Station Created\n\n");
 }
 
 Ground_Station::~Ground_Station()
@@ -91,7 +91,7 @@ void *Ground_Station::init_quadcopters_thread( void * arg)
 		//waiting for all quadcopter to enter SWARM_WAIT_CMD stage
 		wait_all_quads(SWARM_NEGOTIATE_REF);
 		
-		wait_all_quads(SWARM_WAIT_CMD);
+//		wait_all_quads(SWARM_WAIT_CMD);
 		printf("init_quadcopters_thread: All quadcopters in SWARM_WAIT_CMD\n");
 
 		printf("init_quadcopters_thread: GCS_busy unlocking\n");
@@ -253,6 +253,7 @@ void Ground_Station::negotiate_ref()
 		if(Swarm_state->get_pacc(min) > Swarm_state->get_pacc(count_ac))
 			min = count_ac;
 	}
+
 	//set the Ref as the one with smallest error
 	struct EcefCoor_i min_pos = Swarm_state->get_quad_coor(min);
 	ltp_def_from_ecef_i(&(ref),&min_pos);
@@ -732,6 +733,7 @@ void Ground_Station::update_ned_coor_by_ecef_coor(uint8_t AC_ID)
 //------------------------------------------------------------------//
 void * Ground_Station::periodic_data_handle(void * arg)
 {
+	printf("periodic_data_handle: inside this thread\n");
 	while(1)
 	{
 		Com->XBEE_read_into_recv_buff();
@@ -742,6 +744,7 @@ void * Ground_Station::periodic_data_handle(void * arg)
 			XBEE_msg *ptr = Com->msg.front();
 			Com->msg.pop();
 			pprz_msg data = ptr->get_pprz_msg();
+			data.show_hex();
 			uint8_t msg_id = data.pprz_get_msg_id();
 			if(msg_id == 155)
 			{
@@ -766,8 +769,18 @@ void * Ground_Station::periodic_data_handle(void * arg)
 			else if(msg_id == RECV_MSG_ID_quad_swarm_report)
 			{
 				struct quad_swarm_report report;
+				struct EcefCoor_i tmp;
+				tmp.x = report.x;
+				tmp.y = report.y;
+				tmp.z = report.z;
 				data.pprz_get_quad_swarm_report(report);
 				pthread_mutex_lock(&quad_status_readable);
+
+				if(report.ac_id == LEADER_ID && report.pacc < 5)
+				{
+					//use leader's GPS position as the ref point
+					ltp_def_from_ecef_i(&(ref),&(tmp));
+				}
 				printf("Data_handler: Locked for updating data\n");
 				update_on_quad_swarm_report(report);
 				Swarm_state->set_quad_state(report.ac_id,report.state);

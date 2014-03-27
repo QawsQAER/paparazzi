@@ -42,8 +42,9 @@
 #define SWARM_LANDHERE 9
 #define SWARM_LANDED 10
 #define SWARM_KILLED 11
+#define SWARM_NOT_IN_NAV 12
 
-#define SWARM_REACH_CRITERION 9
+
 extern struct EcefCoor_i quad_swarm_target;
 
 extern void quad_swarm_init( void );

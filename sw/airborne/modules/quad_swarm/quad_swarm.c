@@ -102,14 +102,14 @@ void quad_swarm_periodic( void )
 	if(!quad_swarm_initilized)
 	{
 		quad_swarm_init();
+		send_quad_swarm_report();
 	}
 	
 	if(autopilot_mode != AP_MODE_NAV)
 	{
-		//quad_swarm_ack = 0 means this quadcopter is not ready in NAV mode
+		//quad_swarm_ack = 0 means this quadcopter is not ready in NAV mod
 		quad_swarm_init();
-		send_quad_swarm_ack();
-		return ;
+		//send_quad_swarm_report();
 	}
 
 	if(nav_block == 11)
@@ -245,8 +245,9 @@ void quad_swarm_periodic( void )
 			send_quad_swarm_report();
 			//STATE 9
 			//quad_swarm_initilized = 0;
-			break;
+			
 		}
+		break;
 		default:
 		{
 			send_quad_swarm_report();

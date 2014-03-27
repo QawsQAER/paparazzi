@@ -24,6 +24,8 @@
 #define SWARM_LANDED 10
 #define SWARM_KILLED 11
 
+#define LEADER_ID 1
+
 class Swarm
 {
 	private:

@@ -40,6 +40,7 @@ GUI::GUI(int argc, char** argv)
 
 	gtk_widget_show(table);
 	gtk_widget_show(window);
+	printf("pre-configuration of GUI is done\n");
 }
 
 GUI::~GUI()
@@ -118,6 +119,7 @@ struct GUI_quad_control_panel GUI::GUI_generate_quad_control_panel()
 void GUI::GUI_show_quad_control_panel()
 {
 	gtk_widget_show(quad_control_panel.button_init);
+	gtk_widget_show(quad_control_panel.button_end_negotiate);
 	gtk_widget_show(quad_control_panel.button_start_engine);
 	gtk_widget_show(quad_control_panel.button_takeoff);
 	gtk_widget_show(quad_control_panel.button_landhere);

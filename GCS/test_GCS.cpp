@@ -30,35 +30,11 @@ int main(int argc, char **argv)
 	pthread_mutex_init(&quad_status_readable,NULL);
 	pthread_mutex_init(&GCS_busy,NULL);
 	
+	printf("creating thread for data handler\n");	
 	pthread_attr_init(&thread_attr);
 	pthread_create(&tid,&thread_attr,GCS->periodic_data_handle,NULL);
 	
 	GCS->GCS_GUI->GUI_main();
 	
-
-
-
-	/*
-	printf("haha\n");
-	GCS->init_quadcopters();
-	GCS->negotiate_ref();
-	signal(SIGINT,kill_all_quads);
-	char input[16];
-	while(1)
-	{
-		GCS->calculating_target();
-		printf("Send target ? [y] Land quadcopter ? [l]");
-		scanf("%s",input);
-		if(strcmp(input,"y") == 0)
-		{
-			GCS->sending_target();
-			GCS->wait_cmd_ack();
-			GCS->send_exec_cmd_ack();
-			GCS->wait_report();
-		}
-		else if(strcmp(input,"l") == 0)
-			GCS->land_here();
-	}
-	*/
 	return 0;
 }
