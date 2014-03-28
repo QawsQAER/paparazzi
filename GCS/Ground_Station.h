@@ -25,6 +25,8 @@
 #define ACK_TO_SWARM_WAIT_CMD 2
 #define ACK_TO_SWARM_EXEC_CMD 3
 
+#define MAX_TIME_RESENT 1000
+        
 enum GroundControlStation_state {GCS_INIT,\
 		GCS_NEGOTIATE_REF,\
 		GCS_WAIT_TO_START_ENGINE,\

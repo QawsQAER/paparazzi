@@ -38,7 +38,7 @@ class Swarm
 		//the accruacy of positioning
 		int32_t pacc[QUAD_NB + 1];
 		//the last modified time
-		struct timeval last_modified[QUAD_NB + 1];
+		uint64_t timestamp[QUAD_NB + 1];
 		struct EcefCoor_i pos_mean_error;
 	public:
 		Swarm();
@@ -47,7 +47,7 @@ class Swarm
 		uint32_t get_address_LO(uint8_t &AC_ID);
 		uint8_t get_state(uint8_t &AC_ID);
 		struct EcefCoor_i get_quad_coor(uint8_t &AC_ID);
-		struct timeval * get_last_modified(uint8_t &AC_ID);
+		uint64_t get_timestamp(uint8_t &AC_ID);
 		int32_t get_pacc(uint8_t &AC_ID);
 		
 		void set_quad_state(uint8_t &AC_ID, uint8_t s);

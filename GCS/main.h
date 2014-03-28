@@ -23,6 +23,8 @@ typedef short int16_t;
 typedef unsigned char uint8_t;
 typedef unsigned long long uint64_t;
 
+#define MAX_UINT64_T 0xffffffffffffffff
+
 #define my_write(fd,buff,size) write(fd,buff,size)
 #define my_read(fd,buff,size) read(fd,buff,size) 
 

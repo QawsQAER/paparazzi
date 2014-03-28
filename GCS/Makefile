@@ -13,7 +13,7 @@ OPTION = -D_USE_XBEE_ESC=1 -DQUAD_NB=1
 #############################################
 
 
-TARGETS= main test test_sender test_pprz_msg test_GCS test_recv test_GUI
+TARGETS= main test test_geo test_sender test_pprz_msg test_GCS test_recv test_GUI
 
 OBJECT = Swarm.o geo.o Ground_Station.o XBEE.o XBEE_msg.o pprz_msg.o Serial.o GUI.o
 GROUND_STATION_SOURCES= Ground_Station.cpp #Swarm.cpp Serial.cpp XBEE.cpp XBEE_msg.cpp pprz_msg.cpp

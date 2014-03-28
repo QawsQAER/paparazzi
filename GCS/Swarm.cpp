@@ -45,14 +45,19 @@ int32_t Swarm::get_pacc(uint8_t &AC_ID)
 
 void Swarm::set_quad_state(uint8_t &AC_ID, uint8_t s)
 {
-	gettimeofday(&(this->last_modified[AC_ID]),NULL);
+	
+	if(timestamp[AC_ID] < MAX_UINT64_T)
+		timestamp[AC_ID]++;
+	else
+		timestamp[AC_ID] = 0;
+
 	state[AC_ID] = s;
 	return ;
 }
 
-struct timeval * Swarm::get_last_modified(uint8_t &AC_ID)
+uint64_t Swarm::get_timestamp(uint8_t &AC_ID)
 {
-	return &last_modified[AC_ID];
+	return timestamp[AC_ID];
 }
 void Swarm::set_quad_ecef(uint8_t &AC_ID, struct EcefCoor_i &pos)
 {
