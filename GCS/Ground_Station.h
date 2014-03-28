@@ -138,7 +138,9 @@ class Ground_Station
 		static void ap_nav_quadcopter(uint8_t AC_ID);
 		static void wait_all_quads(uint8_t state);
 
+		//send the target to the quadcopter
 		static void send_target(uint8_t AC_ID, struct EcefCoor_i *tar);
+		
 		//update the state of corresponding quadcopter according to content of report
 		static void update_on_quad_swarm_report(quad_swarm_report report);
 		static void update_ned_coor_by_ecef_coor();

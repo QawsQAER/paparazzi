@@ -193,15 +193,6 @@ void quad_swarm_periodic( void )
 			//the message is dealt with in quad_swram.h quad_swarm_datalink() MACRO.
 			break;
 		}
-		case(SWARM_SEND_ACK):
-		{
-			send_quad_swarm_report();
-			//STATE 5
-			//send ack to GCS to acknowledge the target position has been saved.
-			//
-			quad_swarm_state = SWARM_WAIT_EXEC_ACK;
-			break;
-		}
 		case(SWARM_WAIT_EXEC_ACK):
 		{
 			send_quad_swarm_report();

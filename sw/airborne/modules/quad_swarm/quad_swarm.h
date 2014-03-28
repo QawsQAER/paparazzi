@@ -35,14 +35,13 @@
 #define SWARM_WAIT_CMD 2
 #define SWARM_WAIT_CMD_START_ENGINE 3
 #define SWARM_WAIT_CMD_TAKEOFF 4
-#define SWARM_SEND_ACK 5
-#define SWARM_WAIT_EXEC_ACK 6
-#define SWARM_EXEC_CMD 7
-#define SWARM_REPORT_STATE 8
-#define SWARM_LANDHERE 9
-#define SWARM_LANDED 10
-#define SWARM_KILLED 11
-#define SWARM_NOT_IN_NAV 12
+#define SWARM_WAIT_EXEC_ACK 5
+#define SWARM_EXEC_CMD 6
+#define SWARM_REPORT_STATE 7
+#define SWARM_LANDHERE 8
+#define SWARM_LANDED 9
+#define SWARM_KILLED 10
+#define SWARM_NOT_IN_NAV 11
 
 
 extern struct EcefCoor_i quad_swarm_target;
@@ -70,7 +69,7 @@ extern uint8_t quad_swarm_recv_ack;
 		quad_swarm_target.y = DL_quad_swarm_msg_tar_ecef_pos_y(dl_buffer);\
 		quad_swarm_target.z = DL_quad_swarm_msg_tar_ecef_pos_z(dl_buffer);\
 		}\
-		quad_swarm_state = SWARM_SEND_ACK;\
+		quad_swarm_state = SWARM_WAIT_EXEC_ACK;\
 	}\
 }
 

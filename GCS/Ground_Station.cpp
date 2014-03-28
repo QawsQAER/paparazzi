@@ -18,13 +18,12 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	strcpy(state_string[2],"SWARM_WAIT_CMD");
 	strcpy(state_string[3],"SWARM_WAIT_CMD_START_ENGINE");
 	strcpy(state_string[4],"SWARM_WAIT_CMD_TAKEOFF");
-	strcpy(state_string[5],"SWARM_SEND_ACK");
-	strcpy(state_string[6],"SWARM_WAIT_EXEC_ACK");
-	strcpy(state_string[7],"SWARM_EXEC_CMD");
-	strcpy(state_string[8],"SWARM_REPORT_STATE");
+	strcpy(state_string[5],"SWARM_WAIT_EXEC_ACK");
+	strcpy(state_string[6],"SWARM_EXEC_CMD");
+	strcpy(state_string[7],"SWARM_REPORT_STATE");
 	strcpy(state_string[9],"SWARM_LANDHERE");
-	strcpy(state_string[10],"SWARM_LANDED");
-	strcpy(state_string[11],"SWARM_KILLED");
+	strcpy(state_string[9],"SWARM_LANDED");
+	strcpy(state_string[10],"SWARM_KILLED");
 
 	printf("Creating Ground Control Station\n");
 	Swarm_state = new Swarm();
@@ -54,6 +53,8 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_start_engine,start_engine,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_takeoff,takeoff,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_landhere,nav_land_here,(void *)&GCS_busy);
+	
+	//add event listener for the button of flight control
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_go_north,go_north,(void *) &GCS_busy);
 	printf("Ground Control Station Created\n\n");
 }
@@ -243,8 +244,39 @@ void *Ground_Station::go_north_thread(void *arg)
 	//2. compute the target position
 	//3. send the computed target to the quadcopters
 	//4. check whether the quadcopters has received and execute the command
-	compute_go_north(leader_id,100);
+
+	uint8_t rev = 0
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		if(all_in_state(SWARM_WAIT_CMD_TAKEOFF))
+		{
+			for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+			{
+				compute_go_north(count_ac,100);
+				send_target(leader_id,target[count_ac]);
+			}
+		}
+		while(!all_in_state(SWARM_WAIT_EXEC_ACK))
+		{
+
+		}
+
+		pthread_mutex_unlock(&GCS_busy);
+	}
+	else if (rev == EBUSY)
+	{
+		printf("go_north_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("go_north_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("go_north_thread ERROR: arg is not a valid pointer\n");
+	}
 	return NULL;
+}
 }
 void Ground_Station::negotiate_ref()
 {
@@ -387,18 +419,6 @@ void Ground_Station::sending_target()
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
-void Ground_Station::wait_cmd_ack()
-{
-	wait_all_quads(SWARM_SEND_ACK);
-	printf("all quads have received their targets\n");
-	//should be waiting for ack for command from quads
-	printf("all quads are waiting for cmd ack for exec\n");
-	return ;
-}
-//------------------------------------------------------------------//
-//------------------------------------------------------------------//
-//------------------------------------------------------------------//
-//------------------------------------------------------------------//
 void Ground_Station::send_exec_cmd_ack()
 {
 	printf("send_exec_cmd_ack\n");
@@ -425,11 +445,6 @@ void Ground_Station::wait_all_quads(uint8_t s)
 	uint8_t quad_state;
 	while(!Swarm_state->all_in_state(s))
 	{
-		if(s == SWARM_SEND_ACK)
-		{
-			if(Swarm_state->all_in_state(SWARM_WAIT_EXEC_ACK))
-			{break;}
-		}
 		if(s == SWARM_EXEC_CMD)
 		{
 			if(Swarm_state->all_in_state(SWARM_REPORT_STATE))
@@ -506,23 +521,11 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				}
 			}
 			break;
-			case(SWARM_SEND_ACK):
+			case(SWARM_WAIT_EXEC_ACK):
 			{
-				//all quadcopters should be in state SWARM_SEND_ACK 5, from SWARM_WAIT_TAKEOFF 4
-				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
-				{
-					gettimeofday(&current_time,NULL); 
-					if(Swarm_state->get_state(count_ac) != SWARM_SEND_ACK && Swarm_state->get_state(count_ac) != SWARM_WAIT_EXEC_ACK && (current_time.tv_usec - Swarm_state->get_last_modified(count_ac)->tv_usec > 1000))
-					{
-						//TODO 
-						//send the target of this quadcopter
-						send_target(count_ac,&target[count_ac]);
-						printf("resending target to quad %d\n",count_ac);
-					}
-				}
+
 			}
 			break;
-			
 			case(SWARM_EXEC_CMD):
 			{
 				//uint8_t quad_state = 0;
