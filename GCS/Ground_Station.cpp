@@ -472,9 +472,7 @@ void * Ground_Station::send_exec_cmd_ack_thread(void * arg)
 	printf("send_exec_cmd_ack\n");
 	uint8_t rev = 0;
 	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
-	{
-		wait_all_quads(SWARM_EXEC_CMD);
-		/*
+	{	
 		if(Swarm_state->all_in_state(SWARM_WAIT_EXEC_ACK))
 		{
 			wait_all_quads(SWARM_EXEC_CMD);
@@ -483,7 +481,7 @@ void * Ground_Station::send_exec_cmd_ack_thread(void * arg)
 		{
 			printf("send_exec_cmd_ack_thread ERROR: not all quads are waiting for EXEC ACK\n");
 		}
-		*/
+
 		pthread_mutex_unlock(&GCS_busy);
 	}
 	else if (rev == EBUSY)
@@ -737,8 +735,8 @@ void Ground_Station::send_ack(uint8_t AC_ID, uint8_t ack)
     						pprz_ack.pprz_get_data_ptr(),\
     						pprz_ack.pprz_get_length());
     printf("ACK CONTENT\n");
-    pprz_ack.show_hex();
-    msg_ack.show_hex();
+    //pprz_ack.show_hex();
+    //msg_ack.show_hex();
     printf("ACK CONTENT END\n");
    	Com->XBEE_send_msg(msg_ack);
    	
@@ -930,7 +928,7 @@ void * Ground_Station::periodic_data_handle(void * arg)
 			//printf("---------------------------------------\n");
 			Com->msg.pop();
 			pprz_msg data = ptr->get_pprz_msg();
-			data.show_hex();
+			//data.show_hex();
 			uint8_t msg_id = data.pprz_get_msg_id();
 			if(msg_id == 155)
 			{
@@ -1007,9 +1005,9 @@ void * Ground_Station::periodic_data_handle(void * arg)
 			}
 			else if(msg_id == RECV_MSG_ID_DL_VALUE)
 			{
-				printf("?@!?#!@?#?@!?#!?@#?@!?#\n");
+				printf("RECEIVED MSG DL_VALUE: \n");
 				data.show_hex();
-				printf("1@#!@#!@$@!#$#@!$@!$#@#\n");
+				printf("MSG DL_VALUE END\n");
 			}
 		}
 	}

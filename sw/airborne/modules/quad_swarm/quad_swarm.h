@@ -102,8 +102,6 @@ extern uint8_t quad_swarm_recv_ack;
 	uint8_t ac_id = DL_quad_swarm_ack_forwarded_ac_id(dl_buffer);\
 	uint8_t ack = DL_quad_swarm_ack_forwarded_ack(dl_buffer);\
 	DOWNLINK_SEND_DL_VALUE(DefaultChannel,DefaultDevice,&ack,&ack);\
-	DOWNLINK_SEND_DL_VALUE(DefaultChannel,DefaultDevice,&ack,&ack);\
-	DOWNLINK_SEND_DL_VALUE(DefaultChannel,DefaultDevice,&ack,&ack);\
 	if(ack == 0xff)\
 	{\
 		autopilot_set_mode(AP_MODE_KILL);\
@@ -119,7 +117,7 @@ extern uint8_t quad_swarm_recv_ack;
 	{\
 		quad_swarm_state = SWARM_WAIT_CMD;\
 	}\
-	else if(ack == 0xfd )\
+	else if(ack == 0xfd && quad_swarm_state == SWARM_WAIT_EXEC_ACK)\
 	{\
 		quad_swarm_state = SWARM_EXEC_CMD;\
 		quad_swarm_target_to_waypoint();\
