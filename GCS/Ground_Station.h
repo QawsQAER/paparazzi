@@ -87,10 +87,13 @@ class Ground_Station
 		static void *go_north(void * arg);
 		static void *go_north_thread(void *arg);
 		
+		static void *send_exec_cmd_ack(void *arg);
+		static void *send_exec_cmd_ack_thread(void *arg);
+
 		static void calculating_target();
 		static void sending_target();
 		static void wait_cmd_ack();
-		static void send_exec_cmd_ack();
+		
 		static void wait_report();
 /**********************************************************************************************/
 /**********************************************************************************************/

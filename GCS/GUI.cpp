@@ -137,11 +137,13 @@ struct GUI_quad_flight_control GUI::GUI_generate_quad_flight_control()
 	struct GUI_quad_flight_control tmp;
 	tmp.frame = gtk_frame_new("Flight Control");
 	tmp.box = gtk_vbox_new(FALSE,0);
+	tmp.button_execute = gtk_button_new_with_label("execute");
 	tmp.button_go_north = gtk_button_new_with_label("go north");
 	tmp.button_go_south = gtk_button_new_with_label("go south");
 	tmp.button_go_west = gtk_button_new_with_label("go west");
 	tmp.button_go_east = gtk_button_new_with_label("go east");
 
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_execute,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_north,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_south,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_east,TRUE,TRUE,0);
@@ -153,6 +155,7 @@ struct GUI_quad_flight_control GUI::GUI_generate_quad_flight_control()
 
 void GUI::GUI_show_quad_flight_control()
 {
+	gtk_widget_show(quad_flight_control.button_execute);
 	gtk_widget_show(quad_flight_control.button_go_north);
 	gtk_widget_show(quad_flight_control.button_go_south);
 	gtk_widget_show(quad_flight_control.button_go_east);

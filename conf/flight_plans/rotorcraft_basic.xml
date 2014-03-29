@@ -18,11 +18,14 @@
   <blocks>
     <block name="Wait GPS">
       <call fun="NavKillThrottle()"/>
+<!--  Edit by Edward, for testing when GPS is not available
       <while cond="!GpsFixValid()"/>
+-->
+		<while cond="0"/>
     </block>
 
     <block name="Geo init">
-      <while cond="LessThan(NavBlockTime(), 10)"/>
+      <while cond="LessThan(NavBlockTime(), 3)"/>
       <call fun="NavSetGroundReferenceHere()"/>
       <!--<call fun="NavSetAltitudeReferenceHere()"/>-->
     </block>
@@ -33,13 +36,13 @@
     </block>
 
     <block name="Start Engine">
-      <call fun="NavResurrect()"/>
+<!--  COMMENTED BY EDWARD    <call fun="NavResurrect()"/>-->
       <attitude pitch="0" roll="0" throttle="0" vmode="throttle" until="FALSE"/>
     </block>
 
     <block name="Takeoff" strip_button="Takeoff" strip_icon="takeoff.png">
       <exception cond="stateGetPositionEnu_f()->z > 2.0" deroute="Standby"/>
-      <call fun="NavSetWaypointHere(WP_CLIMB)"/>
+      <!--COMMENTED BY EDWARD <call fun="NavSetWaypointHere(WP_CLIMB)"/>-->
       <stay vmode="climb" climb="0.5" wp="CLIMB"/>
     </block>
 

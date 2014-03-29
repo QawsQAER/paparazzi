@@ -38,6 +38,10 @@ typedef unsigned long long uint64_t;
 extern pthread_mutex_t quad_status_readable;
 //this mutex indicates whether GCS is busy executing an command.
 extern pthread_mutex_t GCS_busy;
+
+extern pthread_mutex_t XBEE_WRITE;
+
+extern pthread_mutex_t XBEE_READ;
 #endif
 //-------------------------------------------//
 

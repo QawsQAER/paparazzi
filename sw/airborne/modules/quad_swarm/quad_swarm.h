@@ -30,6 +30,32 @@
 //for flight plan, nav_block, nav_stage etc
 #include "subsystems/navigation/common_flight_plan.h"
 
+/**********************************************************************/
+/*** for transmission                                              ****/
+/***DefaultChannel and DefaultDevice are 'ifndef then define here' ****/
+/*** message.h is included here                                    ****/
+/**********************************************************************/
+#include "subsystems/datalink/downlink.h"
+
+/**********************************************************************/
+/****     UART2CheckFreeSpace is defined here                      ****/
+/**********************************************************************/
+#include "mcu_periph/uart.h"
+
+//for autopilot_mode
+#include "autopilot.h"
+
+//for pacc of gps
+#if USE_GPS
+#include "subsystems/gps.h"
+#endif
+//for AC_ID
+#include "generated/airframe.h"
+
+//for block time, stage time
+#include "firmwares/rotorcraft/navigation.h"
+
+
 #define SWARM_INIT 0
 #define SWARM_NEGOTIATE_REF 1
 #define SWARM_WAIT_CMD 2
@@ -75,6 +101,9 @@ extern uint8_t quad_swarm_recv_ack;
 #define quad_swarm_ack_datalink(){\
 	uint8_t ac_id = DL_quad_swarm_ack_forwarded_ac_id(dl_buffer);\
 	uint8_t ack = DL_quad_swarm_ack_forwarded_ack(dl_buffer);\
+	DOWNLINK_SEND_DL_VALUE(DefaultChannel,DefaultDevice,&ack,&ack);\
+	DOWNLINK_SEND_DL_VALUE(DefaultChannel,DefaultDevice,&ack,&ack);\
+	DOWNLINK_SEND_DL_VALUE(DefaultChannel,DefaultDevice,&ack,&ack);\
 	if(ack == 0xff)\
 	{\
 		autopilot_set_mode(AP_MODE_KILL);\
@@ -90,12 +119,22 @@ extern uint8_t quad_swarm_recv_ack;
 	{\
 		quad_swarm_state = SWARM_WAIT_CMD;\
 	}\
-	else if(ack == 3 && quad_swarm_state == SWARM_WAIT_EXEC_ACK)\
+	else if(ack == 0xfd )\
 	{\
 		quad_swarm_state = SWARM_EXEC_CMD;\
 		quad_swarm_target_to_waypoint();\
 	}\
 }
+
+#define send_nav_info() DOWNLINK_SEND_ROTORCRAFT_NAV_STATUS(\
+		DefaultChannel,\
+		DefaultDevice,\
+                   &block_time,				\
+                   &stage_time,				\
+                   &nav_block,				\
+                   &nav_stage,				\
+                   &horizontal_mode)
+
 extern void quad_swarm_start( void );
 extern void quad_swarm_stop( void );
 #endif

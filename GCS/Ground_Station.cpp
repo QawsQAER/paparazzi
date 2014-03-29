@@ -55,7 +55,9 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_landhere,nav_land_here,(void *)&GCS_busy);
 	
 	//add event listener for the button of flight control
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_execute,send_exec_cmd_ack,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_go_north,go_north,(void *) &GCS_busy);
+	
 	printf("Ground Control Station Created\n\n");
 }
 
@@ -284,14 +286,10 @@ void *Ground_Station::go_north_thread(void *arg)
 
 			//Ensure every quadcopters will execute the command.
 			printf("go_north_thread: all quadcopters has been waiting for executing ack\n");
-			wait_all_quads(SWARM_EXEC_CMD);
-			printf("go_north_thread: all quadcopters has been in executing the command\n");
+			//wait_all_quads(SWARM_EXEC_CMD);
+			//printf("go_north_thread: all quadcopters has been in executing the command\n");
 			//Ensure every quadcopters has finsihed executing the command.
-			wait_all_quads(SWARM_REPORT_STATE);
-			while(!Swarm_state->all_in_state(SWARM_REPORT_STATE))
-			{
-
-			}
+			//wait_all_quads(SWARM_REPORT_STATE);
 		}
 		else
 		{
@@ -314,6 +312,7 @@ void *Ground_Station::go_north_thread(void *arg)
 	{
 		printf("go_north_thread ERROR: arg is not a valid pointer\n");
 	}
+	pthread_exit(NULL);
 	return NULL;
 }
 
@@ -458,11 +457,49 @@ void Ground_Station::sending_target()
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
-void Ground_Station::send_exec_cmd_ack()
+
+void *Ground_Station::send_exec_cmd_ack(void * arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for sending execute ack\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,send_exec_cmd_ack_thread,NULL);
+	return NULL;
+}
+void * Ground_Station::send_exec_cmd_ack_thread(void * arg) 
 {
 	printf("send_exec_cmd_ack\n");
-	wait_all_quads(SWARM_EXEC_CMD);
-	return ;
+	uint8_t rev = 0;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		wait_all_quads(SWARM_EXEC_CMD);
+		/*
+		if(Swarm_state->all_in_state(SWARM_WAIT_EXEC_ACK))
+		{
+			wait_all_quads(SWARM_EXEC_CMD);
+		}	
+		else
+		{
+			printf("send_exec_cmd_ack_thread ERROR: not all quads are waiting for EXEC ACK\n");
+		}
+		*/
+		pthread_mutex_unlock(&GCS_busy);
+	}
+	else if (rev == EBUSY)
+	{
+		printf("send_exec_cmd_ack_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("send_exec_cmd_ack_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("send_exec_cmd_ack_thread ERROR: arg is not a valid pointer\n");
+	}
+	pthread_exit(NULL);
+	return NULL;
 }
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
@@ -483,8 +520,13 @@ void Ground_Station::wait_all_quads(uint8_t s)
 	uint64_t *last_timestamp;
 	last_timestamp = (uint64_t *) new uint64_t[QUAD_NB + 1];
 	memset(last_timestamp,0,sizeof(uint64_t) * (QUAD_NB + 1));
-
+	pthread_mutex_lock(&XBEE_WRITE);
 	uint8_t quad_state;
+	struct timeval time;
+	struct timeval last_time;
+	
+	gettimeofday(&last_time,NULL);
+	gettimeofday(&time,NULL);
 	while(!Swarm_state->all_in_state(s))
 	{
 		if(s == SWARM_EXEC_CMD)
@@ -580,18 +622,31 @@ void Ground_Station::wait_all_quads(uint8_t s)
 			{
 				//all quadcopters should be executing the command sent by GCS
 				//TODO: consider how to emergently handle the case when some quadcopters fail to execute the command.
-				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+				for(uint8_t ac_id = 1;ac_id < QUAD_NB + 1;ac_id++)
+				{
+					quad_state = Swarm_state->get_state(ac_id);
+					gettimeofday(&time,NULL);
+					if((quad_state != SWARM_EXEC_CMD || quad_state != SWARM_REPORT_STATE) && (last_time.tv_sec + 2 < time.tv_sec))// && last_timestamp[1] < Swarm_state->get_timestamp(ac_id))
+					{
+						last_time.tv_sec = time.tv_sec;
+						last_time.tv_usec = time.tv_usec;
+						send_ack(ac_id,0xfd);
+						printf("-----------------------------\n-----------------------------\n");
+						printf("sending ack 0xfd to quad 1\n");
+						printf("-----------------------------\n-----------------------------\n");
+					}
+				}
+				/*for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 				{
 					quad_state = Swarm_state->get_state(count_ac);
 					if((quad_state != SWARM_EXEC_CMD || quad_state != SWARM_REPORT_STATE) && (last_timestamp[count_ac] < Swarm_state->get_timestamp(count_ac)))
 					{
 						//update the last timestamp.
 						last_timestamp[count_ac] = Swarm_state->get_timestamp(count_ac);	
-						uint8_t ack_for_exec_cmd = 3;
-						send_ack(count_ac,ack_for_exec_cmd);
+						send_ack(count_ac,0xfd);
 						printf("sending exec_ack to quad %d\n",count_ac);
 					}
-				}
+				}*/
 			}
 			break;
 			
@@ -625,6 +680,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 		}
 	}
 	delete last_timestamp;
+	pthread_mutex_unlock(&XBEE_WRITE);
 	return ;
 }
 //------------------------------------------------------------------//
@@ -680,7 +736,13 @@ void Ground_Station::send_ack(uint8_t AC_ID, uint8_t ack)
     						net_addr_lo,\
     						pprz_ack.pprz_get_data_ptr(),\
     						pprz_ack.pprz_get_length());
-	Com->XBEE_send_msg(msg_ack);
+    printf("ACK CONTENT\n");
+    pprz_ack.show_hex();
+    msg_ack.show_hex();
+    printf("ACK CONTENT END\n");
+   	Com->XBEE_send_msg(msg_ack);
+   	
+   	return ;
 }
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
@@ -766,6 +828,7 @@ void* Ground_Station::nav_land_here_thread(void * arg)
 	{
 		printf("nav_land_here_thread ERROR: arg is not a valid pointer\n");
 	}
+	pthread_exit(NULL);
 	return NULL;
 }
 //------------------------------------------------------------------//
@@ -862,8 +925,12 @@ void * Ground_Station::periodic_data_handle(void * arg)
 		while(!Com->msg.empty())
 		{
 			XBEE_msg *ptr = Com->msg.front();
+			//printf("---------------------------------------\n");
+			//ptr->show_hex();
+			//printf("---------------------------------------\n");
 			Com->msg.pop();
 			pprz_msg data = ptr->get_pprz_msg();
+			data.show_hex();
 			uint8_t msg_id = data.pprz_get_msg_id();
 			if(msg_id == 155)
 			{
@@ -936,6 +1003,13 @@ void * Ground_Station::periodic_data_handle(void * arg)
 						Swarm_state->get_pacc(ac1),\
 						Swarm_state->get_pacc(ac2));
 				#endif
+				//send_ack(report.ac_id,0xfd);
+			}
+			else if(msg_id == RECV_MSG_ID_DL_VALUE)
+			{
+				printf("?@!?#!@?#?@!?#!?@#?@!?#\n");
+				data.show_hex();
+				printf("1@#!@#!@$@!#$#@!$@!$#@#\n");
 			}
 		}
 	}

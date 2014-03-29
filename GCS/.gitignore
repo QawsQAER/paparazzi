@@ -6,4 +6,5 @@ test_recv
 test_size
 test
 test_geo
+test_XBEE_msg
 record

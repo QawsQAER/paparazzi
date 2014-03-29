@@ -7,6 +7,8 @@ Ground_Station * GCS;
 //mutex indicating whether the status of quadcopters are readable
 pthread_mutex_t quad_status_readable = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t GCS_busy = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t XBEE_WRITE = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t XBEE_READ = PTHREAD_MUTEX_INITIALIZER;
 
 void kill_all_quads(int32_t signum)
 {
@@ -29,7 +31,9 @@ int main(int argc, char **argv)
 	
 	pthread_mutex_init(&quad_status_readable,NULL);
 	pthread_mutex_init(&GCS_busy,NULL);
-	
+	pthread_mutex_init(&XBEE_READ,NULL);
+	pthread_mutex_init(&XBEE_WRITE,NULL);
+		
 	printf("creating thread for data handler\n");	
 	pthread_attr_init(&thread_attr);
 	pthread_create(&tid,&thread_attr,GCS->periodic_data_handle,NULL);

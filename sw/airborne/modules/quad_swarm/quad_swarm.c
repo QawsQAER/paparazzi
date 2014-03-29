@@ -22,39 +22,10 @@
 
 #include "modules/quad_swarm/quad_swarm.h"
 
-/**********************************************************************/
-/*** for transmission                                              ****/
-/***DefaultChannel and DefaultDevice are 'ifndef then define here' ****/
-/*** message.h is included here                                    ****/
-/**********************************************************************/
-#include "subsystems/datalink/downlink.h"
 
-/**********************************************************************/
-/****     UART2CheckFreeSpace is defined here                      ****/
-/**********************************************************************/
-#include "mcu_periph/uart.h"
 
-//for autopilot_mode
-#include "autopilot.h"
 
-//for pacc of gps
-#if USE_GPS
-#include "subsystems/gps.h"
-#endif
-//for AC_ID
-#include "generated/airframe.h"
 
-//for block time, stage time
-#include "firmwares/rotorcraft/navigation.h"
-
-#define send_nav_info()  DOWNLINK_SEND_ROTORCRAFT_NAV_STATUS(\
-		DefaultChannel,\
-		DefaultDevice,\
-                   &block_time,				\
-                   &stage_time,				\
-                   &nav_block,				\
-                   &nav_stage,				\
-                   &horizontal_mode)			
 uint8_t quad_swarm_state;
 uint8_t quad_swarm_recv_ack = 0;
 

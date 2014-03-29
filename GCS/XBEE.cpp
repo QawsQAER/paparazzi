@@ -39,7 +39,7 @@ void XBEE::XBEE_write(uint8_t *tran_buff,uint8_t size)
 	while(byte_count < size)
 	{
 		byte_count += my_write(this->fd,(void *) (tran_buff + byte_count),size - byte_count);
-		//printf("byte_count %d\n",byte_count);
+		printf("byte_count %d\n",byte_count);
 	}
 	//printf("written\n");
 	memset(tran_buff,0,byte_count);

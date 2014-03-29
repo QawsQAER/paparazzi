@@ -4,6 +4,7 @@ CFLAGS = -Wall -g
 OPTION = -D_USE_XBEE_ESC=1 -DQUAD_NB=1
 #############################################
 
+#DEBUG_MACRO = -D_DEBUG_XBEE_SEND_MSG=1
 ##########DEBUG OPTION#######################
 #DEBUG_MACRO = -D_DEBUG_CHECKSUM=1 
 #DEBUG_MACRO = -D_DEBUG_XBEE_parse_XBEE_msg=1 
@@ -13,7 +14,7 @@ OPTION = -D_USE_XBEE_ESC=1 -DQUAD_NB=1
 #############################################
 
 
-TARGETS= main test test_geo test_sender test_pprz_msg test_GCS test_recv test_GUI
+TARGETS= main test test_geo test_sender test_pprz_msg test_GCS test_recv test_GUI test_XBEE_msg
 
 OBJECT = Swarm.o geo.o Ground_Station.o XBEE.o XBEE_msg.o pprz_msg.o Serial.o GUI.o
 GROUND_STATION_SOURCES= Ground_Station.cpp #Swarm.cpp Serial.cpp XBEE.cpp XBEE_msg.cpp pprz_msg.cpp
@@ -42,6 +43,10 @@ test_sender: test_sender.o Serial.o XBEE.o XBEE_msg.o pprz_msg.o
 #-----------------------------------------------------------------------------#
 test_pprz_msg: test_pprz_msg.o pprz_msg.o XBEE_msg.o
 	$(CC) -o test_pprz_msg test_pprz_msg.o pprz_msg.o XBEE_msg.o $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
+	rm -f *.o
+#-----------------------------------------------------------------------------#
+test_XBEE_msg: test_XBEE_msg.o pprz_msg.o XBEE_msg.o
+	$(CC) -o test_XBEE_msg test_XBEE_msg.o pprz_msg.o XBEE_msg.o $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
 	rm -f *.o
 #-----------------------------------------------------------------------------#
 test_GUI: test_GUI.o GUI.o
@@ -75,7 +80,8 @@ test.o: test.cpp
 
 test_sender.o: test_sender.cpp
 	$(CC) -o test_sender.o -c test_sender.cpp $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
-
+test_XBEE_msg.o: test_XBEE_msg.cpp
+	$(CC) -o test_XBEE_msg.o -c test_XBEE_msg.cpp $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
 test_pprz_msg.o: test_pprz_msg.cpp
 	$(CC) -o test_pprz_msg.o -c test_pprz_msg.cpp $(CFLAGS) $(DEBUG_MACRO) $(OPTION)
 

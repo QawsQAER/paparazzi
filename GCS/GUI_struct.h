@@ -29,6 +29,7 @@ struct GUI_quad_flight_control
 {
 	GtkWidget *frame;
 	GtkWidget *box;
+	GtkWidget *button_execute;
 	GtkWidget *button_go_north;
 	GtkWidget *button_go_south;
 	GtkWidget *button_go_east;
