@@ -55,7 +55,8 @@
 //for block time, stage time
 #include "firmwares/rotorcraft/navigation.h"
 
-
+//for WAYPOINTS, MACRO OF generated flight_plan.h
+#include "generated/flight_plan.h"
 #define SWARM_INIT 0
 #define SWARM_NEGOTIATE_REF 1
 #define SWARM_WAIT_CMD 2
@@ -68,8 +69,10 @@
 #define SWARM_LANDED 9
 #define SWARM_KILLED 10
 
+#define SWARM_WP_FOR_USE 2
 
 extern struct EcefCoor_i quad_swarm_target;
+extern struct EnuCoor_i quad_swarm_original_wp;
 
 extern void quad_swarm_init( void );
 extern void quad_swarm_periodic( void );

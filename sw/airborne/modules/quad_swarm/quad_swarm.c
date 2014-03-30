@@ -45,6 +45,7 @@ void quad_swarm_init( void )
 	quad_swarm_ack = 0;
 	quad_swarm_recv_ack = 0;
 	quad_swarm_initilized = 1;
+
 }
 
 //sending the ecef coordinate to the ground control station
@@ -231,7 +232,11 @@ uint8_t quad_swarm_reach_tar()
 
 void quad_swarm_target_to_waypoint()
 {
+	//the waypoints[SWARM_WP_FOR_USE] will be reset by nav_init(), which is called when a 
+	//ack=0xfe is received, for reseting the quad_swarm module to SWARM_INIT
 	enu_of_ecef_pos_i(&navigation_target,&ins_ltp_def,&quad_swarm_target);
+	//navigation_target may be set to waypoints[WP_NB], so set the waypoint to the same value
+	enu_of_ecef_pos_i(&waypoints[SWARM_WP_FOR_USE],&ins_ltp_def,&quad_swarm_target);
 	return ;
 }
 /*void quad_swarm_datalink( void )
