@@ -22,6 +22,8 @@ XBEE::XBEE(int fd,uint32_t Serial_Num_HI, uint32_t Serial_Num_LO,  uint8_t ID)
 	this->ID = ID;
 	this->recv_pos = 0;
 	this->tran_pos = 0;
+	while(!(recv_buff = (uint8_t *) malloc(XBEE_BUFF_SIZE * sizeof(uint8_t))));
+	while(!(tran_buff = (uint8_t *) malloc(XBEE_BUFF_SIZE * sizeof(uint8_t))));
 	memset(recv_buff,0,XBEE_BUFF_SIZE);
 	memset(tran_buff,0,XBEE_BUFF_SIZE);
 }
@@ -30,6 +32,8 @@ XBEE::XBEE(int fd,uint32_t Serial_Num_HI, uint32_t Serial_Num_LO,  uint8_t ID)
 XBEE::~XBEE()
 {
 	//for integrity
+	free(recv_buff);
+	free(tran_buff);
 	close(fd);
 }
 //TODO possible software flow control

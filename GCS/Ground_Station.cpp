@@ -277,7 +277,7 @@ void *Ground_Station::go_north_thread(void *arg)
 			printf("go_north_thread: all qucopters are ready for command\n");
 			for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 			{
-				compute_go_north(count_ac,100);
+				compute_go_north(count_ac,200);
 				send_target(leader_id,&target[count_ac]);
 			}
 
@@ -555,10 +555,19 @@ void Ground_Station::wait_all_quads(uint8_t s)
 				
 				for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 				{
-					if(Swarm_state->get_state(count_ac) != SWARM_INIT && (last_timestamp[count_ac] < Swarm_state->get_timestamp(count_ac)))
+					if(last_timestamp[count_ac] < Swarm_state->get_timestamp(count_ac))
 					{
-						last_timestamp[count_ac] = Swarm_state->get_timestamp(count_ac);
-						send_ack(count_ac,0xfe);
+						if(Swarm_state->get_state(count_ac) == SWARM_NEGOTIATE_REF)
+						{
+							//printf("IT'S IN negotiation!!!!\n");
+							continue;
+						}	
+						else if((Swarm_state->get_state(count_ac) != SWARM_INIT))
+						{
+							last_timestamp[count_ac] = Swarm_state->get_timestamp(count_ac);
+							send_ack(count_ac,0xfe);
+							printf("sending init msg to %d\n",count_ac);
+						}
 					}
 				}
 			}
@@ -630,7 +639,7 @@ void Ground_Station::wait_all_quads(uint8_t s)
 						last_time.tv_usec = time.tv_usec;
 						send_ack(ac_id,0xfd);
 						printf("-----------------------------\n-----------------------------\n");
-						printf("sending ack 0xfd to quad 1\n");
+						printf("sending ack 0xfd to quad %d\n",ac_id);
 						printf("-----------------------------\n-----------------------------\n");
 					}
 				}

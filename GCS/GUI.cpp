@@ -27,11 +27,11 @@ GUI::GUI(int argc, char** argv)
 	//Construction and display of gtk frame that will show control panel
 	quad_control_panel = GUI_generate_quad_control_panel();
 	GUI_show_quad_control_panel();
-	gtk_table_attach_defaults(GTK_TABLE(table),quad_control_panel.frame,0,1,0,1);
+	gtk_table_attach_defaults(GTK_TABLE(table),quad_control_panel.frame,0,QUAD_NB,0,1);
 
 	quad_flight_control = GUI_generate_quad_flight_control();
 	GUI_show_quad_flight_control();
-	gtk_table_attach_defaults(GTK_TABLE(table),quad_flight_control.frame,1,QUAD_NB + 1,0,2);
+	gtk_table_attach_defaults(GTK_TABLE(table),quad_flight_control.frame,QUAD_NB,QUAD_NB + 1,0,2);
 	//Construction and display of gtk frame that will show quadcopter status.
 	for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 	{

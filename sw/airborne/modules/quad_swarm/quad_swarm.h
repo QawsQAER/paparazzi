@@ -101,7 +101,7 @@ extern uint8_t quad_swarm_recv_ack;
 #define quad_swarm_ack_datalink(){\
 	uint8_t ac_id = DL_quad_swarm_ack_forwarded_ac_id(dl_buffer);\
 	uint8_t ack = DL_quad_swarm_ack_forwarded_ack(dl_buffer);\
-	DOWNLINK_SEND_DL_VALUE(DefaultChannel,DefaultDevice,&ack,&ack);\
+	DOWNLINK_SEND_DL_VALUE(DefaultChannel,DefaultDevice,&ac_id,&ack);\
 	if(ack == 0xff)\
 	{\
 		autopilot_set_mode(AP_MODE_KILL);\

@@ -94,8 +94,8 @@ void autopilot_init(void) {
   autopilot_flight_time = 0;
 //Edward edit this
 //Enable Radio Controller or not
-  //autopilot_rc = TRUE;
-  autopilot_rc = FALSE;
+  autopilot_rc = TRUE;
+  //autopilot_rc = FALSE;
   autopilot_power_switch = FALSE;
 #ifdef POWER_SWITCH_LED
   LED_ON(POWER_SWITCH_LED); // POWER OFF

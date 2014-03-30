@@ -37,6 +37,8 @@ uint8_t quad_swarm_ack;
 uint8_t quad_swarm_initilized = 0;
 void quad_swarm_init( void ) 
 {
+	//NavSetGroundReferenceHere();
+	//autopilot_set_mode(AP_MODE_NAV);
 	quad_swarm_state = SWARM_KILLED;
 	memset(&quad_swarm_target,0,sizeof(struct EcefCoor_i));	
 	quad_swarm_id = AC_ID;
