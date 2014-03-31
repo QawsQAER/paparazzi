@@ -309,7 +309,10 @@ void XBEE::XBEE_parse_XBEE_msg()
 		}	
 	}
 	//if(state == 2)
-	memset(recv_buff,0,recv_pos + 1);
+	if(recv_pos + 1 >= XBEE_BUFF_SIZE)
+		memset(recv_buff,0,XBEE_BUFF_SIZE);
+	else
+		memset(recv_buff,0,recv_pos + 1);
 	recv_pos = 0;
 }
 
@@ -322,28 +325,6 @@ void XBEE::XBEE_show_msg()
 		
 		msg.pop();
 		ptr->show_hex();
-		/*
-		uint16_t length = ptr->get_recv_packet_data_length();
-		uint8_t *data_ptr = ptr->get_recv_packet_data_ptr();
-		uint8_t *str = new uint8_t[length + 1];
-		#if _DEBUG
-		printf("XBEE_show_msg() deleting ptr %p\n",ptr);
-		printf("data begin at %p, length is %d\n",data_ptr,ptr->get_recv_packet_data_length());
-		#endif
-			
-		uint64_t address = ptr->get_recv_source_addr();
-		//printf("address is %x\n",address);
-		uint32_t address_hi;
-		uint32_t address_lo;
-		memcpy(&address_hi,(char *)&address,sizeof(uint32_t));
-		memcpy(&address_lo,(char *)&address + sizeof(uint32_t),sizeof(uint32_t));
-		printf("Message From [0x%08x 0x%08x]:\n",address_hi,address_lo);
-		memcpy(str,data_ptr,length);
-		//str[length] = '\0';
-		printf("\"%s\"\n",str);
-		delete str;
-		
-		*/
 		delete ptr;
 	}
 }
@@ -432,7 +413,13 @@ void XBEE::XBEE_send_msg(XBEE_msg &msg)
 		#endif	
 	}
 	XBEE_write(this->tran_buff,tran_pos);
-				
+
+	//clean the buffer content	
+	if(tran_pos + 1 >= XBEE_BUFF_SIZE)
+		memset(tran_buff,0,XBEE_BUFF_SIZE);
+	else
+		memset(tran_buff,0,tran_pos + 1);	
+	tran_pos = 0;
 }
 
 
