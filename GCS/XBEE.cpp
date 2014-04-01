@@ -178,6 +178,16 @@ void XBEE::XBEE_parse_XBEE_msg()
 					msg_p->set_length_LO(recv_buff[current++]);
 				}
 				msg_p->set_frame_length();
+				if(msg_p->get_frame_length() > 200)
+				{
+					printf("message size %d\n",msg_p->get_frame_length());
+					if(recv_pos + 1 < XBEE_BUFF_SIZE)
+						memset(recv_buff,0,(recv_pos + 1) * sizeof(char));
+					else
+						memset(recv_buff,0,XBEE_BUFF_SIZE * sizeof(char));
+					recv_pos = 0;
+					return ;
+				}
 				while(current >= this->recv_pos)
 					this->XBEE_read_into_recv_buff();
 				//enter next state

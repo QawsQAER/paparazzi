@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -Wall -g
 ##############################################
-OPTION = -D_USE_XBEE_ESC=1 -DQUAD_NB=1
+OPTION = -D_USE_XBEE_ESC=1 -DQUAD_NB=4
 #############################################
 
 #DEBUG_MACRO = -D_DEBUG_XBEE_SEND_MSG=1

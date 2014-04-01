@@ -88,15 +88,15 @@ void quad_swarm_periodic( void )
 		//send_quad_swarm_report();
 	}
 
-	if(nav_block == 11)
+	if(nav_block == 11 || nav_block ==12)
 	{
 		quad_swarm_state = SWARM_LANDHERE;
 	}
-	else if(nav_block == 12)
+
+	if(nav_block == 13)
 	{
 		quad_swarm_state = SWARM_LANDED;
 	}
-
 	
 	switch(quad_swarm_state)
 	{

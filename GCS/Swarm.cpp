@@ -26,7 +26,7 @@ Swarm::Swarm()
 	{
 		state[count] = SWARM_KILLED;
 		memset((void *) &pos[count],0,sizeof(struct EcefCoor_i));
-		printf("XBEE_ADDR_HI[%d] %x XBEE_ADDR_LO[%d] %x\n",count,XBEE_ADDR_HI[count],count,XBEE_ADDR_LO[count]);
+		printf("XBEE_ADDR_HI[%d] %08x XBEE_ADDR_LO[%d] %08x\n",count,XBEE_ADDR_HI[count],count,XBEE_ADDR_LO[count]);
 		count++;
 	}		
 }

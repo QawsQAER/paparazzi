@@ -128,16 +128,16 @@
     <!-- feedback -->
     <define name="GAIN_P" value="320" />
     <define name="GAIN_Q" value="320" />
-    <define name="GAIN_R" value="350" />
+    <define name="GAIN_R" value="0" />
 
     <define name="IGAIN_P" value="300" />
     <define name="IGAIN_Q" value="300" />
-    <define name="IGAIN_R" value="300" />
+    <define name="IGAIN_R" value="0" />
 
     <!-- feedforward -->
     <define name="DDGAIN_P" value="6" />
     <define name="DDGAIN_Q" value="6" />
-    <define name="DDGAIN_R" value="10" />
+    <define name="DDGAIN_R" value="0" />
   </section> 
 
 
@@ -182,7 +182,7 @@
     <!-- feedforward -->
     <define name="PHI_DDGAIN" value="280" />
     <define name="THETA_DDGAIN" value="280" />
-    <define name="PSI_DDGAIN" value="350" />
+    <define name="PSI_DDGAIN" value="0" />
   </section>
 
   <section name="GUIDANCE_V" prefix="GUIDANCE_V_">
@@ -213,10 +213,10 @@
   <section name="GUIDANCE_H" prefix="GUIDANCE_H_">
     <define name="USE_REF" value="1"/>
     <define name="MAX_BANK" value="30." unit="deg"/>
-    <define name="PGAIN" value="30"/> <!--30-->
-    <define name="DGAIN" value="90"/> <!--90-->
+    <define name="PGAIN" value="0"/> <!--30-->
+    <define name="DGAIN" value="0"/> <!--90-->
     <define name="AGAIN" value="0"/> <!--0-->
-    <define name="IGAIN" value="40"/> <!--15-->
+    <define name="IGAIN" value="0"/> <!--15-->
   </section>
 
 

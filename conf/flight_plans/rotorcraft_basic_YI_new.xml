@@ -82,16 +82,19 @@
 </block>
 
 <!--these 3 blocks are for landing-->
+
 <block name="land here" strip_button="Land Here" strip_icon="land-right.png">
 	<call fun="NavSetWaypointHere(WP_LZ)"/> <!--set the present point as the "LZ" waypoint-->
 </block>
+
 <block name="land">
 	<go wp="LZ"/>
-    </block>
-    <block name="flare">
+</block>
+	
+<block name="flare">
       <exception cond="NavDetectGround()" deroute="Holding point"/><!--when the aircraft detect ground, it will go to block "Holding point"-->
       <call fun="NavStartDetectGround()"/>
       <stay climb="-0.8" vmode="climb" wp="LZ"/>
-    </block>
-  </blocks>
+  </block>
+</blocks>
 </flight_plan>
