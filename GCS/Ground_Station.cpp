@@ -1,5 +1,10 @@
 #include "Ground_Station.h"
 
+#define NORTH 0
+#define SOUTH 1
+#define EAST 2
+#define WEST 3
+
 char state_string[12][64];
 Swarm* Ground_Station::Swarm_state = NULL;
 XBEE* Ground_Station::Com = NULL;
@@ -269,6 +274,7 @@ void *Ground_Station::go_north_thread(void *arg)
 	//4. check whether the quadcopters has received and execute the command
 
 	uint8_t rev = 0;
+	uint8_t dir = NORTH;
 	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
 	{
 		printf("go_north_thread: GCS_busy locked\n");
@@ -277,7 +283,7 @@ void *Ground_Station::go_north_thread(void *arg)
 			printf("go_north_thread: all qucopters are ready for command\n");
 			for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 			{
-				compute_go_north(count_ac,200);
+				compute_go_direction(count_ac,100,dir);
 				send_target(leader_id,&target[count_ac]);
 			}
 
@@ -380,6 +386,50 @@ void Ground_Station::negotiate_ref()
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
 
+void Ground_Station::compute_go_direction(uint8_t ac_id, uint8_t distance, uint8_t direction)
+{
+	struct NedCoor_i ned_tar;
+	if(direction == NORTH)
+	{
+		ned_tar.x = POS_FLOAT_OF_BFP(ned_pos[ac_id].x) * 100 + distance;
+		//keep the original y
+		ned_tar.y = POS_FLOAT_OF_BFP(ned_pos[ac_id].y) * 100;
+		//keep the original 
+		ned_tar.z = POS_FLOAT_OF_BFP(ned_pos[ac_id].z) * 100;
+		ecef_of_ned_point_i(&target[ac_id],&ref,&ned_tar);
+	}
+	else if(direction == SOUTH)
+	{
+		ned_tar.x = POS_FLOAT_OF_BFP(ned_pos[ac_id].x) * 100 - distance;
+		//keep the original y
+		ned_tar.y = POS_FLOAT_OF_BFP(ned_pos[ac_id].y) * 100;
+		//keep the original 
+		ned_tar.z = POS_FLOAT_OF_BFP(ned_pos[ac_id].z) * 100;
+		
+		ecef_of_ned_point_i(&target[ac_id],&ref,&ned_tar);
+	}
+	else if(direction == EAST)
+	{
+		ned_tar.x = POS_FLOAT_OF_BFP(ned_pos[ac_id].x) * 100;
+		//keep the original y
+		ned_tar.y = POS_FLOAT_OF_BFP(ned_pos[ac_id].y) * 100 + distance;
+		//keep the original 
+		ned_tar.z = POS_FLOAT_OF_BFP(ned_pos[ac_id].z) * 100;
+		
+		ecef_of_ned_point_i(&target[ac_id],&ref,&ned_tar);
+	}
+	else if(direction == WEST)
+	{
+		ned_tar.x = POS_FLOAT_OF_BFP(ned_pos[ac_id].x) * 100;
+		//keep the original y
+		ned_tar.y = POS_FLOAT_OF_BFP(ned_pos[ac_id].y) * 100 - distance;
+		//keep the original 
+		ned_tar.z = POS_FLOAT_OF_BFP(ned_pos[ac_id].z) * 100;
+		
+		ecef_of_ned_point_i(&target[ac_id],&ref,&ned_tar);
+	}
+	return ;
+}
 void Ground_Station::compute_go_north(uint8_t ac_id, uint8_t distance)
 {
 	struct NedCoor_i ned_tar;
@@ -743,10 +793,10 @@ void Ground_Station::send_ack(uint8_t AC_ID, uint8_t ack)
     						net_addr_lo,\
     						pprz_ack.pprz_get_data_ptr(),\
     						pprz_ack.pprz_get_length());
-    printf("ACK CONTENT\n");
+    //printf("ACK CONTENT\n");
     //pprz_ack.show_hex();
     //msg_ack.show_hex();
-    printf("ACK CONTENT END\n");
+    //printf("ACK CONTENT END\n");
    	Com->XBEE_send_msg(msg_ack);
    	
    	return ;

@@ -232,11 +232,19 @@ uint8_t quad_swarm_reach_tar()
 
 void quad_swarm_target_to_waypoint()
 {
+	struct EnuCoor_i tmp;
 	//the waypoints[SWARM_WP_FOR_USE] will be reset by nav_init(), which is called when a 
 	//ack=0xfe is received, for reseting the quad_swarm module to SWARM_INIT
-	enu_of_ecef_pos_i(&navigation_target,&ins_ltp_def,&quad_swarm_target);
+	enu_of_ecef_pos_i(&tmp,&ins_ltp_def,&quad_swarm_target);
+
+	//DON'T CHANGE THE Z REFERENCE
+	navigation_target.x = tmp.x;
+	navigation_target.y = tmp.y;
+
+	waypoints[SWARM_WP_FOR_USE].x = tmp.x;
+	waypoints[SWARM_WP_FOR_USE].y = tmp.y;
 	//navigation_target may be set to waypoints[WP_NB], so set the waypoint to the same value
-	enu_of_ecef_pos_i(&waypoints[SWARM_WP_FOR_USE],&ins_ltp_def,&quad_swarm_target);
+	//enu_of_ecef_pos_i(&waypoints[SWARM_WP_FOR_USE],&ins_ltp_def,&quad_swarm_target);
 	return ;
 }
 /*void quad_swarm_datalink( void )

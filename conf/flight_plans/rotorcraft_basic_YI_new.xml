@@ -69,24 +69,24 @@
 
     <!--if we click this block, the aircraft will go to wapoint "p2" from "p1" and stay at "p1" for 10s-->
     <!--after that, the aircraft will go back to "p1" from "p2" and stay at "p1"--->
-    <block name="line_p1_p2">
-      <go from="p1" hmode="route" wp="p2"/>
-      <stay wp="p2" until="stage_time>20"/>
-      <go from="p2" hmode="route" wp="p1"/>
-      <deroute block="stay_p1"/>
-    </block>
-    
-    <!--if we click this block, the aircraft will circle "p1" with radius=nav_radius/2m-->
-    <block name="circle">
-      <circle radius="3" wp="p1"/> <!--circle radius="nav_radius" wp="p1"/-->
-    </block>
+   	<block name="line_p1_p2">
+		<go from="p1" hmode="route" wp="p2"/>
+		<stay wp="p2" until="stage_time>20"/>
+		<go from="p2" hmode="route" wp="p1"/>
+		<deroute block="stay_p1"/>
+	</block>
 
-    <!--these 3 blocks are for landing-->
-    <block name="land here" strip_button="Land Here" strip_icon="land-right.png">
-      <call fun="NavSetWaypointHere(WP_LZ)"/> <!--set the present point as the "LZ" waypoint-->
-    </block>
-    <block name="land">
-      <go wp="LZ"/>
+	<!--if we click this block, the aircraft will circle "p1" with radius=nav_radius/2m-->
+<block name="circle">
+	<circle radius="3" wp="p1"/> <!--circle radius="nav_radius" wp="p1"/-->
+</block>
+
+<!--these 3 blocks are for landing-->
+<block name="land here" strip_button="Land Here" strip_icon="land-right.png">
+	<call fun="NavSetWaypointHere(WP_LZ)"/> <!--set the present point as the "LZ" waypoint-->
+</block>
+<block name="land">
+	<go wp="LZ"/>
     </block>
     <block name="flare">
       <exception cond="NavDetectGround()" deroute="Holding point"/><!--when the aircraft detect ground, it will go to block "Holding point"-->
@@ -95,4 +95,3 @@
     </block>
   </blocks>
 </flight_plan>
-   2

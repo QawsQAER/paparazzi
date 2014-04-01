@@ -31,8 +31,8 @@ class Swarm
 		//the state machine of quadcopters
 		uint8_t state[QUAD_NB + 1];
 		//the XBEE address of quadcopters
-		uint32_t XBEE_ADDR_HI[QUAD_NB + 1];
-		uint32_t XBEE_ADDR_LO[QUAD_NB + 1];
+		uint32_t *XBEE_ADDR_HI;
+		uint32_t *XBEE_ADDR_LO;
 		//the ECEF coordinate system position
 		struct EcefCoor_i pos[QUAD_NB + 1];
 		//the accruacy of positioning

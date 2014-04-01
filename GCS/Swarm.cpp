@@ -2,13 +2,25 @@
 
 Swarm::Swarm()
 {
+	XBEE_ADDR_HI = (uint32_t *) malloc(sizeof(uint32_t) * (QUAD_NB + 1));
+	XBEE_ADDR_LO = (uint32_t *) malloc(sizeof(uint32_t) * (QUAD_NB + 1));
 	XBEE_ADDR_HI[1] = XBEE_END_ADDR_A_HI;
 	XBEE_ADDR_LO[1] = XBEE_END_ADDR_A_LO;	
 	#if QUAD_NB >= 2
 	XBEE_ADDR_HI[2] = XBEE_END_ADDR_B_HI;
 	XBEE_ADDR_LO[2] = XBEE_END_ADDR_B_LO;
 	#endif
-	
+
+	#if QUAD_NB >= 3
+	XBEE_ADDR_HI[3] = XBEE_END_ADDR_C_HI;
+	XBEE_ADDR_LO[3] = XBEE_END_ADDR_C_LO;
+	#endif
+
+	#if QUAD_NB >= 4
+	XBEE_ADDR_HI[4] = XBEE_END_ADDR_D_HI;
+	XBEE_ADDR_LO[4] = XBEE_END_ADDR_D_LO;
+	#endif
+
 	uint8_t count = 1;
 	while(count < QUAD_NB + 1)
 	{
@@ -21,6 +33,8 @@ Swarm::Swarm()
 
 Swarm::~Swarm()
 {
+	free(XBEE_ADDR_HI);
+	free(XBEE_ADDR_LO);	
 }
 uint32_t Swarm::get_address_HI(uint8_t &AC_ID)
 {return XBEE_ADDR_HI[AC_ID];}
