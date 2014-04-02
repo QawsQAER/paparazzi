@@ -48,9 +48,9 @@ class XBEE
 	//the receive buff for data coming in
 	uint8_t *recv_buff;
 	//the record of the current usage of transmit buff
-	uint64_t tran_pos;
+	uint32_t tran_pos;
 	//the record of the current usage of the receive buff
-	uint64_t recv_pos;
+	uint32_t recv_pos;
 	//the queue stroing pointer to XBEE message parsed from receive buff
 
 	//std::queue<XBEE_msg *> msg;

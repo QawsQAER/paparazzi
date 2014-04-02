@@ -74,8 +74,9 @@ void XBEE::XBEE_set_baud(uint16_t baudrate)
 
 void XBEE::XBEE_read_into_recv_buff()
 {
-	uint32_t byte_count = this->XBEE_read(this->recv_buff + this->recv_pos,XBEE_BUFF_SIZE/2);
-	this->recv_pos+=byte_count;
+	int32_t byte_count = this->XBEE_read(this->recv_buff + this->recv_pos,XBEE_BUFF_SIZE/2);
+	if(byte_count >= 0)
+		this->recv_pos+=byte_count;
 }
 
 /*
@@ -99,7 +100,7 @@ void XBEE::XBEE_parse_XBEE_msg()
 			case 0: //not yet detect a message
 			{
 				#if _DEBUG_XBEE_parse_XBEE_msg
-				printf("case0, current %d, recv_pos %d\n",current,recv_pos);
+				printf("case0, current %d, recv_pos %u\n",current,recv_pos);
 				#endif
 				if(recv_buff[current] == START_BYTE)
 				{
@@ -126,7 +127,9 @@ void XBEE::XBEE_parse_XBEE_msg()
 				}
 				current++;
 				while(current > recv_pos)
+				{
 					XBEE_read_into_recv_buff();
+				}
 				break;
 			}
 			case 1://reading length_HI
