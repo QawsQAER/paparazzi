@@ -223,13 +223,21 @@ void *Ground_Station::takeoff_quad_4(void *arg)
 
 void *Ground_Station::takeoff_quad_thread(void *arg)
 {
-	uint8_t value = *(uint8_t *)arg;
-	printf("taking off quad %d\n",value);
+	uint8_t ac_id = *(uint8_t *)arg;
+	printf("taking off quad %d\n",ac_id);
 	uint8_t rev = 0;
 	uint8_t block_id = BLOCK_ID_TAKE_OFF;
+	uint64_t last_timestamp = 0;
 	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
 	{
-		Send_Msg_Block(value,block_id);
+		while(Swarm_state->get_state(ac_id) != SWARM_WAIT_CMD_TAKEOFF)
+		{
+			if(last_timestamp < Swarm_state->get_timestamp(ac_id))
+			{
+				last_timestamp = Swarm_state->get_timestamp(ac_id);
+				Send_Msg_Block(ac_id,block_id);
+			}
+		}
 		pthread_mutex_unlock(&GCS_busy);
 	}	
 	else if (rev == EBUSY)
