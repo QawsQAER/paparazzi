@@ -321,20 +321,39 @@ void* Ground_Station::swap_thread(void *arg)
 	uint8_t blk_id_startengine = SWARM_WAIT_CMD_START_ENGINE;
 	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
 	{
+		uint8_t *quad_state_shouldbe = (uint8_t *) malloc(sizeof(uint8_t) * (QUAD_NB + 1));
+		uint64_t *last_timestamp = (uint64_t *) malloc(sizeof(uint64_t) * (QUAD_NB + 1));
+		
 		//Critical Section, sending command, waitting to next stage.
 		for(uint8_t ac_id = 1;ac_id < QUAD_NB + 1;ac_id++)
 		{
-			if(Swarm_state->get_state(ac_id) == SWARM_WAIT_CMD_TAKEOFF)
+			if(Swarm_state->get_state(ac_id) == blk_id_takeoff)
+				quad_state_shouldbe[ac_id] = blk_id_startengine;
+			else if(Swarm_state->get_state(ac_id) == blk_id_startengine)
+				quad_state_shouldbe[ac_id] = blk_id_takeoff;
+		}
+
+		uint8_t bool_all_in_state = 0;
+		while(1)
+		{
+			if(bool_all_in_state)
+				break;
+			bool_all_in_state = 1;
+			for(uint8_t ac_id = 1;ac_id < QUAD_NB + 1;ac_id++)
 			{
-				printf("swaping quad %d to stop\n",ac_id);
-				Send_Msg_Block(ac_id,blk_id_startengine);
-			}
-			else if(Swarm_state->get_state(ac_id) == SWARM_WAIT_CMD_START_ENGINE)
-			{
-				printf("swaping quad %d to takeoff\n",ac_id);
-				Send_Msg_Block(ac_id,blk_id_takeoff);
+				if(Swarm_state->get_state(ac_id) != quad_state_shouldbe[ac_id])
+				{
+					bool_all_in_state = 0;
+					if(last_timestamp[ac_id] < Swarm_state->get_timestamp(ac_id)) 
+					{
+						last_timestamp[ac_id] = Swarm_state->get_timestamp(ac_id);
+						Send_Msg_Block(ac_id,quad_state_shouldbe[ac_id]);
+					}
+				}
 			}
 		}
+		free(quad_state_shouldbe);
+		free(last_timestamp);
 		pthread_mutex_unlock(&GCS_busy);
 	}
 	else if (rev == EBUSY)
