@@ -53,15 +53,22 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	GCS_GUI = new GUI(argc,argv);
 
 	//Add event listener for the buttons.
-	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_init,init_quadcopters,(void *) &GCS_busy);
-	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_end_negotiate,end_negotiate,(void *) &GCS_busy);
-	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_start_engine,start_engine,(void *) &GCS_busy);
-	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_takeoff,takeoff,(void *) &GCS_busy);
-	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_landhere,nav_land_here,(void *)&GCS_busy);
-	
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_init,init_quadcopters,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_end_negotiate,end_negotiate,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_start_engine,start_engine,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_takeoff,takeoff, NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_landhere,nav_land_here,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_takeoff_again,takeoff_again,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_control_panel.button_swap,swap,NULL);
+
 	//add event listener for the button of flight control
-	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_execute,send_exec_cmd_ack,(void *) &GCS_busy);
-	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_go_north,go_north,(void *) &GCS_busy);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_execute,send_exec_cmd_ack,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_go_north,go_north,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_takeoff1,takeoff_quad_1,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_takeoff2,takeoff_quad_2,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_takeoff3,takeoff_quad_3,NULL);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_takeoff4,takeoff_quad_4,NULL);
+
 	
 	printf("Ground Control Station Created\n\n");
 }
@@ -169,6 +176,80 @@ void *Ground_Station::start_engine_thread(void *arg)
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
+void *Ground_Station::takeoff_quad_1(void *arg)
+{
+	uint8_t *ac_id = new uint8_t;
+	*ac_id = 1;
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for takeoff 1\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,takeoff_quad_thread,(void *) ac_id);
+	return NULL;
+}
+void *Ground_Station::takeoff_quad_2(void *arg)
+{
+	uint8_t *ac_id = new uint8_t;
+	*ac_id = 2;
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for takeoff 2\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,takeoff_quad_thread,(void *) ac_id);
+	return NULL;
+}
+void *Ground_Station::takeoff_quad_3(void *arg)
+{
+	uint8_t *ac_id = new uint8_t;
+	*ac_id = 3;
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for takeoff 3\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,takeoff_quad_thread,(void *) ac_id);
+	return NULL;
+}
+void *Ground_Station::takeoff_quad_4(void *arg)
+{
+	uint8_t *ac_id = new uint8_t;
+	*ac_id = 4;
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for takeoff 4\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,takeoff_quad_thread,(void *) ac_id);
+	return NULL;
+}
+
+void *Ground_Station::takeoff_quad_thread(void *arg)
+{
+	uint8_t value = *(uint8_t *)arg;
+	printf("taking off quad %d\n",value);
+	uint8_t rev = 0;
+	uint8_t block_id = BLOCK_ID_TAKE_OFF;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		Send_Msg_Block(value,block_id);
+		pthread_mutex_unlock(&GCS_busy);
+	}	
+	else if (rev == EBUSY)
+	{
+		printf("takeoff_quad_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("takeoff_quad_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("takeoff_quad_thread ERROR: arg is not a valid pointer\n");
+	}
+	delete (uint8_t *)arg;
+	pthread_exit(NULL);
+	return NULL;
+}
+
+
 void *Ground_Station::takeoff(void *arg)
 {
 	pthread_t tid = 0;
@@ -209,6 +290,58 @@ void *Ground_Station::takeoff_thread(void *arg)
 	{
 		printf("start_engine_thread ERROR: arg is not a valid pointer\n");
 	}
+	return NULL;
+}
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
+void* Ground_Station::swap(void *arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for swap\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,swap_thread,NULL);
+	return NULL;
+}
+
+void* Ground_Station::swap_thread(void *arg)
+{
+	int rev = 0;
+	uint8_t blk_id_takeoff = SWARM_WAIT_CMD_TAKEOFF;
+	uint8_t blk_id_startengine = SWARM_WAIT_CMD_START_ENGINE;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		//Critical Section, sending command, waitting to next stage.
+		for(uint8_t ac_id = 1;ac_id < QUAD_NB + 1;ac_id++)
+		{
+			if(Swarm_state->get_state(ac_id) == SWARM_WAIT_CMD_TAKEOFF)
+			{
+				printf("swaping quad %d to stop\n",ac_id);
+				Send_Msg_Block(ac_id,blk_id_startengine);
+			}
+			else if(Swarm_state->get_state(ac_id) == SWARM_WAIT_CMD_START_ENGINE)
+			{
+				printf("swaping quad %d to takeoff\n",ac_id);
+				Send_Msg_Block(ac_id,blk_id_takeoff);
+			}
+		}
+		pthread_mutex_unlock(&GCS_busy);
+	}
+	else if (rev == EBUSY)
+	{
+		printf("swap_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("swap_engine_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("swap_engine_thread ERROR: arg is not a valid pointer\n");
+	}
+	pthread_exit(NULL);
 	return NULL;
 }
 //------------------------------------------------------------------//
@@ -322,6 +455,45 @@ void *Ground_Station::go_north_thread(void *arg)
 	return NULL;
 }
 
+void *Ground_Station::takeoff_again(void *arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for takeoff again command\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,takeoff_again_thread,NULL);
+	return NULL;
+}
+
+void *Ground_Station::takeoff_again_thread(void *arg)
+{
+	uint8_t rev = 0;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		uint8_t ack = 0xfb;
+		//send_ack(leader_id,ack);
+		uint8_t block_id = BLOCK_ID_START_ENGINE;
+		Send_Msg_Block(leader_id,block_id);
+		block_id = BLOCK_ID_TAKE_OFF;
+		Send_Msg_Block(leader_id,block_id);
+		printf("takeoff_again_thread: unlocking GCS_busy\n");
+		pthread_mutex_unlock(&GCS_busy);
+	}
+	else if (rev == EBUSY)
+	{
+		printf("takeoff_again_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("takeoff_again_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("takeoff_again_thread ERROR: arg is not a valid pointer\n");
+	}
+	pthread_exit(NULL);
+	return NULL;
+}
 void Ground_Station::negotiate_ref()
 {
 	printf("\n\n\n************************\n***********************\n");
@@ -725,6 +897,9 @@ void Ground_Station::wait_all_quads(uint8_t s)
 						printf("quad %d: send land here again",count_ac);
 						last_timestamp[count_ac] = Swarm_state->get_timestamp(count_ac);
 						Send_Msg_Block(count_ac,block_id_landhere);
+						//ALTERNATIVE WAY OF LANDING
+						//uint8_t ack = 0xfc;
+						//send_ack(count_ac,ack);
 					}
 				}
 			}
@@ -869,7 +1044,6 @@ void* Ground_Station::nav_land_here_thread(void * arg)
 		printf("nav_land_here_thread: GCS_busy unlocking\n");
 		
 		pthread_mutex_unlock(&GCS_busy);
-
 
 		//Set the origin of the coordination system.
 	}

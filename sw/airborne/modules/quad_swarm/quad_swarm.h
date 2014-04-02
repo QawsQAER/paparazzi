@@ -79,6 +79,9 @@ extern void quad_swarm_periodic( void );
 extern void quad_swarm_event( void );
 extern uint8_t quad_swarm_reach_tar( void );
 extern void quad_swarm_target_to_waypoint( void );
+extern void quad_swarm_landhere( void );
+extern void quad_swarm_takeoff( void ); 
+
 
 extern uint8_t quad_swarm_state;
 extern uint8_t quad_swarm_id;
@@ -124,6 +127,14 @@ extern uint8_t quad_swarm_recv_ack;
 	{\
 		quad_swarm_state = SWARM_EXEC_CMD;\
 		quad_swarm_target_to_waypoint();\
+	}\
+	else if(ack == 0xfc && quad_swarm_state == SWARM_WAIT_CMD_TAKEOFF)\
+	{\
+		quad_swarm_landhere();\
+	}\
+	else if(ack == 0xfb && quad_swarm_state == SWARM_LANDED)\
+	{\
+		quad_swarm_takeoff();\
 	}\
 }
 

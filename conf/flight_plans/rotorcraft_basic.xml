@@ -25,18 +25,18 @@
     </block>
 
     <block name="Geo init">
-      <while cond="LessThan(NavBlockTime(), 3)"/>
+      <while cond="LessThan(NavBlockTime(), 0)"/>
       <call fun="NavSetGroundReferenceHere()"/>
       <!--<call fun="NavSetAltitudeReferenceHere()"/>-->
     </block>
 
     <block name="Holding point">
-      <call fun="NavKillThrottle()"/>
-      <attitude pitch="0" roll="0" throttle="0" vmode="throttle" until="FALSE"/>
+      <!--<call fun="NavResurrect()"/>
+      <attitude pitch="0" roll="0" throttle="0" vmode="throttle" until="FALSE"/>-->
     </block>
 
     <block name="Start Engine">
-<!--  COMMENTED BY EDWARD    <call fun="NavResurrect()"/>-->
+      <call fun="NavResurrect()"/>
       <attitude pitch="0" roll="0" throttle="0" vmode="throttle" until="FALSE"/>
     </block>
 
@@ -86,7 +86,7 @@
     </block>
 
     <block name="flare">
-      <exception cond="NavDetectGround()" deroute="Holding point"/>
+      <exception cond="NavDetectGround()" deroute="Start Engine"/>
       <call fun="NavStartDetectGround()"/>
       <stay climb="-0.8" vmode="climb" wp="TD"/>
     </block>

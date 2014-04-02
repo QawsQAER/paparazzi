@@ -90,6 +90,18 @@ class Ground_Station
 		static void *send_exec_cmd_ack(void *arg);
 		static void *send_exec_cmd_ack_thread(void *arg);
 
+		static void *takeoff_again(void *arg);
+		static void *takeoff_again_thread(void *arg);
+
+		static void *takeoff_quad_1(void *arg);
+		static void *takeoff_quad_2(void *arg);
+		static void *takeoff_quad_3(void *arg);
+		static void *takeoff_quad_4(void *arg);
+
+		static void *takeoff_quad_thread(void *arg);
+
+		static void *swap(void *arg);
+		static void *swap_thread(void *arg);
 		static void calculating_target();
 		static void sending_target();
 		static void wait_cmd_ack();

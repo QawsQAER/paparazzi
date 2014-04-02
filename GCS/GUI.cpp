@@ -20,6 +20,7 @@ GUI::GUI(int argc, char** argv)
 
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), "Quadcopter Ground Control Center");
+	gtk_window_set_default_size(GTK_WINDOW(window),600,800);	
 	g_signal_connect(window, "delete_event", G_CALLBACK(delete_event),NULL);
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_container_add(GTK_CONTAINER(window),table);
@@ -104,15 +105,18 @@ struct GUI_quad_control_panel GUI::GUI_generate_quad_control_panel()
 	tmp.box = gtk_vbox_new(FALSE,0);
 	tmp.button_init = gtk_button_new_with_label("init");
 	tmp.button_end_negotiate = gtk_button_new_with_label("end negotiation");
-	tmp.button_start_engine = gtk_button_new_with_label("start engine");
+	tmp.button_start_engine = gtk_button_new_with_label("stop");
 	tmp.button_takeoff = gtk_button_new_with_label("takeoff");
 	tmp.button_landhere = gtk_button_new_with_label("landhere");
-	
+	tmp.button_takeoff_again = gtk_button_new_with_label("takeoff again");
+	tmp.button_swap = gtk_button_new_with_label("stop flying quads, activate others");
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_init,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_end_negotiate,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_start_engine,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_takeoff,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_landhere,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_swap,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_takeoff_again,TRUE,TRUE,0);
 
 	gtk_container_add(GTK_CONTAINER(tmp.frame),tmp.box);
 	
@@ -121,11 +125,13 @@ struct GUI_quad_control_panel GUI::GUI_generate_quad_control_panel()
 
 void GUI::GUI_show_quad_control_panel()
 {
-	gtk_widget_show(quad_control_panel.button_init);
-	gtk_widget_show(quad_control_panel.button_end_negotiate);
+	//gtk_widget_show(quad_control_panel.button_init);
+	//gtk_widget_show(quad_control_panel.button_end_negotiate);
 	gtk_widget_show(quad_control_panel.button_start_engine);
 	gtk_widget_show(quad_control_panel.button_takeoff);
 	gtk_widget_show(quad_control_panel.button_landhere);
+	//gtk_widget_show(quad_control_panel.button_takeoff_again);
+	gtk_widget_show(quad_control_panel.button_swap);
 	gtk_widget_show(quad_control_panel.box);
 	gtk_widget_show(quad_control_panel.frame);
 
@@ -142,12 +148,21 @@ struct GUI_quad_flight_control GUI::GUI_generate_quad_flight_control()
 	tmp.button_go_south = gtk_button_new_with_label("go south");
 	tmp.button_go_west = gtk_button_new_with_label("go west");
 	tmp.button_go_east = gtk_button_new_with_label("go east");
-
+	tmp.button_takeoff1 = gtk_button_new_with_label("takeoff quad 1");
+	tmp.button_takeoff2 = gtk_button_new_with_label("takeoff quad 2");
+	tmp.button_takeoff3 = gtk_button_new_with_label("takeoff quad 3");
+	tmp.button_takeoff4 = gtk_button_new_with_label("takeoff quad 4");
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_execute,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_north,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_south,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_east,TRUE,TRUE,0);
 	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_go_west,TRUE,TRUE,0);
+
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_takeoff1,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_takeoff2,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_takeoff3,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(tmp.box),tmp.button_takeoff4,TRUE,TRUE,0);
+
 	gtk_container_add(GTK_CONTAINER(tmp.frame),tmp.box);
 	
 	return tmp;
@@ -160,6 +175,10 @@ void GUI::GUI_show_quad_flight_control()
 	gtk_widget_show(quad_flight_control.button_go_south);
 	gtk_widget_show(quad_flight_control.button_go_east);
 	gtk_widget_show(quad_flight_control.button_go_west);
+	gtk_widget_show(quad_flight_control.button_takeoff1);
+	gtk_widget_show(quad_flight_control.button_takeoff2);
+	gtk_widget_show(quad_flight_control.button_takeoff3);
+	gtk_widget_show(quad_flight_control.button_takeoff4);
 	gtk_widget_show(quad_flight_control.box);
 	gtk_widget_show(quad_flight_control.frame);
 	return ;

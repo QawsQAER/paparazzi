@@ -35,6 +35,8 @@ uint8_t quad_swarm_id = AC_ID;
 struct EcefCoor_i quad_swarm_target;
 uint8_t quad_swarm_ack;
 uint8_t quad_swarm_initilized = 0;
+
+const int32_t original_wp_z = SECURITY_HEIGHT;
 void quad_swarm_init( void ) 
 {
 	//NavSetGroundReferenceHere();
@@ -74,7 +76,6 @@ void quad_swarm_init( void )
 void quad_swarm_periodic( void )
 {
 	//send_nav_info();
-	
 	if(!quad_swarm_initilized)
 	{
 		quad_swarm_init();
@@ -92,10 +93,15 @@ void quad_swarm_periodic( void )
 	{
 		quad_swarm_state = SWARM_LANDHERE;
 	}
-
-	if(nav_block == 13)
+	else if(nav_block == 13 && nav_stage >= 1)
 	{
 		quad_swarm_state = SWARM_LANDED;
+	}else if(nav_block == 4)
+	{
+		quad_swarm_state = SWARM_WAIT_CMD_TAKEOFF;
+	}else if(nav_block == 3)
+	{
+		quad_swarm_state = SWARM_WAIT_CMD_START_ENGINE;
 	}
 	
 	switch(quad_swarm_state)
@@ -162,6 +168,7 @@ void quad_swarm_periodic( void )
 		case(SWARM_WAIT_CMD_TAKEOFF):
 		{
 			send_quad_swarm_report();
+			//send_nav_info();
 			//4 -- the quadcopter has taken off.
 			//at this state, the quadcopetr is waiting for a command message from the GCS.
 			//the message is dealt with in quad_swram.h quad_swarm_datalink() MACRO.
@@ -204,6 +211,7 @@ void quad_swarm_periodic( void )
 		break;
 		case(SWARM_LANDED):
 		{
+			//send_nav_info();
 			send_quad_swarm_report();
 		}
 		break;
@@ -246,6 +254,18 @@ void quad_swarm_target_to_waypoint()
 	//navigation_target may be set to waypoints[WP_NB], so set the waypoint to the same value
 	//enu_of_ecef_pos_i(&waypoints[SWARM_WP_FOR_USE],&ins_ltp_def,&quad_swarm_target);
 	return ;
+}
+
+void quad_swarm_landhere(void)
+{
+	quad_swarm_state = SWARM_LANDED;
+	waypoints[SWARM_WP_FOR_USE].z = -20;
+}
+
+void quad_swarm_takeoff(void)
+{
+	quad_swarm_state = SWARM_WAIT_CMD_TAKEOFF;
+	waypoints[SWARM_WP_FOR_USE].z = original_wp_z;
 }
 /*void quad_swarm_datalink( void )
 {
