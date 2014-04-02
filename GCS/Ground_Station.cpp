@@ -32,7 +32,7 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 
 	printf("Creating Ground Control Station\n");
 	Swarm_state = new Swarm();
-	int fd = open(port_name, O_RDWR | O_NOCTTY | O_SYNC);
+	int fd = open(port_name, O_RDWR | O_NOCTTY | O_SYNC | O_NONBLOCK);
 	if(fd < 0)
 	{
 		printf("Error: Cannot open the port\n");
