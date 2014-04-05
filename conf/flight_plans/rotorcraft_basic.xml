@@ -36,7 +36,7 @@
     </block>
 
     <block name="Start Engine">
-<!--  COMMENTED BY EDWARD    <call fun="NavResurrect()"/>-->
+		<call fun="NavResurrect()"/>
       <attitude pitch="0" roll="0" throttle="0" vmode="throttle" until="FALSE"/>
     </block>
 

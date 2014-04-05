@@ -74,7 +74,8 @@ void XBEE::XBEE_set_baud(uint16_t baudrate)
 
 void XBEE::XBEE_read_into_recv_buff()
 {
-	uint32_t byte_count = this->XBEE_read(this->recv_buff + this->recv_pos,XBEE_BUFF_SIZE/2);
+	int32_t byte_count = this->XBEE_read(this->recv_buff + this->recv_pos,XBEE_BUFF_SIZE/2);
+	if(byte_count >= 0)
 	this->recv_pos+=byte_count;
 }
 

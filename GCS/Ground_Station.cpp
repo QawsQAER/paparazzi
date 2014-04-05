@@ -1068,6 +1068,8 @@ void * Ground_Station::periodic_data_handle(void * arg)
 				data.show_hex();
 				printf("MSG DL_VALUE END\n");
 			}
+			else if(msg_id == 231)
+				data.show_hex();
 		}
 	}
 	return NULL;
