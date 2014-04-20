@@ -62,7 +62,9 @@ Ground_Station::Ground_Station(char *port_name, int argc, char **argv)
 	//add event listener for the button of flight control
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_execute,send_exec_cmd_ack,(void *) &GCS_busy);
 	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_go_north,go_north,(void *) &GCS_busy);
-	
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_go_south,go_south,(void *) &GCS_busy);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_go_east,go_east,(void *) &GCS_busy);
+	GCS_GUI->button_add_event_listener(GCS_GUI->quad_flight_control.button_go_west,go_west,(void *) &GCS_busy);
 	printf("Ground Control Station Created\n\n");
 }
 
@@ -255,6 +257,7 @@ void *Ground_Station::end_negotiate_thread(void *arg)
 	return NULL;
 }
 
+uint16_t unit_distance = 256;
 void *Ground_Station::go_north(void *arg)
 {
 	pthread_t tid = 0;
@@ -264,7 +267,33 @@ void *Ground_Station::go_north(void *arg)
 	pthread_create(&tid,&thread_attr,go_north_thread,NULL);
 	return NULL;
 }
-
+void *Ground_Station::go_south(void *arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for go south command\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,go_south_thread,NULL);
+	return NULL;
+}
+void *Ground_Station::go_east(void *arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for go east command\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,go_east_thread,NULL);
+	return NULL;
+}
+void *Ground_Station::go_west(void *arg)
+{
+	pthread_t tid = 0;
+	pthread_attr_t thread_attr;
+	printf("creating thread for go west command\n");
+	pthread_attr_init(&thread_attr);
+	pthread_create(&tid,&thread_attr,go_west_thread,NULL);
+	return NULL;
+}
 void *Ground_Station::go_north_thread(void *arg)
 {
 
@@ -272,7 +301,6 @@ void *Ground_Station::go_north_thread(void *arg)
 	//2. compute the target position
 	//3. send the computed target to the quadcopters
 	//4. check whether the quadcopters has received and execute the command
-
 	uint8_t rev = 0;
 	uint8_t dir = NORTH;
 	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
@@ -283,26 +311,18 @@ void *Ground_Station::go_north_thread(void *arg)
 			printf("go_north_thread: all qucopters are ready for command\n");
 			for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
 			{
-				compute_go_direction(count_ac,100,dir);
+				compute_go_direction(count_ac,unit_distance,dir);
 				send_target(leader_id,&target[count_ac]);
 			}
-
 			//Ensure every quadcopters have received the command.
 			wait_all_quads(SWARM_WAIT_EXEC_ACK);
-
 			//Ensure every quadcopters will execute the command.
 			printf("go_north_thread: all quadcopters has been waiting for executing ack\n");
-			//wait_all_quads(SWARM_EXEC_CMD);
-			//printf("go_north_thread: all quadcopters has been in executing the command\n");
-			//Ensure every quadcopters has finsihed executing the command.
-			//wait_all_quads(SWARM_REPORT_STATE);
 		}
 		else
 		{
 			printf("go_north_thread ERROR: NOT ALL QUADCOPTERS ARE READY\n");
 		}
-
-		
 		printf("go_north_thread: unlock GCS_busy");
 		pthread_mutex_unlock(&GCS_busy);
 	}
@@ -321,7 +341,150 @@ void *Ground_Station::go_north_thread(void *arg)
 	pthread_exit(NULL);
 	return NULL;
 }
+void *Ground_Station::go_south_thread(void *arg)
+{
 
+	//1. pthread lock
+	//2. compute the target position
+	//3. send the computed target to the quadcopters
+	//4. check whether the quadcopters has received and execute the command
+
+	uint8_t rev = 0;
+	uint8_t dir = SOUTH;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		printf("go_north_thread: GCS_busy locked\n");
+		if(Swarm_state->all_in_state(SWARM_WAIT_CMD_TAKEOFF) || Swarm_state->all_in_state(SWARM_REPORT_STATE))
+		{
+			printf("go_south_thread: all qucopters are ready for command\n");
+			for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+			{
+				compute_go_direction(count_ac,unit_distance,dir);
+				send_target(leader_id,&target[count_ac]);
+			}
+			//Ensure every quadcopters have received the command.
+			wait_all_quads(SWARM_WAIT_EXEC_ACK);
+			//Ensure every quadcopters will execute the command.
+			printf("go_south_thread: all quadcopters has been waiting for executing ack\n");
+		}
+		else
+		{
+			printf("go_south_thread ERROR: NOT ALL QUADCOPTERS ARE READY\n");
+		}
+		printf("go_south_thread: unlock GCS_busy");
+		pthread_mutex_unlock(&GCS_busy);
+	}
+	else if (rev == EBUSY)
+	{
+		printf("go_south_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("go_south_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("go_south_thread ERROR: arg is not a valid pointer\n");
+	}
+	pthread_exit(NULL);
+	return NULL;
+}
+void *Ground_Station::go_east_thread(void *arg)
+{
+
+	//1. pthread lock
+	//2. compute the target position
+	//3. send the computed target to the quadcopters
+	//4. check whether the quadcopters has received and execute the command
+
+	uint8_t rev = 0;
+	uint8_t dir = EAST;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		printf("go_east_thread: GCS_busy locked\n");
+		if(Swarm_state->all_in_state(SWARM_WAIT_CMD_TAKEOFF) || Swarm_state->all_in_state(SWARM_REPORT_STATE))
+		{
+			printf("go_east_thread: all qucopters are ready for command\n");
+			for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+			{
+				compute_go_direction(count_ac,unit_distance,dir);
+				send_target(leader_id,&target[count_ac]);
+			}
+			//Ensure every quadcopters have received the command.
+			wait_all_quads(SWARM_WAIT_EXEC_ACK);
+			//Ensure every quadcopters will execute the command.
+			printf("go_east_thread: all quadcopters has been waiting for executing ack\n");
+		}
+		else
+		{
+			printf("go_east_thread ERROR: NOT ALL QUADCOPTERS ARE READY\n");
+		}
+		printf("go_east_thread: unlock GCS_busy");
+		pthread_mutex_unlock(&GCS_busy);
+	}
+	else if (rev == EBUSY)
+	{
+		printf("go_east_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("go_east_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("go_east_thread ERROR: arg is not a valid pointer\n");
+	}
+	pthread_exit(NULL);
+	return NULL;
+}
+void *Ground_Station::go_west_thread(void *arg)
+{
+
+	//1. pthread lock
+	//2. compute the target position
+	//3. send the computed target to the quadcopters
+	//4. check whether the quadcopters has received and execute the command
+
+	uint8_t rev = 0;
+	uint8_t dir = WEST;
+	if((rev = pthread_mutex_trylock(&GCS_busy)) == 0)
+	{
+		printf("go_west_thread: GCS_busy locked\n");
+		if(Swarm_state->all_in_state(SWARM_WAIT_CMD_TAKEOFF) || Swarm_state->all_in_state(SWARM_REPORT_STATE))
+		{
+			printf("go_west_thread: all qucopters are ready for command\n");
+			for(uint8_t count_ac = 1;count_ac < QUAD_NB + 1;count_ac++)
+			{
+				compute_go_direction(count_ac,unit_distance,dir);
+				send_target(leader_id,&target[count_ac]);
+			}
+			//Ensure every quadcopters have received the command.
+			wait_all_quads(SWARM_WAIT_EXEC_ACK);
+			//Ensure every quadcopters will execute the command.
+			printf("go_west_thread: all quadcopters has been waiting for executing ack\n");
+		}
+		else
+		{
+			printf("go_west_thread ERROR: NOT ALL QUADCOPTERS ARE READY\n");
+		}
+		printf("go_west_thread: unlock GCS_busy");
+		pthread_mutex_unlock(&GCS_busy);
+	}
+	else if (rev == EBUSY)
+	{
+		printf("go_west_thread ERROR: GCS_busy is locked\n");
+	}
+	else if(rev == EINVAL)
+	{
+		printf("go_west_thread ERROR: GCS_busy is not initilized\n");
+	}
+	else if(rev == EFAULT)
+	{
+		printf("go_west_thread ERROR: arg is not a valid pointer\n");
+	}
+	pthread_exit(NULL);
+	return NULL;
+}
 void Ground_Station::negotiate_ref()
 {
 	printf("\n\n\n************************\n***********************\n");
@@ -386,7 +549,7 @@ void Ground_Station::negotiate_ref()
 //------------------------------------------------------------------//
 //------------------------------------------------------------------//
 
-void Ground_Station::compute_go_direction(uint8_t ac_id, uint8_t distance, uint8_t direction)
+void Ground_Station::compute_go_direction(uint8_t ac_id, uint16_t distance, uint8_t direction)
 {
 	struct NedCoor_i ned_tar;
 	if(direction == NORTH)
@@ -1012,10 +1175,6 @@ void * Ground_Station::periodic_data_handle(void * arg)
 			else if(msg_id == RECV_MSG_ID_quad_swarm_report)
 			{
 				struct quad_swarm_report report;
-				//struct EcefCoor_i tmp;
-				//tmp.x = report.x;
-				//tmp.y = report.y;
-				//tmp.z = report.z;
 				data.pprz_get_quad_swarm_report(report);
 				pthread_mutex_lock(&quad_status_readable);
 
@@ -1068,8 +1227,21 @@ void * Ground_Station::periodic_data_handle(void * arg)
 				data.show_hex();
 				printf("MSG DL_VALUE END\n");
 			}
-			else if(msg_id == 231)
-				data.show_hex();
+			else if(msg_id == 49)
+			{
+				uint8_t ac_id = 0;	
+				uint8_t wp_id = 0;
+				int32_t x,y,z;
+				ac_id = data.pprz_read_byte();
+				data.pprz_read_byte();
+				wp_id = data.pprz_read_byte();
+				x = data.pprz_read_4bytes();
+				y = data.pprz_read_4bytes();
+				z = data.pprz_read_4bytes();
+				printf("--------------------------------------\n");
+				printf("ac_id %d wp_id %d waypoint coordination is %f %f %f\n\n",ac_id,wp_id,POS_FLOAT_OF_BFP(x),POS_FLOAT_OF_BFP(y),POS_FLOAT_OF_BFP(z));
+				printf("--------------------------------------\n");
+			}
 		}
 	}
 	return NULL;
@@ -1082,7 +1254,8 @@ gboolean Ground_Station::update_GUI_quad_status_pthread(gpointer userdata)
 {
 	struct quad_swarm_report report = *(struct quad_swarm_report *)userdata;
 	
-	char *buffer = (char *) malloc(sizeof(char) * 64);
+	char *buffer;
+	while((buffer = (char *) malloc(sizeof(char) * 64)) == NULL);
 	memset(buffer,0,sizeof(char)*64);
 
 	sprintf(buffer,"ned x: %f",POS_FLOAT_OF_BFP(ned_pos[report.ac_id].x));

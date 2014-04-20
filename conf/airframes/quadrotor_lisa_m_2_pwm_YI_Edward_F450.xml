@@ -212,7 +212,7 @@
 
   <section name="GUIDANCE_H" prefix="GUIDANCE_H_">
     <define name="USE_REF" value="1"/>
-    <define name="MAX_BANK" value="30." unit="deg"/>
+    <define name="MAX_BANK" value="20." unit="deg"/>
     <define name="PGAIN" value="30"/> <!--30-->
     <define name="DGAIN" value="90"/> <!--90-->
     <define name="AGAIN" value="0"/> <!--0-->

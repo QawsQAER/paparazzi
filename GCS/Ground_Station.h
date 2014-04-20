@@ -86,7 +86,12 @@ class Ground_Station
 		
 		static void *go_north(void * arg);
 		static void *go_north_thread(void *arg);
-		
+		static void *go_south(void * arg);
+		static void *go_south_thread(void *arg);
+		static void *go_east(void * arg);
+		static void *go_east_thread(void *arg);
+		static void *go_west(void * arg);
+		static void *go_west_thread(void *arg);
 		static void *send_exec_cmd_ack(void *arg);
 		static void *send_exec_cmd_ack_thread(void *arg);
 
@@ -107,7 +112,7 @@ class Ground_Station
 		//these four functions set the target variables to
 		//diviates from the current reference point
 		//[distance] variable is in cm.
-		static void compute_go_direction(uint8_t ac_id, uint8_t distance, uint8_t direction);
+		static void compute_go_direction(uint8_t ac_id, uint16_t distance, uint8_t direction);
 		static void compute_go_north(uint8_t ac_id, uint8_t distance);
 		static void compute_go_south(uint8_t ac_id, uint8_t distance);
 		static void compute_go_east(uint8_t ac_id, uint8_t distance);

@@ -22,10 +22,6 @@
 
 #include "modules/quad_swarm/quad_swarm.h"
 
-
-
-
-
 uint8_t quad_swarm_state;
 uint8_t quad_swarm_recv_ack = 0;
 
@@ -70,9 +66,10 @@ void quad_swarm_init( void )
 	&quad_swarm_id,\
 	&quad_swarm_ack\
 	)
-	
+uint8_t tmp_wp_id = SWARM_WP_FOR_USE;
 void quad_swarm_periodic( void )
 {
+	//DOWNLINK_SEND_WP_MOVED_ENU(DefaultChannel,DefaultDevice,&tmp_wp_id,&waypoints[SWARM_WP_FOR_USE].x,&waypoints[SWARM_WP_FOR_USE].y,&waypoints[SWARM_WP_FOR_USE].z);
 	//send_nav_info();
 	
 	if(!quad_swarm_initilized)

@@ -45,9 +45,9 @@
 
     <!--TAKE OFF. if we click this block, the aircraft will climb up-->
     <block name="Takeoff" strip_icon="takeoff.png" strip_button="Takeoff">
-      <exception cond="stateGetPositionEnu_f()->z > 2.0" deroute="Standby"/>
+      <exception cond="stateGetPositionEnu_f()->z > 2.5" deroute="Standby"/>
       <!--once the altitude is larger than 2m, the aircraft will go to block "Standby"-->
-      <stay vmode="climb" wp="HOME" climb="1.0"/>
+      <stay vmode="climb" wp="STDBY" climb="0.5"/>
     </block>
 
     <!--stay at this point until we click the block below, altitude is above ground is alt - ground_alt-->
@@ -91,7 +91,7 @@
     <block name="flare">
       <exception cond="NavDetectGround()" deroute="Holding point"/><!--when the aircraft detect ground, it will go to block "Holding point"-->
       <call fun="NavStartDetectGround()"/>
-      <stay climb="-0.8" vmode="climb" wp="LZ"/>
+      <stay climb="-0.5" vmode="climb" wp="LZ"/>
     </block>
   </blocks>
 </flight_plan>

@@ -18,10 +18,7 @@
   <blocks>
     <block name="Wait GPS">
       <call fun="NavKillThrottle()"/>
-<!--  Edit by Edward, for testing when GPS is not available
       <while cond="!GpsFixValid()"/>
--->
-		<while cond="0"/>
     </block>
 
     <block name="Geo init">
