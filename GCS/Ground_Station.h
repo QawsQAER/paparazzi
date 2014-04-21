@@ -95,11 +95,13 @@ class Ground_Station
 		static void *send_exec_cmd_ack(void *arg);
 		static void *send_exec_cmd_ack_thread(void *arg);
 
-		static void calculating_target();
+		static void *Triangle(void *);
+		static void *Line(void *);
+		static void *Triangle_thread(void *);
+		static void *Line_thread(void *);
+
 		static void sending_target();
-		static void wait_cmd_ack();
-		
-		static void wait_report();
+
 /**********************************************************************************************/
 /**********************************************************************************************/
 /**********************************************************************************************/
@@ -113,13 +115,6 @@ class Ground_Station
 		//diviates from the current reference point
 		//[distance] variable is in cm.
 		static void compute_go_direction(uint8_t ac_id, uint16_t distance, uint8_t direction);
-		static void compute_go_north(uint8_t ac_id, uint8_t distance);
-		static void compute_go_south(uint8_t ac_id, uint8_t distance);
-		static void compute_go_east(uint8_t ac_id, uint8_t distance);
-		static void compute_go_west(uint8_t ac_id, uint8_t distance);
-
-		static void compute_stright_line_NS();
-		static void compute_stright_line_WE();
 
 /**********************************************************************************************/
 /**********************************************************************************************/
